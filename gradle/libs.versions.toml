@@ -1,0 +1,30 @@
+[versions]
+agp = "8.2.1"
+kotlin-android = "1.9.22"
+core-ktx = "1.12.0"
+appcompat = "1.6.1"
+material = "1.11.0"
+constraintlayout = "2.1.4"
+junit = "4.13.2"
+junit-ext = "1.1.5"
+espresso = "3.5.1"
+
+[libraries]
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+#UI
+ui-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+ui-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#Test
+test-junit = { group = "junit", name = "junit", version.ref = "junit" }
+test-junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
+test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+[plugins]
+agp-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
+
+[bundles]
+ui = ["ui-material", "ui-constraintlayout"]
