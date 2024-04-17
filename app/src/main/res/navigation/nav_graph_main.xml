@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_graph_main.xml">
+
+    <fragment
+        android:id="@+id/authFlowFragment"
+        android:name="com.example.presentation.ui.fragments.AuthFlowFragment"
+        android:label="fragment_auth_flow"/>
+
+</navigation>

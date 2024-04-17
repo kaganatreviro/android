@@ -38,6 +38,7 @@ android {
 dependencies {
 
     implementation(project(":core-ui"))
+    implementation(project(":features:auth:presentation"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
