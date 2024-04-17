@@ -30,13 +30,22 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
 
+    implementation(project(":core-ui"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.ui.material)
+
+    //Bundle
+    implementation(libs.bundles.ui)
+
+    //Test
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
     androidTestImplementation(libs.test.espresso)
