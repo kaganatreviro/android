@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core-ui"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.ui.material)
