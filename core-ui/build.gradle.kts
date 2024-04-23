@@ -47,4 +47,7 @@ dependencies {
     //Navigation
     api(libs.navigation.fragment)
     api(libs.navigation.ui)
+
+    //UI libs
+    api(libs.bundles.ui)
 }
