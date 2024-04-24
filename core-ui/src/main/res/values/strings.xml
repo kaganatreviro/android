@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_qr_scanner">Scanner</string>
+    <string name="title_profile">Profile</string>
+    <string name="next">Create account</string>
+    <string name="sign_in">Log In</string>
+    <string name="done">Confirm</string>
+    <string name="Happy_title">Happy Hours</string>
+    <string name="main_title">Happy Hours</string>
+    <string name="none_account">New Member? Sign up Here</string>
+    <string name="create_client">Create an Account</string>
+    <string name="resent_code_timer">Resend more after </string>
+    <string name="resent_code">Resend code again</string>
+    <string name="enter_pin_title">Enter the 4-digit code sent to </string>
+</resources>

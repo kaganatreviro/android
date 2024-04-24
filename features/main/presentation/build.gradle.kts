@@ -1,20 +1,17 @@
 plugins {
-    alias(libs.plugins.agp.application)
+    alias(libs.plugins.agp.library)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.example.happyhours"
+    namespace = "com.example.presentation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.happyhours"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,21 +30,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
 
     implementation(project(":core-ui"))
-    implementation(project(":features:auth:presentation"))
-    implementation(project(":features:main:presentation"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-
-    //Bundle
-    implementation(libs.bundles.ui)
-
-    //Test
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
     androidTestImplementation(libs.test.espresso)
