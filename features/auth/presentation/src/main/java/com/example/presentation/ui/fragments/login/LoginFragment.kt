@@ -10,4 +10,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
 
     override val binding by viewBinding(FragmentLoginBinding::bind)
     override val viewModel by viewModels<LoginViewModel>()
+
+
 }

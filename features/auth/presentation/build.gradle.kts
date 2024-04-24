@@ -41,6 +41,8 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
+    implementation(libs.ui.material)
+    implementation(libs.ui.constraintlayout)
 
     //Bundle
     implementation(libs.bundles.ui)

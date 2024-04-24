@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/features/auth" />
             <option value="$PROJECT_DIR$/features/auth/domain" />
             <option value="$PROJECT_DIR$/features/auth/presentation" />
+            <option value="$PROJECT_DIR$/features/main" />
+            <option value="$PROJECT_DIR$/features/main/presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
