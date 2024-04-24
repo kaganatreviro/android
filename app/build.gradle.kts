@@ -37,13 +37,16 @@ android {
 
 dependencies {
 
-    implementation(project(":core-ui"))
     implementation(project(":features:auth:presentation"))
     implementation(project(":features:main:presentation"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
 
+    //Navigation
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    
     //Bundle
     implementation(libs.bundles.ui)
 
