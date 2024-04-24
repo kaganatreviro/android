@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_restaurant">Restaurants</string>
+    <string name="title_home">Home</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
     <string name="next">Create account</string>
