@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/restaurantsFragment"
+        android:icon="@drawable/ic_restaurant"
+        android:title="@string/title_restaurant" />
+
+    <item
+        android:id="@+id/QRScannerFragment"
+        android:icon="@drawable/ic_qr_code_scanner"
+        android:title="@string/title_qr_scanner" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person"
+        android:title="@string/title_profile" />
+
+</menu>
