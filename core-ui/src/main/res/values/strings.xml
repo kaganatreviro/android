@@ -4,6 +4,10 @@
     <string name="title_search">Search</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="order_history">Order history</string>
+    <string name="notification">Notification</string>
+    <string name="edit">Edit</string>
     <string name="next">Create account</string>
     <string name="sign_in">Log In</string>
     <string name="done">Confirm</string>
