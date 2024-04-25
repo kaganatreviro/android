@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.confirmPin.ConfirmPinFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/enter_pin_title"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/pinview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:cursorVisible="true"
+        app:forceKeyboard="true"
+        app:hint="0"
+        app:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:pinBackground="@drawable/pin_view_background"
+        app:pinHeight="64dp"
+        app:pinLength="4"
+        app:pinWidth="56dp" />
+
+    <TextView
+        android:id="@+id/tv_resent_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/empty_text"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/pinview" />
+
+    <TextView
+        android:id="@+id/btn_resent_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/resent_code"
+        android:textColor="@color/enable_true_button"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/pinview" />
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/color_primary"
+        android:text="@string/done"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_resent_code" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

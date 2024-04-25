@@ -3,19 +3,13 @@ package com.example.presentation.ui.fragments.regist
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.presentation.R
-import com.example.presentation.databinding.FragmentLoginBinding
 import com.example.presentation.databinding.FragmentSignUpBinding
-import com.example.presentation.ui.fragments.login.LoginViewModel
-import java.util.regex.Pattern
 
 class SignUpFragment :
     BaseFragment<FragmentSignUpBinding, SignUpViewModel>(R.layout.fragment_sign_up) {
