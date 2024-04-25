@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.login
 
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
@@ -11,5 +12,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
     override val binding by viewBinding(FragmentLoginBinding::bind)
     override val viewModel by viewModels<LoginViewModel>()
 
-
+    override fun onBackPressed() {
+        if (backPressedTime + doubleBackPressInterval > System.currentTimeMillis()) {
+            requireActivity().finish()
+        } else {
+            Toast.makeText(requireContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT)
+                .show()
+        }
+        backPressedTime = System.currentTimeMillis()
+    }
 }

@@ -7,4 +7,8 @@
     <color name="enable_false_button">#F1F6F9</color>
     <color name="enable_true_button">#292929</color>
     <color name="color_primary">#FB7E00</color>
+
+    <color name="empty_text">#767676</color>
+    <color name="correct_true_text">#1BA228</color>
+    <color name="correct_false_text">#EC0000</color>
 </resources>
