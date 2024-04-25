@@ -16,10 +16,14 @@ koin = "3.5.3"
 jetpack-lifecycle = "2.7.0"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
+pin-view = "v1.5"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+#pinView
+pin-view = {  group = "com.github.GoodieBag", name = "Pinview", version.ref = "pin-view"  }
 
 #UI
 ui-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
