@@ -43,7 +43,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.ui.material)
     implementation(libs.ui.constraintlayout)
-    implementation(libs.pin.view)
+    implementation(libs.ui.pinview)
 
     //Bundle
     implementation(libs.bundles.ui)

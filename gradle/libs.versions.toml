@@ -22,13 +22,11 @@ pin-view = "v1.5"
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
-#pinView
-pin-view = {  group = "com.github.GoodieBag", name = "Pinview", version.ref = "pin-view"  }
-
 #UI
 ui-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 ui-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 ui-viewBindingDelegate = { group = "com.github.kirich1409", name = "viewbindingpropertydelegate-noreflection", version.ref = "viewBindingDelegate" }
+ui-pinview = {  group = "com.github.GoodieBag", name = "Pinview", version.ref = "pin-view"  }
 
 #Navigation
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "jetpack-navigation" }
