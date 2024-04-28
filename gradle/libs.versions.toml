@@ -17,10 +17,12 @@ jetpack-lifecycle = "2.7.0"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
 pin-view = "v1.5"
+qr-scanner = "1.8.4"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+qr-scanner = { group = "me.dm7.barcodescanner", name = "zbar", version.ref = "qr-scanner" }
 
 #UI
 ui-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
