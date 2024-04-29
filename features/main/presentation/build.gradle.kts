@@ -39,8 +39,6 @@ dependencies {
 
     implementation(project(":core-ui"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
     androidTestImplementation(libs.test.espresso)
