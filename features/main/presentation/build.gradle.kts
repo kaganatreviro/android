@@ -38,6 +38,11 @@ android {
 dependencies {
 
     implementation(project(":core-ui"))
+    implementation(libs.qr.scanner)
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.ui.material)
+    implementation(libs.ui.constraintlayout)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
