@@ -17,7 +17,11 @@ jetpack-lifecycle = "2.7.0"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
 pin-view = "v1.5"
+<<<<<<< HEAD
 qr-scanner = "1.8.4"
+=======
+glide = "4.16.0"
+>>>>>>> dev
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -54,6 +58,9 @@ retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter
 #Interceptor
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging-interceptor" }
 
+#Glide
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+
 #Test
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
@@ -64,6 +71,7 @@ agp-application = { id = "com.android.application", version.ref = "agp" }
 agp-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
+ksp = { id = "com.github.bumptech.glide", version.ref = "glide"}
 
 [bundles]
 ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate"]
