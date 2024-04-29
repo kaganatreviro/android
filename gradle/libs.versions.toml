@@ -17,11 +17,8 @@ jetpack-lifecycle = "2.7.0"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
 pin-view = "v1.5"
-<<<<<<< HEAD
 qr-scanner = "1.8.4"
-=======
 glide = "4.16.0"
->>>>>>> dev
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
