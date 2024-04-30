@@ -39,6 +39,7 @@ dependencies {
 
     implementation(project(":features:auth:presentation"))
     implementation(project(":features:main:presentation"))
+    implementation(project(":data"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
