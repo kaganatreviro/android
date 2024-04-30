@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.regist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -42,12 +43,13 @@ class SignUpFragment :
 
     }
 
+    @SuppressLint("ResourceAsColor")
     fun validatePass(password: String) {
         // if password length is less than 8
         if (password.length in 15 downTo 8) {
-            binding.tvPassValidLength.setTextColor(resources.getColor(com.example.core_ui.R.color.correct_true_text))
+            binding.tvPassValidLength.setTextColor((com.example.core_ui.R.color.correct_true_text))
         } else {
-            binding.tvPassValidLength.setTextColor(resources.getColor(com.example.core_ui.R.color.correct_false_text))
+            binding.tvPassValidLength.setTextColor((com.example.core_ui.R.color.correct_false_text))
         }
     }
 
