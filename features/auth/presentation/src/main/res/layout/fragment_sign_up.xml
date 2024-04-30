@@ -35,10 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                style="@style/text_view_title"
                 android:gravity="center"
-                android:text="@string/create_client"
-                android:textColor="@color/enable_true_button"
-                android:textSize="24sp" />
+                android:text="@string/create_client"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_layout_name"
@@ -178,14 +177,12 @@
                 android:id="@+id/btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                style="@style/enable_button"
                 android:layout_below="@id/et_layout_repass"
                 android:layout_alignParentBottom="true"
                 android:layout_marginHorizontal="25dp"
                 android:layout_marginVertical="20dp"
-                android:background="@color/color_primary"
-                android:text="@string/create_account"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:text="@string/create_account" />
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
