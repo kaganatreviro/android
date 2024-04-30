@@ -46,6 +46,9 @@ dependencies {
     //Navigation
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    //DI
+    implementation(libs.koin.android)
     
     //Bundle
     implementation(libs.bundles.ui)
