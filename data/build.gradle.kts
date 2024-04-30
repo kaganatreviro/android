@@ -12,6 +12,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "BASE_URL", "\"http://16.170.203.161/\"")
     }
 
     buildTypes {
@@ -30,13 +31,22 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
 
+    implementation(project(":features:auth:domain"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.ui.material)
+    implementation(libs.koin.android)
+    implementation(libs.coroutines.android)
+    implementation(libs.bundles.retrofit)
+
+    //Test
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
     androidTestImplementation(libs.test.espresso)

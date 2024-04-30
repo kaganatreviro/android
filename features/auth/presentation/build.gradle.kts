@@ -38,15 +38,12 @@ android {
 dependencies {
 
     implementation(project(":core-ui"))
+    implementation(project(":features:auth:domain"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.ui.material)
-    implementation(libs.ui.constraintlayout)
     implementation(libs.ui.pinview)
-
-    //Bundle
-    implementation(libs.bundles.ui)
+    implementation(libs.koin.android)
 
     //Test
     testImplementation(libs.test.junit)

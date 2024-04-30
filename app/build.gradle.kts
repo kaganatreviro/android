@@ -39,6 +39,7 @@ dependencies {
 
     implementation(project(":features:auth:presentation"))
     implementation(project(":features:main:presentation"))
+    implementation(project(":data"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -46,6 +47,9 @@ dependencies {
     //Navigation
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    //DI
+    implementation(libs.koin.android)
     
     //Bundle
     implementation(libs.bundles.ui)

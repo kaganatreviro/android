@@ -39,10 +39,6 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.ui.material)
-    testImplementation(libs.test.junit)
-    androidTestImplementation(libs.test.junit.ext)
-    androidTestImplementation(libs.test.espresso)
 
     //Navigation
     api(libs.navigation.fragment)
@@ -50,4 +46,9 @@ dependencies {
 
     //UI libs
     api(libs.bundles.ui)
+
+    //Test
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.junit.ext)
+    androidTestImplementation(libs.test.espresso)
 }
