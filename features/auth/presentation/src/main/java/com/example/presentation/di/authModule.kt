@@ -1,8 +1,8 @@
 package com.example.presentation.di
 
-import com.example.domain.di.domainModule
+import com.example.domain.di.authDomainModule
 import org.koin.dsl.module
 
 val authModule = module {
-    includes(domainModule)
+    includes(authDomainModule)
 }
