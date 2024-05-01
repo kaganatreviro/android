@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.koin.android)
+    implementation(project(":features:auth:domain"))
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
