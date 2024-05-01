@@ -1,3 +1,8 @@
 package com.example.domain.models.qrcode
 
-data class QRCode()
+import java.io.Serializable
+
+data class QRCodeResponse(
+    val id: Int,
+    val qrCodeImage: String
+):Serializable

@@ -1,3 +1,9 @@
 package com.example.domain.models.beverage
 
-data class BeveragesCategory()
+import java.io.Serializable
+
+data class BeveragesCategory(
+    val id: Int,
+    val name: String,
+    val beverages: List<String>
+):Serializable
