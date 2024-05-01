@@ -10,4 +10,5 @@ java {
 
 dependencies {
     implementation(libs.koin.core)
+    implementation(libs.coroutines.core)
 }

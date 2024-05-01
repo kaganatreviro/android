@@ -71,6 +71,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 ksp = { id = "com.github.bumptech.glide", version.ref = "glide"}
 
 [bundles]
-ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate"]
+ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide"]
 lifecycle = ["lifecycle-livedata", "lifecycle-viewmodel", "lifecycle-runtime"]
 retrofit = ["retrofit2-retrofit", "retrofit2-converter-gson", "okhttp3-logging-interceptor"]
