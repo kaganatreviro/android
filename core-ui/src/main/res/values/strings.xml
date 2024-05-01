@@ -23,4 +23,7 @@
     <string name="password_valid_size">Password must be at least 8 characters long</string>
     <string name="password_valid_long">Password cannot exceed 255 characters</string>
     <string name="password_valid_not_empty">Password cannot be empty</string>
+    <string name="tab_title_1">Beverages</string>
+    <string name="tab_title_2">Establishments</string>
+    <string name="search_view_hint">Search</string>
 </resources>
