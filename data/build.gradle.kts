@@ -38,7 +38,9 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
     implementation(project(":features:auth:domain"))
+    implementation(project(":features:main:domain"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

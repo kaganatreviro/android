@@ -1,9 +1,14 @@
 package com.example.data.di
 
 import com.example.data.BuildConfig.BASE_URL
+import com.example.data.remote.api_services.BeverageApiService
 import okhttp3.OkHttpClient
+import com.example.data.repositories.BeverageRepositoryImpl
+import com.example.domain.repositories.BeverageRepository
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,6 +17,10 @@ import java.util.concurrent.TimeUnit
 val dataModule = module {
     factoryOf(::provideRetrofit)
     factoryOf(::provideOkHttpClient)
+    factoryOf(::provideBeverageApi)
+    singleOf(::BeverageRepositoryImpl) {
+        bind<BeverageRepository>()
+    }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -31,4 +40,8 @@ fun provideOkHttpClient(): OkHttpClient {
         .readTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(10, TimeUnit.SECONDS)
         .build()
+}
+
+fun provideBeverageApi(retrofit: Retrofit): BeverageApiService {
+    return retrofit.create(BeverageApiService::class.java)
 }
