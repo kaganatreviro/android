@@ -5,20 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.models.establishment.EstablishmentResponse
+import com.example.domain.models.Establishment
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 
-class EstablishmentAdapter(private val clickListener: ItemClickListener):
-RecyclerView.Adapter<RecyclerView.ViewHolder>()
-{
-    var items: MutableList<EstablishmentResponse> = mutableListOf()
+class EstablishmentAdapter(private val clickListener: ItemClickListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var items: MutableList<Establishment> = mutableListOf()
 
 //    @GlideModule
 //    class MyAppGlideModule : AppGlideModule()
 
     interface ItemClickListener {
-        fun onItemClick(item: EstablishmentResponse, index: Int)
+        fun onItemClick(item: Establishment, index: Int)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -55,18 +54,18 @@ RecyclerView.Adapter<RecyclerView.ViewHolder>()
     class Holder private constructor(private val binding: ItemEstablishmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var item: EstablishmentResponse
+        lateinit var item: Establishment
         var index: Int = 0
 
         @SuppressLint("SetTextI18n", "CheckResult")
-        fun bind(_item: EstablishmentResponse, position: Int) {
+        fun bind(_item: Establishment, position: Int) {
             item = _item
             index = position
 
             item.apply {
                 binding.tvName.text = item.name
                 binding.tvHappyTime.text = "Happy Hours in " +
-                        item.happyhoursStart + "from " + item.happyhoursEnd
+                        item.happyHoursStart + "from " + item.happyHoursEnd
 //                Glide.with(itemView)
 //                    .load()
 //                    .into(binding.ivRestImage)
