@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
-import com.example.domain.models.establishment.EstablishmentResponse
+import com.example.domain.models.Establishment
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 
@@ -38,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         backPressedTime = System.currentTimeMillis()
     }
 
-    override fun onItemClick(item: EstablishmentResponse, index: Int) {
+    override fun onItemClick(item: Establishment, index: Int) {
         TODO("Not yet implemented")
     }
 }
