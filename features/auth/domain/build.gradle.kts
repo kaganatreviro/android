@@ -9,6 +9,7 @@ java {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(libs.koin.core)
     implementation(libs.coroutines.core)
 }

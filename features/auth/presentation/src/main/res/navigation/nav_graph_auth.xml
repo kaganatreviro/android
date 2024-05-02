@@ -10,19 +10,16 @@
         android:name="com.example.presentation.ui.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
+
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.presentation.ui.fragments.regist.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up"/>
 </navigation>
+
+<!--<deepLink app:uri="reviroApp://features/main/presentation/" />-->

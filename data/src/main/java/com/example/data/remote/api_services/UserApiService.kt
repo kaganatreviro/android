@@ -1,25 +1,17 @@
 package com.example.data.remote.api_services
 
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.example.data.remote.dto.UserRegisterRequestDto
+import com.example.data.remote.dto.UserRegisterResponseDto
+import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface UserApiService {
-    //Establishment
-    @GET("/api/v1/partner/establishment/list/")
-    fun getEstablishmentList(
-        @Query("limit") limit: Int,
-        @Query("offset") offset: Int
-    )
 
-    @GET("/api/v1/partner/establishment/{id}/")
-    fun getEstablishmentById(@Path("id") id: Int)
+    @POST(CLIENT_REGISTER_ENDPOINT)
+    suspend fun userRegister(@Body userData: UserRegisterRequestDto): UserRegisterResponseDto
 
-    @GET("/api/v1/partner/menu/{id}/")
-    fun getMenuById(@Path("id") id: Int)
-
-    //User
-    @GET("/api/v1/user/{id}/")
-    fun getUserInfo(@Path("id") id: Int)
-
+    companion object {
+        const val CLIENT_REGISTER_ENDPOINT = "api/v1/user/client_register/"
+    }
 }

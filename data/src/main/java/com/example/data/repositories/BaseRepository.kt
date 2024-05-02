@@ -14,5 +14,5 @@ internal fun <T> makeNetworkRequest(
             emit(Either.Right(value = it))
         }
     }.flowOn(Dispatchers.IO).catch { exception ->
-        emit(Either.Left(value = exception.localizedMessage ?: "Error Occurred!"))
+        emit(Either.Left(value = exception.message ?: "Error Occurred!"))
     }

@@ -2,6 +2,7 @@ package com.example.presentation.ui.fragments.login
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.presentation.R
@@ -20,5 +21,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
                 .show()
         }
         backPressedTime = System.currentTimeMillis()
+    }
+
+    override fun setupListeners() {
+        binding.tvNoneAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        }
     }
 }

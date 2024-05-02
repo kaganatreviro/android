@@ -9,8 +9,9 @@ import com.example.domain.models.Establishment
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 
-class EstablishmentAdapter(private val clickListener: ItemClickListener) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class EstablishmentAdapter(private val clickListener: ItemClickListener):
+RecyclerView.Adapter<RecyclerView.ViewHolder>()
+{
     var items: MutableList<Establishment> = mutableListOf()
 
 //    @GlideModule
