@@ -11,7 +11,8 @@ import com.example.domain.models.Establishment
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home), EstablishmentAdapter.ItemClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home),
+    EstablishmentAdapter.ItemClickListener {
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
     override val viewModel by viewModels<HomeViewModel>()
@@ -22,7 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         setupViews()
     }
 
-    private fun setupViews() = with(binding){
+    private fun setupViews() = with(binding) {
         rvRestList.layoutManager = GridLayoutManager(requireContext(), 2)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
