@@ -8,6 +8,7 @@ import com.example.data.repositories.BeverageRepositoryImpl
 import com.example.data.repositories.UserRepositoryImpl
 import com.example.domain.repositories.BeverageRepository
 import com.example.domain.repositories.UserRepository
+import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
@@ -16,6 +17,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import java.util.prefs.Preferences
 
 val dataModule = module {
     factoryOf(::provideRetrofit)
@@ -38,15 +40,27 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .build()
 }
 
-fun provideOkHttpClient(): OkHttpClient {
+fun provideOkHttpClient(preferences: Preferences): OkHttpClient {
     val interceptor = HttpLoggingInterceptor()
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    getHeaderInterceptor(preferences)
     return OkHttpClient().newBuilder()
         .addInterceptor(interceptor)
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(10, TimeUnit.SECONDS)
         .build()
+}
+
+private fun getHeaderInterceptor(preferences: Preferences): Interceptor {
+    return Interceptor { chain ->
+        chain.proceed(
+            chain
+                .request()
+                .newBuilder()
+                .build()
+        )
+    }
 }
 
 fun provideBeverageApi(retrofit: Retrofit): BeverageApiService {
