@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
+import com.example.domain.models.ResetPasswordRequest
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentConfirmPinBinding
 
@@ -57,6 +59,15 @@ class ConfirmPinFragment :
 
     override fun onBackPressed() {
         findNavController().popBackStack()
+    }
+
+    private fun configCode(){
+        val params = ResetPasswordRequest("", binding.pinview.value)
+        viewModel.userResetPassword(params)
+    }
+
+    private fun isEmptyPinView(): Boolean{
+        return binding.pinview.isEmpty()
     }
 
     private fun showKeyBoard() {
