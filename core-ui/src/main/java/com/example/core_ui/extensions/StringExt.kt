@@ -11,4 +11,3 @@ fun String.dateFormatter(inputFormat: String = "dd/MM/yyyy", outputFormat: Strin
         e.printStackTrace()
         ""
     }
-

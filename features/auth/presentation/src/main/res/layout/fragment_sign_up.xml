@@ -19,7 +19,6 @@
             android:layout_marginStart="@dimen/screen_margin"
             android:backgroundTint="@android:color/transparent"
             android:src="@drawable/ic_back" />
-
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView

@@ -10,6 +10,7 @@
     <string name="edit">Edit</string>
     <string name="create_account">Create account</string>
     <string name="sign_in">Log In</string>
+    <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="Happy_title">Happy Hours</string>
     <string name="main_title">Happy Hours</string>
@@ -26,4 +27,6 @@
     <string name="tab_title_1">Beverages</string>
     <string name="tab_title_2">Establishments</string>
     <string name="search_view_hint">Search</string>
+    <style name="new_password_title">To complete the password reset, please enter a new password in the field below. Your new password must contain at least 8 characters and include uppercase and lowercase letters, numbers, and special characters to ensure the security of your account.</style>
+    <string name="forgot_password_title">Please enter your email address. We will send you 4-digit code to drop your password.</string>
 </resources>
