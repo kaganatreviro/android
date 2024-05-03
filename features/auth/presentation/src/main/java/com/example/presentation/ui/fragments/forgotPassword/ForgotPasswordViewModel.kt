@@ -10,6 +10,6 @@ class ForgotPasswordViewModel(private val repository: UserRepository) : BaseView
     val forgotPasswordState = _ForgotPasswordState.asStateFlow()
 
     fun userForgotPassword(userData: ForgotPasswordRequest) {
-        repository.userForgotPassword(userData).gatherRequest()
+        repository.userForgotPassword(userData)
     }
 }
