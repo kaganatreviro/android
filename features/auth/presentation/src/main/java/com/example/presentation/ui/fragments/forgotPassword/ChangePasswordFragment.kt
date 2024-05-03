@@ -6,8 +6,8 @@ import com.example.core_ui.base.BaseFragment
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentChangePasswordBinding
 
-class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding, ChangePasswordViewModel>(R.layout.fragment_change_password) {
+class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding, ForgotPasswordViewModel>(R.layout.fragment_change_password) {
     override val binding by viewBinding(FragmentChangePasswordBinding::bind)
-    override val viewModel by viewModels<ChangePasswordViewModel>()
+    override val viewModel by viewModels<ForgotPasswordViewModel>()
 
 }

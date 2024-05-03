@@ -13,9 +13,7 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun <T> mutableUiStateFlow() = MutableStateFlow<UIState<T>>(UIState.Idle())
 
-    protected fun <T> Flow<Either<String, T>>.gatherRequest(
-        state: MutableStateFlow<UIState<T>>,
-    ) {
+    protected fun <T> Flow<Either<String, T>>.gatherRequest() {
         viewModelScope.launch(Dispatchers.IO) {
             state.value = UIState.Loading()
             this@gatherRequest.collect {

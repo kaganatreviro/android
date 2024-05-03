@@ -14,6 +14,6 @@ class SignUpViewModel(
     val registerState = _registerState.asStateFlow()
 
     fun userRegister(userData: UserRegisterRequest) {
-        repository.userRegister(userData).gatherRequest(_registerState)
+        repository.userRegister(userData).gatherRequest()
     }
 }

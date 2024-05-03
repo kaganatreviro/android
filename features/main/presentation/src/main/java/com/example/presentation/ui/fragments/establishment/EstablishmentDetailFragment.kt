@@ -23,7 +23,6 @@ class EstablishmentDetailFragment : BaseFragment<FragmentEstablishmentDetailBind
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         findNavController().popBackStack()
     }
 }

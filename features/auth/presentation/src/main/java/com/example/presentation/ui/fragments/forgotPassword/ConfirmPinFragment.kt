@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.confirmPin
+package com.example.presentation.ui.fragments.forgotPassword
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,28 +15,43 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentConfirmPinBinding
 
 class ConfirmPinFragment :
-    BaseFragment<FragmentConfirmPinBinding, ConfirmPinViewModel>(R.layout.fragment_confirm_pin) {
+    BaseFragment<FragmentConfirmPinBinding, ForgotPasswordViewModel>(R.layout.fragment_confirm_pin) {
 
     override val binding by viewBinding(FragmentConfirmPinBinding::bind)
-    override val viewModel by viewModels<ConfirmPinViewModel>()
+    override val viewModel by viewModels<ForgotPasswordViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showKeyBoard()
         setupTimer()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnResentCode.setOnClickListener {
+
+        }
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.btnDone.setOnClickListener {
+
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun setupTimer() {
         val timer = object : CountDownTimer(59000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {}
+            override fun onTick(millisUntilFinished: Long) {
+                binding.tvResentCode.text =
+                    resources.getString(com.example.core_ui.R.string.resent_code_timer) + " " + millisUntilFinished.toString()
+            }
+
             override fun onFinish() {
                 binding.tvResentCode.isVisible = false
                 binding.btnResentCode.isVisible = true
             }
         }
-        binding.tvResentCode.text =
-            resources.getString(com.example.core_ui.R.string.resent_code_timer) + " " + timer.toString()
         timer.start()
     }
 
