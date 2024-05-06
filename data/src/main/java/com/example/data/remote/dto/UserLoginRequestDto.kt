@@ -13,3 +13,8 @@ data class UserLoginRequestDto(
         password = password,
     )
 }
+
+fun UserLoginRequest.toDto() = UserLoginRequestDto(
+    email = email,
+    password = password
+)
