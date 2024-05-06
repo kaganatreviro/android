@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="next">Create account</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_qr_scanner">Scanner</string>
+    <string name="title_profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="order_history">Order history</string>
+    <string name="notification">Notification</string>
+    <string name="edit">Edit</string>
+    <string name="create_account">Create account</string>
     <string name="sign_in">Log In</string>
+    <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="Happy_title">Happy Hours</string>
     <string name="main_title">Happy Hours</string>
+    <string name="subs_status">Subscription</string>
     <string name="none_account">New Member? Sign up Here</string>
     <string name="create_client">Create an Account</string>
     <string name="resent_code_timer">Resend more after </string>
     <string name="resent_code">Resend code again</string>
     <string name="enter_pin_title">Enter the 4-digit code sent to </string>
+    
+    <string name="password_valid_size">Password must be at least 8 characters long</string>
+    <string name="password_valid_long">Password cannot exceed 255 characters</string>
+    <string name="password_valid_not_empty">Password cannot be empty</string>
+    <string name="tab_title_1">Beverages</string>
+    <string name="tab_title_2">Establishments</string>
+    <string name="search_view_hint">Search</string>
+    <style name="new_password_title">To complete the password reset, please enter a new password in the field below. Your new password must contain at least 8 characters and include uppercase and lowercase letters, numbers, and special characters to ensure the security of your account.</style>
+    <string name="forgot_password_title">Please enter your email address. We will send you 4-digit code to drop your password.</string>
 </resources>

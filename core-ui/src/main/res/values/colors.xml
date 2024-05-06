@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="enable_false_button">#F1F6F9</color>
-    <color name="enable_true_button">#292929</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#F5484A</color>
+    <color name="grey">#8E98A8</color>
+    <color name="grey_t_20">#33767676</color>
+    <color name="enable_false_button">#F1F6F9</color>
+    <color name="enable_true_button">#292929</color>
     <color name="color_primary">#FB7E00</color>
+
+    <color name="enable_button">#FB7E00</color>
+    <color name="disable_button">#E9EAEB</color>
+    <color name="disable_text_color">#94979B</color>
+
+    <color name="empty_text">#767676</color>
+    <color name="correct_true_text">#1BA228</color>
+    <color name="correct_false_text">#EC0000</color>
 </resources>

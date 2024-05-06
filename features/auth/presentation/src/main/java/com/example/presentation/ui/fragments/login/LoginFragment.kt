@@ -1,50 +1,63 @@
 package com.example.presentation.ui.fragments.login
 
-import android.os.Bundle
-import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.gone
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.visible
 import com.example.presentation.R
+import com.example.presentation.core.Constants.DEEPLINK_MAIN
 import com.example.presentation.databinding.FragmentLoginBinding
-import com.example.presentation.ui.fragments.regist.SingUpFragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layout.fragment_login) {
 
     override val binding by viewBinding(FragmentLoginBinding::bind)
-    override val viewModel by viewModels<LoginViewModel>()
+    override val viewModel by viewModel<LoginViewModel>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        init()
-    }
+    override fun setupListeners() {
+        binding.btnLogin.setOnClickListener {
+            viewModel.userLogin(
+                binding.etUserEmail.text.toString(),
+                binding.etUserPassword.text.toString()
+            )
+        }
 
-    private fun init() = with(binding){
-        btnEnter.setOnClickListener {
-            if (checkEmptyLines()){
-                showSimpleDialog()
-            }else{
-                //Todo navigate
-            }
+        binding.tvNoneAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
     }
 
-    private fun showSimpleDialog(){
-        MaterialAlertDialogBuilder(requireContext(),
-            androidx.appcompat.R.style.AlertDialog_AppCompat)
-            .setMessage("Проверьте и заполните все поля")
-            .setTitle("Поле не должно быть пустым!")
-            .setPositiveButton("OK") { dialog, which ->
-                dialog.dismiss()
+    override fun launchObservers() {
+        viewModel.loginState.spectateUiState(
+            loading = {
+                binding.progressBar.visible()
+                binding.btnLogin.isEnabled = false
+                binding.btnLogin.text = ""
+            },
+            success = {
+                binding.progressBar.gone()
+                binding.btnLogin.isEnabled = true
+                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                navigateToMain()
+            },
+            error = {
+                binding.progressBar.gone()
+                binding.btnLogin.isEnabled = true
+                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                showShortToast(it)
             }
-            .show()
+        )
     }
 
-    private fun checkEmptyLines(): Boolean{
-        return binding.etInputLogin.text.isNullOrEmpty()||
-                binding.etPass.text.isNullOrEmpty()
-
+    private fun navigateToMain() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(DEEPLINK_MAIN.toUri())
+            .build()
+        findNavController().navigate(request)
     }
 }

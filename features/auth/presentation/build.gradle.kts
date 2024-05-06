@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.library)
     alias(libs.plugins.kotlin.android)
+    id(libs.plugins.navigation.safeArgs.get().pluginId)
 }
 
 android {
@@ -38,14 +39,12 @@ android {
 dependencies {
 
     implementation(project(":core-ui"))
+    implementation(project(":features:auth:domain"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.ui.material)
-    implementation(libs.ui.constraintlayout)
-
-    //Bundle
-    implementation(libs.bundles.ui)
+    implementation(libs.ui.pinview)
+    implementation(libs.koin.android)
 
     //Test
     testImplementation(libs.test.junit)
