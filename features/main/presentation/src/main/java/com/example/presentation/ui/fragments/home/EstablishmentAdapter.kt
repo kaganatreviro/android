@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.main
+package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

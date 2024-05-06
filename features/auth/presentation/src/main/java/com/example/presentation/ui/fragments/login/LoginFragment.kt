@@ -1,34 +1,66 @@
 package com.example.presentation.ui.fragments.login
 
-import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.gone
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.visible
 import com.example.presentation.R
+import com.example.presentation.core.Constants.DEEPLINK_MAIN
 import com.example.presentation.databinding.FragmentLoginBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layout.fragment_login) {
 
     override val binding by viewBinding(FragmentLoginBinding::bind)
-    override val viewModel by viewModels<LoginViewModel>()
-
-    override fun onBackPressed() {
-        if (backPressedTime + doubleBackPressInterval > System.currentTimeMillis()) {
-            requireActivity().finish()
-        } else {
-            Toast.makeText(requireContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT)
-                .show()
-        }
-        backPressedTime = System.currentTimeMillis()
-    }
+    override val viewModel by viewModel<LoginViewModel>()
 
     override fun setupListeners() {
+        binding.btnLogin.setOnClickListener {
+            viewModel.userLogin(
+                binding.etUserEmail.text.toString(),
+                binding.etUserPassword.text.toString()
+            )
+        }
+
         binding.tvNoneAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
         binding.tvResetPass.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
+    }
+
+    override fun launchObservers() {
+        viewModel.loginState.spectateUiState(
+            loading = {
+                binding.progressBar.visible()
+                binding.btnLogin.isEnabled = false
+                binding.btnLogin.text = ""
+            },
+            success = {
+                binding.progressBar.gone()
+                binding.btnLogin.isEnabled = true
+                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                navigateToMain()
+            },
+            error = {
+                binding.progressBar.gone()
+                binding.btnLogin.isEnabled = true
+                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                showShortToast(it)
+            }
+        )
+    }
+
+    private fun navigateToMain() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(DEEPLINK_MAIN.toUri())
+            .build()
+        findNavController().navigate(request)
     }
 }
