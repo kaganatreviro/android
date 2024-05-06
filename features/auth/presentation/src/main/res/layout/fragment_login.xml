@@ -20,31 +20,31 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_layout_login"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:textSize="16sp"
         app:counterMaxLength="150"
         app:layout_constraintTop_toBottomOf="@id/tv_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_input_login"
+            android:id="@+id/et_user_email"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/background_for_edit_text"
             android:hint="Email Address"
             android:inputType="textEmailAddress"
+            android:paddingVertical="20dp"
             android:paddingStart="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_layout_pass"
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:textSize="16sp"
         app:counterMaxLength="16"
         app:endIconMode="password_toggle"
@@ -52,13 +52,14 @@
         app:prefixTextColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_pass"
+            android:id="@+id/et_user_password"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_margin"
             android:background="@drawable/background_for_edit_text"
             android:hint="Password"
             android:inputType="textPassword"
+            android:paddingVertical="20dp"
             android:paddingStart="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,28 +85,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chb_remember" />
 
-    <Button
-        android:id="@+id/btn_enter"
+    <FrameLayout
+        android:id="@+id/btn_login_container"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="@dimen/screen_margin"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/color_primary"
-        android:text="@string/sign_in"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:cornerRadius="4dp"
-        app:layout_constraintTop_toBottomOf="@id/chb_remember" />
+        app:layout_constraintTop_toBottomOf="@id/chb_remember">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_margin"
+            android:backgroundTint="@color/color_primary"
+            android:paddingVertical="16dp"
+            android:text="@string/sign_in"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="4dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_none_account"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_under_line"
+        android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:paddingTop="4dp"
         android:text="@string/none_account"
         android:textColor="@color/enable_true_button"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_enter" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

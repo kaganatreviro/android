@@ -7,6 +7,7 @@ import com.example.data.remote.dto.toDto
 import com.example.domain.models.ChangePasswordRequest
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
+import com.example.domain.models.UserLoginRequest
 import com.example.domain.models.UserLoginResponse
 import com.example.domain.models.UserRegisterRequest
 import com.example.domain.models.UserRegisterResponse
@@ -17,6 +18,14 @@ class UserRepositoryImpl(
     private val apiService: UserApiService,
     private val tokenPrefs: TokenPrefs
 ) : UserRepository {
+
+    override fun userLogin(userData: UserLoginRequest): Flow<Either<String, Unit>> =
+        makeNetworkRequest {
+            apiService.userLogin(userData.toDto()).also {
+                tokenPrefs.access = it.access
+                tokenPrefs.refresh = it.refresh
+            }
+        }
 
     override fun userRegister(userData: UserRegisterRequest): Flow<Either<String, UserRegisterResponse>> =
         makeNetworkRequest {

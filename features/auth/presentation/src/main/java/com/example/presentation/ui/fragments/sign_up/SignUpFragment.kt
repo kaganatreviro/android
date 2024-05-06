@@ -39,7 +39,7 @@ class SignUpFragment :
             findNavController().navigateUp()
         }
 
-        binding.etPass.addTextChangedListener {
+        binding.etUserPassword.addTextChangedListener {
             validatePass(it.toString())
         }
 
@@ -57,9 +57,9 @@ class SignUpFragment :
             showShortToast("Enter your birthday")
         } else if (etEnterEmail.text.toString().isEmpty()) {
             showShortToast("Enter your email")
-        } else if (etPass.text.toString().isEmpty()) {
+        } else if (etUserPassword.text.toString().isEmpty()) {
             showShortToast("Enter password")
-        } else if (etPass.text.toString() != etRePass.text.toString()) {
+        } else if (etUserPassword.text.toString() != etRePass.text.toString()) {
             showShortToast("Passwords do not match")
         } else {
             viewModel.userRegister(
@@ -67,7 +67,7 @@ class SignUpFragment :
                     name = etEnterName.text.toString(),
                     email = etEnterEmail.text.toString(),
                     datOfBirth = etEnterBirth.text.toString().dateFormatter(),
-                    password = etPass.text.toString(),
+                    password = etUserPassword.text.toString(),
                     passwordConfirm = etRePass.text.toString()
                 )
             )
