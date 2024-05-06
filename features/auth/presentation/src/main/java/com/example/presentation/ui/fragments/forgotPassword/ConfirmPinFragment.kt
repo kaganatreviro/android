@@ -10,8 +10,12 @@ import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.gone
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.visible
 import com.example.domain.models.ResetPasswordRequest
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentConfirmPinBinding
@@ -23,10 +27,17 @@ class ConfirmPinFragment :
     override val viewModel by viewModels<ForgotPasswordViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        setupView()
+        initListeners()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupView(){
         showKeyBoard()
         setupTimer()
-        initListeners()
+
+        binding.tvTitle.text = resources.getString(com.example.core_ui.R.string.enter_pin_title) + " ramazanmarov@gmail.com"
+        binding.btnDone.isEnabled = isEmptyPinView()
     }
 
     private fun initListeners() {
@@ -37,9 +48,29 @@ class ConfirmPinFragment :
             findNavController().popBackStack()
         }
         binding.btnDone.setOnClickListener {
-
+            configCode()
         }
     }
+
+    override fun launchObservers() {
+        viewModel.resetPasswordState.spectateUiState(
+            loading = {
+                binding.progressBar.visible()
+            },
+            success = {
+                binding.progressBar.gone()
+                showShortToast("Success")
+                it.access
+                it.refresh
+                findNavController().navigate(R.id.action_forgotPasswordFragment_to_confirmPinFragment)
+            },
+            error = {
+                binding.progressBar.gone()
+                showShortToast(it)
+            }
+        )
+    }
+
 
     @SuppressLint("SetTextI18n")
     private fun setupTimer() {
@@ -62,7 +93,7 @@ class ConfirmPinFragment :
     }
 
     private fun configCode(){
-        val params = ResetPasswordRequest("", binding.pinview.value)
+        val params = ResetPasswordRequest("ramazanmarov@gmail.com", binding.pinview.value)
         viewModel.userResetPassword(params)
     }
 

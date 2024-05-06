@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.core_ui.ui.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.prefs.Preferences
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes layoutId: Int) :
     Fragment(layoutId) {
@@ -25,8 +26,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes lay
     open val doubleBackPressInterval = 2000
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         initialize()
         setupListeners()
         launchObservers()

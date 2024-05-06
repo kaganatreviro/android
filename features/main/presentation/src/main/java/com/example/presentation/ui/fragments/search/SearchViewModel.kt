@@ -13,6 +13,6 @@ class SearchViewModel(
     val beveragesState = _beveragesState.asStateFlow()
 
     init {
-        getBeverageUserCase().gatherRequest()
+        getBeverageUserCase()
     }
 }

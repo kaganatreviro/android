@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.agp.library)
     alias(libs.plugins.kotlin.android)
-    id("androidx.navigation.safeargs")
 }
 
 android {
