@@ -21,7 +21,6 @@ class ConfirmPinFragment :
 
     override val binding by viewBinding(FragmentConfirmPinBinding::bind)
     override val viewModel by viewModels<ForgotPasswordViewModel>()
-    private val args: ConfirmationPinFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

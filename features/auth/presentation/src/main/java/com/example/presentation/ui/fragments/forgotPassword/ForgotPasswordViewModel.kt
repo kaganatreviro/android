@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.forgotPassword
 
 import com.example.core_ui.base.BaseViewModel
+import com.example.domain.models.ChangePasswordRequest
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
 import com.example.domain.models.UserLoginResponse
@@ -12,6 +13,8 @@ class ForgotPasswordViewModel(private val repository: UserRepository) : BaseView
     val forgotPasswordState = _ForgotPasswordState.asStateFlow()
     private val _ResetPasswordState = mutableUiStateFlow<UserLoginResponse>()
     val resetPasswordState = _ResetPasswordState.asStateFlow()
+    private val _ChangePasswordState = mutableUiStateFlow<ChangePasswordRequest>()
+    val changePasswordState = _ChangePasswordState.asStateFlow()
 
     fun userForgotPassword(userData: ForgotPasswordRequest) {
         repository.userForgotPassword(userData)
@@ -19,5 +22,9 @@ class ForgotPasswordViewModel(private val repository: UserRepository) : BaseView
 
     fun userResetPassword(userData: ResetPasswordRequest) {
         repository.userResetPassword(userData).gatherRequest(_ResetPasswordState)
+    }
+
+    fun userChangePassword(userData: ChangePasswordRequest) {
+        repository.userChangePassword(userData)
     }
 }
