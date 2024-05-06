@@ -27,8 +27,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
             )
         }
 
+        binding.tvResetPass.setOnClickListener {
+        }
+
         binding.tvNoneAccount.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
     }
 
