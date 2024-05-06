@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.regist
+package com.example.presentation.ui.fragments.sign_up
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,16 +6,20 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
 import com.example.core_ui.extensions.gone
+import com.example.core_ui.extensions.setupDateTextWatcher
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.UserRegisterRequest
 import com.example.presentation.R
+import com.example.presentation.core.Constants.DEEPLINK_MAIN
 import com.example.presentation.databinding.FragmentSignUpBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
@@ -39,7 +43,7 @@ class SignUpFragment :
             validatePass(it.toString())
         }
 
-        setBirthdayEditText()
+        binding.etEnterBirth.setupDateTextWatcher()
 
         binding.btnNext.setOnClickListener {
             checkInputData()
@@ -73,17 +77,30 @@ class SignUpFragment :
     override fun launchObservers() {
         viewModel.registerState.spectateUiState(
             loading = {
+                binding.btnNext.text = ""
+                binding.btnNext.isEnabled = false
                 binding.progressBar.visible()
             },
             success = {
+                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
+                binding.btnNext.isEnabled = true
                 binding.progressBar.gone()
-                showShortToast("Success register")
+                navigateToMain()
             },
             error = {
+                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
+                binding.btnNext.isEnabled = true
                 binding.progressBar.gone()
                 showShortToast(it)
             }
         )
+    }
+
+    private fun navigateToMain() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(DEEPLINK_MAIN.toUri())
+            .build()
+        findNavController().navigate(request)
     }
 
     @SuppressLint("ResourceAsColor")
@@ -122,67 +139,5 @@ class SignUpFragment :
 
     override fun onBackPressed() {
         findNavController().popBackStack()
-    }
-
-    private fun setBirthdayEditText() {
-
-        binding.etEnterBirth.addTextChangedListener(object : TextWatcher {
-
-            private var current = ""
-            private val ddmmyyyy = "DDMMYYYY"
-            private val cal = Calendar.getInstance()
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString() != current) {
-                    var clean = p0.toString().replace("[^\\d.]|\\.".toRegex(), "")
-                    val cleanC = current.replace("[^\\d.]|\\.", "")
-
-                    val cl = clean.length
-                    var sel = cl
-                    var i = 2
-                    while (i <= cl && i < 6) {
-                        sel++
-                        i += 2
-                    }
-                    if (clean == cleanC) sel--
-
-                    if (clean.length < 8) {
-                        clean += ddmmyyyy.substring(clean.length)
-                    } else {
-                        var day = Integer.parseInt(clean.substring(0, 2))
-                        var mon = Integer.parseInt(clean.substring(2, 4))
-                        var year = Integer.parseInt(clean.substring(4, 8))
-
-                        mon = if (mon < 1) 1 else if (mon > 12) 12 else mon
-                        cal.set(Calendar.MONTH, mon - 1)
-                        year = if (year < 1900) 1900 else if (year > 2100) 2100 else year
-                        cal.set(Calendar.YEAR, year)
-
-                        day = if (day > cal.getActualMaximum(Calendar.DATE)) cal.getActualMaximum(
-                            Calendar.DATE
-                        ) else day
-                        clean = String.format("%02d%02d%02d", day, mon, year)
-                    }
-
-                    clean = String.format(
-                        "%s/%s/%s", clean.substring(0, 2),
-                        clean.substring(2, 4),
-                        clean.substring(4, 8)
-                    )
-
-                    sel = if (sel < 0) 0 else sel
-                    current = clean
-                    binding.etEnterBirth.setText(current)
-                    binding.etEnterBirth.setSelection(if (sel < current.count()) sel else current.count())
-                }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable) {
-
-            }
-        })
     }
 }

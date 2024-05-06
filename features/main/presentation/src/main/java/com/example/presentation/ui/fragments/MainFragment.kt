@@ -7,7 +7,7 @@ import com.example.core_ui.base.BaseFlowFragment
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentMainFlowBinding
 
-class MainFlowFragment : BaseFlowFragment(R.layout.fragment_main_flow, R.id.nav_host_main) {
+class MainFragment : BaseFlowFragment(R.layout.fragment_main_flow, R.id.nav_host_main) {
 
     private val binding by viewBinding(FragmentMainFlowBinding::bind)
 

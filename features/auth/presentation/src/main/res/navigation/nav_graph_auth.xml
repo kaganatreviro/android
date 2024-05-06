@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_auth.xml"
+    android:id="@+id/nav_graph_auth"
     app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.presentation.ui.fragments.regist.SignUpFragment"
+        android:name="com.example.presentation.ui.fragments.sign_up.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment

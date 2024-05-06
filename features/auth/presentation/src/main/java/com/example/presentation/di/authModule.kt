@@ -1,7 +1,7 @@
 package com.example.presentation.di
 
 import com.example.domain.di.authDomainModule
-import com.example.presentation.ui.fragments.regist.SignUpViewModel
+import com.example.presentation.ui.fragments.sign_up.SignUpViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 

@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.regist
+package com.example.presentation.ui.fragments.sign_up
 
 import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.UserRegisterRequest

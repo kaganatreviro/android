@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.main
+package com.example.presentation.ui.fragments.home
 
 import android.os.Bundle
 import android.view.View
