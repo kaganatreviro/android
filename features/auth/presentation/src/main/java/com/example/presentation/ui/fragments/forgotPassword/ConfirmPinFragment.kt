@@ -25,6 +25,7 @@ class ConfirmPinFragment :
 
     override val binding by viewBinding(FragmentConfirmPinBinding::bind)
     override val viewModel by viewModels<ForgotPasswordViewModel>()
+    private val args by navArgs<ConfirmPinFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupView()
@@ -60,9 +61,7 @@ class ConfirmPinFragment :
             success = {
                 binding.progressBar.gone()
                 showShortToast("Success")
-                it.access
-                it.refresh
-                findNavController().navigate(R.id.action_forgotPasswordFragment_to_confirmPinFragment)
+                findNavController().navigate(ConfirmPinFragmentDirections.actionConfirmPinFragmentToChangePasswordFragment(args.email))
             },
             error = {
                 binding.progressBar.gone()
@@ -70,7 +69,6 @@ class ConfirmPinFragment :
             }
         )
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun setupTimer() {
@@ -93,7 +91,7 @@ class ConfirmPinFragment :
     }
 
     private fun configCode(){
-        val params = ResetPasswordRequest("ramazanmarov@gmail.com", binding.pinview.value)
+        val params = ResetPasswordRequest(args.email, binding.pinview.value)
         viewModel.userResetPassword(params)
     }
 

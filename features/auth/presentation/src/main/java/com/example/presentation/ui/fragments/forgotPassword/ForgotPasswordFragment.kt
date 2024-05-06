@@ -35,7 +35,7 @@ class ForgotPasswordFragment :
             findNavController().popBackStack()
         }
 
-        binding.btnEnter.setOnClickListener {
+        binding.btnSend.setOnClickListener {
             sendEmail()
         }
     }
@@ -60,7 +60,7 @@ class ForgotPasswordFragment :
             success = {
                 binding.progressBar.gone()
                 showShortToast("Success")
-                findNavController().navigate(R.id.action_forgotPasswordFragment_to_confirmPinFragment)
+                findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToConfirmPinFragment(it.email.toString()))
             },
             error = {
                 binding.progressBar.gone()
@@ -70,7 +70,7 @@ class ForgotPasswordFragment :
     }
 
     override fun updateButtonState() {
-        binding.btnEnter.isEnabled = binding.etInputEmail.isNotEmpty()
+        binding.btnSend.isEnabled = binding.etInputEmail.isNotEmpty()
     }
 
     override fun onBackPressed() {

@@ -37,11 +37,11 @@ class ChangePasswordFragment :
             findNavController().navigateUp()
         }
 
-        binding.etPass.addTextChangedListener {
+        binding.etUserPassword.addTextChangedListener {
             validatePass(it.toString())
         }
 
-        binding.btnNext.setOnClickListener {
+        binding.btnDone.setOnClickListener {
             changePassword()
         }
     }
@@ -52,7 +52,7 @@ class ChangePasswordFragment :
         } else {
             val params = ChangePasswordRequest(
                 "",
-                binding.etPass.text.toString(),
+                binding.etUserPassword.text.toString(),
                 binding.etRePass.text.toString()
             )
             viewModel.userChangePassword(params)
@@ -94,7 +94,7 @@ class ChangePasswordFragment :
     }
 
     private fun isTextFieldsIsEmpty(): Boolean {
-        return binding.etPass.text.isNullOrEmpty() && binding.etRePass.text.isNullOrEmpty()
+        return binding.etUserPassword.text.isNullOrEmpty() && binding.etRePass.text.isNullOrEmpty()
     }
 
     override fun launchObservers() {
@@ -105,7 +105,7 @@ class ChangePasswordFragment :
             success = {
                 binding.progressBar.gone()
                 showShortToast("Success")
-//                findNavController().navigate(R.id.)
+                findNavController().navigate(ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment())
             },
             error = {
                 binding.progressBar.gone()
