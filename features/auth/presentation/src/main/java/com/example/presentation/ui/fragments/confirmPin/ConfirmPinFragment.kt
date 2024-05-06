@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.forgotPassword
+package com.example.presentation.ui.fragments.confirmPin
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,10 +21,10 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentConfirmPinBinding
 
 class ConfirmPinFragment :
-    BaseFragment<FragmentConfirmPinBinding, ForgotPasswordViewModel>(R.layout.fragment_confirm_pin) {
+    BaseFragment<FragmentConfirmPinBinding, ConfirmPinViewModel>(R.layout.fragment_confirm_pin) {
 
     override val binding by viewBinding(FragmentConfirmPinBinding::bind)
-    override val viewModel by viewModels<ForgotPasswordViewModel>()
+    override val viewModel by viewModels<ConfirmPinViewModel>()
     private val args by navArgs<ConfirmPinFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

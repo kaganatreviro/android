@@ -1,8 +1,6 @@
 package com.example.presentation.ui.fragments.forgotPassword
 
-import android.os.Bundle
 import android.util.Patterns
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -20,17 +18,9 @@ class ForgotPasswordFragment :
     override val binding by viewBinding(FragmentForgotPasswordBinding::bind)
     override val viewModel by viewModels<ForgotPasswordViewModel>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupView()
-        initListeners()
-    }
-
-    private fun setupView() {
+    override fun setupListeners() {
         binding.etInputEmail.addTextChangedListener(textWatcher)
-    }
 
-    private fun initListeners() {
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
