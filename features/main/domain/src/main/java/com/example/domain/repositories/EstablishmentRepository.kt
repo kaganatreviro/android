@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface EstablishmentRepository {
 
-    suspend fun getEstablishmentList(): Flow<Either<String, EstablishmentList>>
-    suspend fun getEstablishmentById(): Flow<Either<String, EstablishmentDetails>>
+      fun getEstablishmentList(): Flow<Either<String, EstablishmentList>>
+      fun getEstablishmentById(): Flow<Either<String, EstablishmentDetails>>
 }

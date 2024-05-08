@@ -23,14 +23,7 @@ data class Location(
 data class EstablishmentList(
     val count: String,
     val next: String,
-    val results: List<Results>,
-    val description: String,
-    val phoneNumber: String,
-    val logo: String,
-    val address: String,
-    val happyHoursStart: String,
-    val happyHoursEnd: String,
-    val owner: Int
+    val results: List<EstablishmentDetails>
 ):Serializable
 
 data class Results(

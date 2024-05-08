@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.Flow
 class EstablishmentRepositoryImpl(
     private val apiService: EstablishmentApiService
 ): EstablishmentRepository {
-    override suspend fun getEstablishmentList(): Flow<Either<String, EstablishmentList>> = makeNetworkRequest {
+    override  fun getEstablishmentList(): Flow<Either<String, EstablishmentList>> = makeNetworkRequest {
         apiService.getEstablishmentList().toDomain()
     }
 
-    override fun getEstablishmentById(): Flow<Either<String, EstablishmentDetails>> = makeNetworkRequest {
+    override  fun getEstablishmentById(): Flow<Either<String, EstablishmentDetails>> = makeNetworkRequest {
         apiService.getEstablishmentById().toDomain()
     }
 }

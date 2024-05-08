@@ -7,7 +7,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">18sp</item>
-        <item name="cornerRadius">10dp</item>
+        <item name="cornerRadius">20dp</item>
     </style>
 
     <style name="disable_button"
@@ -19,9 +19,10 @@
     </style>
 
     <style name="empty_text_view"
-        parent="MaterialAlertDialog.Material3.Title.Text">
+        parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
+        <item name="singleLine">false</item>
     </style>
 
     <style name="empty_text_view_bold"

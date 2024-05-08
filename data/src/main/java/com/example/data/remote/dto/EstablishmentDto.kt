@@ -11,29 +11,12 @@ import com.google.gson.annotations.SerializedName
 data class EstablishmentListDto(
     val count: String,
     val next: String,
-    val results: List<Results>,
-    val description: String,
-    @SerializedName("phone_number")
-    val phoneNumber: String,
-    val logo: String,
-    val address: String,
-    @SerializedName("happyhours_start")
-    val happyHoursStart: String,
-    @SerializedName("happyhours_end")
-    val happyHoursEnd: String,
-    val owner: Int
+    val results: List<EstablishmentDetails>,
 ) : DataMapper<EstablishmentList> {
     override fun toDomain() = EstablishmentList(
         count = count,
         next = next,
         results = results,
-        description = description,
-        phoneNumber = phoneNumber,
-        logo = logo,
-        address = address,
-        happyHoursStart = happyHoursStart,
-        happyHoursEnd = happyHoursEnd,
-        owner = owner
     )
 }
 
