@@ -7,8 +7,6 @@ import com.example.data.remote.dto.UserLoginResponseDto
 import com.example.data.remote.dto.UserRegisterRequestDto
 import com.example.data.remote.dto.UserRegisterResponseDto
 import com.example.data.remote.dto.UserResetPasswordRequestDto
-import com.example.domain.models.UserLoginRequest
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -24,7 +22,7 @@ interface UserApiService {
     suspend fun userForgotPassword(@Body userData: UserForgotPasswordRequestDto): String
 
     @POST(CLIENT_RESET_PASSWORD_ENDPOINT)
-    suspend fun userResetPassword(@Body userData: UserResetPasswordRequestDto): UserLoginResponseDto
+    suspend fun userResetPassword(@Body userData: UserResetPasswordRequestDto): UserRegisterResponseDto
 
     @POST(CLIENT_CHANGE_PASSWORD_ENDPOINT)
     suspend fun userChangePassword(@Body userData: UserChangePasswordRequestDto): String

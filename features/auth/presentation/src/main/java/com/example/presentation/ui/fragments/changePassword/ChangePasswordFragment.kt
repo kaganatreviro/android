@@ -5,35 +5,33 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.ChangePasswordRequest
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentChangePasswordBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChangePasswordFragment :
     BaseFragment<FragmentChangePasswordBinding, ChangePasswordViewModel>(R.layout.fragment_change_password) {
     override val binding by viewBinding(FragmentChangePasswordBinding::bind)
-    override val viewModel by viewModels<ChangePasswordViewModel>()
+    override val viewModel by viewModel<ChangePasswordViewModel>()
+    private val args: ChangePasswordFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupView()
-        initListeners()
+        super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun setupView() {
-
-    }
-
-    private fun initListeners() {
+    override fun setupListeners() {
 
         binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
 
         binding.etUserPassword.addTextChangedListener {
@@ -47,10 +45,10 @@ class ChangePasswordFragment :
 
     private fun changePassword() {
         if (isTextFieldsIsEmpty()) {
-
+            showSimpleDialog("Empty textField!", "Please, fill all textField")
         } else {
             val params = ChangePasswordRequest(
-                "",
+                args.toString(),
                 binding.etUserPassword.text.toString(),
                 binding.etRePass.text.toString()
             )
@@ -99,15 +97,18 @@ class ChangePasswordFragment :
     override fun launchObservers() {
         viewModel.changePasswordState.spectateUiState(
             loading = {
+                binding.btnDone.text = ""
+                binding.btnDone.isEnabled = false
                 binding.progressBar.visible()
             },
             success = {
                 binding.progressBar.gone()
-                showShortToast("Success")
                 findNavController().navigate(ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment())
             },
             error = {
                 binding.progressBar.gone()
+                binding.btnDone.isEnabled = true
+                binding.btnDone.text = getString(com.example.core_ui.R.string.done)
                 showShortToast(it)
             }
         )

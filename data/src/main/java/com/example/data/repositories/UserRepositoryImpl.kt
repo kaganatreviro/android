@@ -3,6 +3,7 @@ package com.example.data.repositories
 import com.example.core.either.Either
 import com.example.data.local.prefs.TokenPrefs
 import com.example.data.remote.api_services.UserApiService
+import com.example.data.remote.dto.UserLoginResponseDto
 import com.example.data.remote.dto.toDto
 import com.example.domain.models.ChangePasswordRequest
 import com.example.domain.models.ForgotPasswordRequest
@@ -38,7 +39,7 @@ class UserRepositoryImpl(
     override fun userForgotPassword(userData: ForgotPasswordRequest): Flow<Either<String, String>> =
         makeNetworkRequest { apiService.userForgotPassword(userData.toDto()) }
 
-    override fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, UserLoginResponse>> =
+    override fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, UserRegisterResponse>> =
         makeNetworkRequest { apiService.userResetPassword(userData.toDto()).toDomain() }
 
     override fun userChangePassword(userData: ChangePasswordRequest): Flow<Either<String, String>> =

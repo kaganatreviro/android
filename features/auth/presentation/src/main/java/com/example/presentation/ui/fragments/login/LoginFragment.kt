@@ -1,7 +1,6 @@
 package com.example.presentation.ui.fragments.login
 
 import androidx.core.net.toUri
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
