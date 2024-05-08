@@ -83,7 +83,6 @@ class QRScannerFragment: BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         findNavController().popBackStack()
     }
 }
