@@ -2,12 +2,12 @@ package com.example.presentation.ui.fragments.changePassword
 
 import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.ChangePasswordRequest
-import com.example.domain.repositories.UserRepository
+import com.example.domain.repositories.AuthRepository
 import kotlinx.coroutines.flow.asStateFlow
 
-class ChangePasswordViewModel(private val repository: UserRepository) : BaseViewModel() {
-    private val _ChangePasswordState = mutableUiStateFlow<ChangePasswordRequest>()
-    val changePasswordState = _ChangePasswordState.asStateFlow()
+class ChangePasswordViewModel(private val repository: AuthRepository) : BaseViewModel() {
+    private val _changePasswordState = mutableUiStateFlow<ChangePasswordRequest>()
+    val changePasswordState = _changePasswordState.asStateFlow()
 
     fun userChangePassword(userData: ChangePasswordRequest) {
         repository.userChangePassword(userData)

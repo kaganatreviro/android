@@ -1,6 +1,9 @@
 package com.example.presentation.ui.fragments.establishment
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,12 +15,13 @@ import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.presentation.ui.adapters.BeveragesAdapter
+import com.example.presentation.ui.fragments.home.EstablishmentAdapter
 
 class EstablishmentDetailFragment :
     BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(R.layout.fragment_establishment_detail) {
     override val binding by viewBinding(FragmentEstablishmentDetailBinding::bind)
-    override val viewModel by viewModel<EstablishmentDetailViewModel>()
+    override val viewModel by viewModels<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
         EstablishmentMenuAdapter()
