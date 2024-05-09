@@ -2,43 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:background="@drawable/liner_gradient_background_for_rest_item">
+    android:layout_marginTop="10dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_rest_image"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_margin="3dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_logo"
+        app:cornerRadius="20dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_time"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_happy_haours_time"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_happy_time"
+        app:layout_constraintEnd_toStartOf="@+id/tv_happy_time"
+        app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
+        app:layout_constraintTop_toTopOf="@+id/tv_happy_time" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
         android:text="Barashek"
+        android:textColor="@color/black"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_rest_image"/>
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_rest_image" />
 
     <TextView
         android:id="@+id/tv_happy_time"
+        style="@style/empty_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:text="Happy Hours in 16:00 from 17:00"
         android:layout_marginStart="20dp"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"/>
+        android:layout_marginTop="10dp"
+        android:maxLines="3"
+        android:text="in 16:00 from 17:00"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_rest_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>
