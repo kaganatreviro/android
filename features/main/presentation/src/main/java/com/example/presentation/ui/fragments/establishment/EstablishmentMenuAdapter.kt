@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.Menu
-import com.example.presentation.databinding.ItemBeverageInMenuBinding
+import com.example.presentation.databinding.ItemBeverageBinding
 
 class EstablishmentMenuAdapter: ListAdapter<Menu, EstablishmentMenuAdapter.MenuViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MenuViewHolder(
-        ItemBeverageInMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ItemBeverageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         getItem(position)?.let { holder.onBind(it) }
     }
 
-    inner class MenuViewHolder(private val binding: ItemBeverageInMenuBinding) :
+    inner class MenuViewHolder(private val binding: ItemBeverageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(menu: Menu): Unit = with(binding) {
