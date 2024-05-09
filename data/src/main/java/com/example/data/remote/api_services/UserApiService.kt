@@ -9,6 +9,9 @@ import retrofit2.http.POST
 
 interface UserApiService {
 
+    @POST(GET_USER_ENDPOINT)
+    suspend fun getUser(): String
+
     @POST(CLIENT_FORGOT_PASSWORD_ENDPOINT)
     suspend fun userForgotPassword(@Body userData: UserForgotPasswordRequestDto): String
 
@@ -19,6 +22,7 @@ interface UserApiService {
     suspend fun userChangePassword(@Body userData: UserChangePasswordRequestDto): String
 
     companion object {
+        const val GET_USER_ENDPOINT = "api/v1/user/"
         const val CLIENT_FORGOT_PASSWORD_ENDPOINT = "api/v1/user/password_forgot/"
         const val CLIENT_RESET_PASSWORD_ENDPOINT = "api/v1/user/password_reset/"
         const val CLIENT_CHANGE_PASSWORD_ENDPOINT = "api/v1/user/password_change/"
