@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.EstablishmentList
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
@@ -13,10 +14,10 @@ import com.example.presentation.databinding.ItemEstablishmentBinding
 class EstablishmentAdapter(private val clickListener: ItemClickListener):
 RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    var items: MutableList<EstablishmentList> = mutableListOf()
+    var items: MutableList<EstablishmentDetails> = mutableListOf()
 
     interface ItemClickListener {
-        fun onItemClick(item: EstablishmentList, index: Int)
+        fun onItemClick(item: EstablishmentDetails, index: Int)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -53,20 +54,20 @@ RecyclerView.Adapter<RecyclerView.ViewHolder>()
     class Holder private constructor(private val binding: ItemEstablishmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var item: EstablishmentList
+        lateinit var item: EstablishmentDetails
         var index: Int = 0
 
         @SuppressLint("SetTextI18n", "CheckResult")
-        fun bind(_item: EstablishmentList, position: Int) {
+        fun bind(_item: EstablishmentDetails, position: Int) {
             item = _item
             index = position
 
             item.apply {
-                binding.tvName.text = item.results[position].name
+                binding.tvName.text = item.name
                 binding.tvHappyTime.text = "in " +
-                        item.results[position].happyHoursStart + "from " + item.results[position].happyHoursEnd
+                        item.happyHoursStart + "from " + item.happyHoursEnd
                 Glide.with(itemView)
-                    .load(item.results[position].logo)
+                    .load(item.logo)
                     .into(binding.ivRestImage)
             }
         }

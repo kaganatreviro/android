@@ -38,5 +38,9 @@
         android:id="@+id/establishmentDetailFragment"
         android:name="com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragment"
         android:label="fragment_establishment_detail"
-        tools:layout="@layout/fragment_establishment_detail" />
+        tools:layout="@layout/fragment_establishment_detail" >
+        <argument
+            android:name="establishment"
+            app:argType="com.example.domain.models.EstablishmentDetails" />
+    </fragment>
 </navigation>
