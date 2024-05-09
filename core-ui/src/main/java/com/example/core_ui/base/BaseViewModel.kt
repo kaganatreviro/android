@@ -25,7 +25,6 @@ abstract class BaseViewModel : ViewModel() {
                         UIState.Success(it.value)
                 }
             }
-
         }
     }
 }

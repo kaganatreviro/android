@@ -2,8 +2,6 @@ package com.example.presentation.ui.fragments.sign_up
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -11,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
 import com.example.core_ui.extensions.gone
@@ -19,10 +18,8 @@ import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.UserRegisterRequest
 import com.example.presentation.R
-import com.example.presentation.core.Constants.DEEPLINK_MAIN
 import com.example.presentation.databinding.FragmentSignUpBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Calendar
 
 class SignUpFragment :
     BaseFragment<FragmentSignUpBinding, SignUpViewModel>(R.layout.fragment_sign_up) {
@@ -98,7 +95,7 @@ class SignUpFragment :
 
     private fun navigateToMain() {
         val request = NavDeepLinkRequest.Builder
-            .fromUri(DEEPLINK_MAIN.toUri())
+            .fromUri(DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
             .build()
         findNavController().navigate(request)
     }
