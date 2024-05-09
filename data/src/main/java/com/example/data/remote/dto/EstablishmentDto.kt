@@ -26,7 +26,7 @@ data class EstablishmentDetailsDto(
     val location: Location,
     val description: String,
     @SerializedName("phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
     val logo: String,
     val address: String,
     @SerializedName("happyhours_start")
@@ -45,6 +45,5 @@ data class EstablishmentDetailsDto(
         address = address,
         happyHoursStart = happyHoursStart,
         happyHoursEnd = happyHoursEnd,
-        owner = owner
     )
 }

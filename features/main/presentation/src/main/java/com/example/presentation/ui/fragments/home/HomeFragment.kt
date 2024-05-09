@@ -1,13 +1,15 @@
 package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.gone
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.visible
 import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
@@ -20,13 +22,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     override val viewModel by viewModel<HomeViewModel>()
     private lateinit var adapter: EstablishmentAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupViews()
-    }
-
-    private fun setupViews() = with(binding) {
-        rvRestList.layoutManager = LinearLayoutManager(requireContext())
+    override fun setupListeners() = with(binding) {
+        rvRestList.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
@@ -40,14 +38,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     override fun launchObservers() {
         viewModel.establishmentListState.spectateUiState(
             loading = {
-
+                binding.progressBar.visible()
             },
             success = {
-                adapter.items = it.results.toMutableList()
+                binding.progressBar.gone()
+                adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-
+                binding.progressBar.gone()
+                showShortToast(it)
             }
         )
     }
@@ -67,6 +67,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     override fun onItemClick(item: EstablishmentDetails, index: Int) {
-        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEstablishmentDetailFragment(item))
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToEstablishmentDetailFragment(
+                item
+            )
+        )
     }
 }

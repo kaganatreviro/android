@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.domain.models.EstablishmentDetails
-import com.example.domain.models.EstablishmentList
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 
@@ -66,9 +66,7 @@ RecyclerView.Adapter<RecyclerView.ViewHolder>()
                 binding.tvName.text = item.name
                 binding.tvHappyTime.text = "in " +
                         item.happyHoursStart + "from " + item.happyHoursEnd
-                Glide.with(itemView)
-                    .load(item.logo)
-                    .into(binding.ivRestImage)
+                binding.ivRestImage.loadImageWithGlide(item.logo)
             }
         }
 

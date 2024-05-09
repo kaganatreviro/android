@@ -7,12 +7,11 @@ data class EstablishmentDetails(
     val name: String,
     val location: Location,
     val description: String,
-    val phoneNumber: String,
+    val phoneNumber: String?,
     val logo: String,
     val address: String,
     val happyHoursStart: String,
-    val happyHoursEnd: String,
-    val owner: Int,
+    val happyHoursEnd: String
 ):Serializable
 
 data class Location(
