@@ -19,10 +19,39 @@
         android:id="@+id/QRScannerFragment"
         android:name="com.example.presentation.ui.fragments.qr_scranner.QRScannerFragment"
         android:label="qrscanner_fragment"
-        tools:layout="@layout/qrscanner_fragment" />
+        tools:layout="@layout/qrscanner_fragment" >
+        <action
+            android:id="@+id/action_QRScannerFragment_to_establishmentDetailFragment"
+            app:destination="@id/establishmentDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.presentation.ui.fragments.home.HomeFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_establishmentDetailFragment"
+            app:destination="@id/establishmentDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/establishmentDetailFragment"
+        android:name="com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragment"
+        android:label="fragment_establishment_detail"
+        tools:layout="@layout/fragment_establishment_detail" >
+        <argument
+            android:name="establishment"
+            app:argType="com.example.domain.models.EstablishmentDetails" />
+    </fragment>
 </navigation>

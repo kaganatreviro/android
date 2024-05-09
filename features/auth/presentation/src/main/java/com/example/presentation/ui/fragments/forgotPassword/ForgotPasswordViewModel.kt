@@ -3,25 +3,23 @@ package com.example.presentation.ui.fragments.forgotPassword
 import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
-import com.example.domain.models.UserRegisterResponse
-import com.example.domain.repositories.UserRepository
+import com.example.domain.repositories.AuthRepository
 import kotlinx.coroutines.flow.asStateFlow
 
 class ForgotPasswordViewModel(
-    private val repository: UserRepository
+    private val repository: AuthRepository
 ) : BaseViewModel() {
 
-    private val _forgotPasswordState = mutableUiStateFlow<String>()
-    val forgotPasswordState = _forgotPasswordState.asStateFlow()
-
-    private val _resetPasswordState = mutableUiStateFlow<UserRegisterResponse>()
-    val resetPasswordState = _resetPasswordState.asStateFlow()
+    private val _ForgotPasswordState = mutableUiStateFlow<ForgotPasswordRequest>()
+    val forgotPasswordState = _ForgotPasswordState.asStateFlow()
+    private val _ResetPasswordState = mutableUiStateFlow<String>()
+    val resetPasswordState = _ResetPasswordState.asStateFlow()
 
     fun userForgotPassword(userData: ForgotPasswordRequest) {
-        repository.userForgotPassword(userData).gatherRequest(_forgotPasswordState)
+        repository.userForgotPassword(userData)
     }
 
     fun userResetPassword(userData: ResetPasswordRequest) {
-        repository.userResetPassword(userData).gatherRequest(_resetPasswordState)
+        repository.userResetPassword(userData).gatherRequest(_ResetPasswordState)
     }
 }

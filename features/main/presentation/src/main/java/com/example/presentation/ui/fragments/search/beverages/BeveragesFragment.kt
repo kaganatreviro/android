@@ -1,6 +1,6 @@
 package com.example.presentation.ui.fragments.search.beverages
 
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
@@ -24,7 +24,7 @@ class BeveragesFragment :
 
     override fun initialize() {
         binding.rvBeverages.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = beverageAdapter
         }
     }

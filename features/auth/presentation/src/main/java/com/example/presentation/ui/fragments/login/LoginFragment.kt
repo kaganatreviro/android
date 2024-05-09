@@ -4,12 +4,12 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.presentation.R
-import com.example.presentation.core.Constants.DEEPLINK_MAIN
 import com.example.presentation.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +58,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
 
     private fun navigateToMain() {
         val request = NavDeepLinkRequest.Builder
-            .fromUri(DEEPLINK_MAIN.toUri())
+            .fromUri(DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
             .build()
         findNavController().navigate(request)
     }

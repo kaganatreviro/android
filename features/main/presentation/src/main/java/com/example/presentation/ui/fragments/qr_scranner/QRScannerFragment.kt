@@ -18,11 +18,12 @@ import com.example.presentation.R
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class QRScannerFragment: BaseFragment<QrscannerFragmentBinding,
+class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
         QRScannerViewModel>(R.layout.qrscanner_fragment), ZBarScannerView.ResultHandler {
     override val binding by viewBinding(QrscannerFragmentBinding::bind)
-    override val viewModel by viewModels<QRScannerViewModel>()
+    override val viewModel by viewModel<QRScannerViewModel>()
     private lateinit var zbScanner: ZBarScannerView
     private lateinit var pLauncher: ActivityResultLauncher<String>
 
@@ -35,8 +36,7 @@ class QRScannerFragment: BaseFragment<QrscannerFragmentBinding,
         return zbScanner.rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setupListeners() {
         registPermissionListener()
         checkCameraPermission()
     }
@@ -53,30 +53,38 @@ class QRScannerFragment: BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun handleResult(result: Result?) {
-        TODO("Not yet implemented")
-
+//        findNavController().navigate(
+//            QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
+//                result.toString().toInt()
+//            )
+//        )
     }
 
     private fun checkCameraPermission() {
-        when{
+        when {
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-                    == PackageManager.PERMISSION_GRANTED ->{
-                        Toast.makeText(requireContext(), "Camera run", Toast.LENGTH_SHORT).show()
-                    }
-            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) ->{
-                Toast.makeText(requireContext(), "We need your permission", Toast.LENGTH_SHORT).show()
+                    == PackageManager.PERMISSION_GRANTED -> {
+                Toast.makeText(requireContext(), "Camera run", Toast.LENGTH_SHORT).show()
             }
 
-            else ->{pLauncher.launch(Manifest.permission.CAMERA)}
+            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
+                Toast.makeText(requireContext(), "We need your permission", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            else -> {
+                pLauncher.launch(Manifest.permission.CAMERA)
+            }
         }
     }
 
-    private fun registPermissionListener(){
+    private fun registPermissionListener() {
         pLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()){
-            if (it){
+            ActivityResultContracts.RequestPermission()
+        ) {
+            if (it) {
                 Toast.makeText(requireContext(), "Camera run", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
             }
         }

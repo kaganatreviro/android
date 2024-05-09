@@ -10,11 +10,11 @@ import com.example.domain.models.UserRegisterRequest
 import com.example.domain.models.UserRegisterResponse
 import kotlinx.coroutines.flow.Flow
 
-interface UserRepository {
+interface AuthRepository {
 
     fun userLogin(userData: UserLoginRequest): Flow<Either<String, Unit>>
     fun userRegister(userData: UserRegisterRequest): Flow<Either<String, UserRegisterResponse>>
     fun userForgotPassword(userData: ForgotPasswordRequest): Flow<Either<String, String>>
-    fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, UserRegisterResponse>>
+    fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, String>>
     fun userChangePassword(userData: ChangePasswordRequest): Flow<Either<String, String>>
 }

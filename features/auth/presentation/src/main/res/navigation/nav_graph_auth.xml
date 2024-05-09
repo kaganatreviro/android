@@ -5,6 +5,8 @@
     android:id="@+id/nav_graph_auth"
     app:startDestination="@id/loginFragment">
 
+    <deepLink app:uri="happyhours://main/authFlowFragment"/>
+
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.presentation.ui.fragments.sign_up.SignUpFragment"
