@@ -23,15 +23,12 @@ class BeveragesAdapter : ListAdapter<Beverage, BeveragesAdapter.BeverageViewHold
         ViewHolder(binding.root) {
 
         fun onBind(beverage: Beverage): Unit = with(binding) {
-            tvBeverageName.text = beverage.name
-            ivBeverage.loadImageWithGlide(placeholder)
+            tvName.text = beverage.name
+            tvPrice.text = beverage.price
         }
     }
 
     companion object {
-        const val placeholder =
-            "https://cdn.lifehacker.ru/wp-content/uploads/2021/05/shutterstock_1920949604_1622475394-scaled-e1622475457390-1280x640.jpg"
-
         val callback = object : DiffUtil.ItemCallback<Beverage>() {
             override fun areItemsTheSame(oldItem: Beverage, newItem: Beverage) =
                 oldItem.id == newItem.id

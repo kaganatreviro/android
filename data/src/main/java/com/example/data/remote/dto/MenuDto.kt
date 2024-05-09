@@ -1,33 +1,28 @@
 package com.example.data.remote.dto
 
 import com.example.data.utils.DataMapper
+import com.example.domain.models.Menu
+import com.example.domain.models.UserLoginRequest
+import com.example.domain.use_cases.GetEstablishmentMenuByIdUseCase
 import com.google.gson.annotations.SerializedName
 
 data class MenuDto(
     val id: Int,
     val name: String,
-    val location: String,
+    val price: Double,
     val description: String,
-    @SerializedName("phone_number")
-    val phoneNumber: String,
-    val logo: String,
-    val address: String,
-    @SerializedName("happyhours_start")
-    val happyHoursStart: String,
-    @SerializedName("happyhours_end")
-    val happyHoursEnd: String,
-    val beverages: List<BeverageDto>
+    @SerializedName("availability_status")
+    val availabilityStatus: Boolean,
+    val category: String,
+    val establishment: String
 ) : DataMapper<com.example.domain.models.Menu> {
     override fun toDomain() = com.example.domain.models.Menu(
         id = id,
         name = name,
-        location = location,
+        price = price,
         description = description,
-        phoneNumber = phoneNumber,
-        logo = logo,
-        address = address,
-        happyHoursStart = happyHoursStart,
-        happyHoursEnd = happyHoursEnd,
-        beverages = beverages.map { it.toDomain() }
+        availabilityStatus = availabilityStatus,
+        category = category,
+        establishment = establishment
     )
 }

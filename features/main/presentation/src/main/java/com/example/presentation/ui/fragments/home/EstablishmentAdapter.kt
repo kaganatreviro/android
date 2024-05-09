@@ -5,20 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.models.Establishment
+import com.bumptech.glide.Glide
+import com.example.core_ui.extensions.loadImageWithGlide
+import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 
 class EstablishmentAdapter(private val clickListener: ItemClickListener):
 RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    var items: MutableList<Establishment> = mutableListOf()
-
-//    @GlideModule
-//    class MyAppGlideModule : AppGlideModule()
+    var items: MutableList<EstablishmentDetails> = mutableListOf()
 
     interface ItemClickListener {
-        fun onItemClick(item: Establishment, index: Int)
+        fun onItemClick(item: EstablishmentDetails, index: Int)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -55,21 +54,19 @@ RecyclerView.Adapter<RecyclerView.ViewHolder>()
     class Holder private constructor(private val binding: ItemEstablishmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var item: Establishment
+        lateinit var item: EstablishmentDetails
         var index: Int = 0
 
         @SuppressLint("SetTextI18n", "CheckResult")
-        fun bind(_item: Establishment, position: Int) {
+        fun bind(_item: EstablishmentDetails, position: Int) {
             item = _item
             index = position
 
             item.apply {
                 binding.tvName.text = item.name
-                binding.tvHappyTime.text = "Happy Hours in " +
+                binding.tvHappyTime.text = "in " +
                         item.happyHoursStart + "from " + item.happyHoursEnd
-//                Glide.with(itemView)
-//                    .load()
-//                    .into(binding.ivRestImage)
+                binding.ivRestImage.loadImageWithGlide(item.logo)
             }
         }
 
