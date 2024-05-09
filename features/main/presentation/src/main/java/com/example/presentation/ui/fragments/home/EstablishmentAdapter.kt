@@ -11,9 +11,8 @@ import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 
-class EstablishmentAdapter(private val clickListener: ItemClickListener):
-RecyclerView.Adapter<RecyclerView.ViewHolder>()
-{
+class EstablishmentAdapter(private val clickListener: ItemClickListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var items: MutableList<EstablishmentDetails> = mutableListOf()
 
     interface ItemClickListener {
@@ -65,7 +64,7 @@ RecyclerView.Adapter<RecyclerView.ViewHolder>()
             item.apply {
                 binding.tvName.text = item.name
                 binding.tvHappyTime.text = "in " +
-                        item.happyHoursStart + "from " + item.happyHoursEnd
+                        item.happyHoursStart + " from " + item.happyHoursEnd
                 binding.ivRestImage.loadImageWithGlide(item.logo)
             }
         }

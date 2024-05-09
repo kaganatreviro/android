@@ -17,7 +17,6 @@ class ProfileFragment :
     override val binding by viewBinding(FragmentProfileBinding::bind)
     override val viewModel by viewModel<ProfileViewModel>()
 
-
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
             loading = {
