@@ -25,15 +25,12 @@ class ProfileFragment :
     override val viewModel by viewModel<ProfileViewModel>()
     private val mainViewModel by activityViewModel<MainViewModel>()
 
-<<<<<<< HEAD
-=======
     override fun setupListeners() {
         binding.btnLogout.setOnClickListener {
             mainViewModel.logout()
         }
     }
 
->>>>>>> 735401d03cfcf3642c9c71492df0120e343646af
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
             loading = {
