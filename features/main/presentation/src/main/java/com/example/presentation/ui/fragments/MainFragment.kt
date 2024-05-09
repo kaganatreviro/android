@@ -1,10 +1,12 @@
 package com.example.presentation.ui.fragments
 
+import android.view.View
+import androidx.core.view.isVisible
+import androidx.navigation.NavController
 import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -27,6 +29,17 @@ class MainFragment : BaseFlowFragment(R.layout.fragment_main_flow, R.id.nav_host
     override fun setupNavigation(navController: NavController) {
         binding.bottomNavView.setupWithNavController(navController)
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment,
+                R.id.searchFragment,
+                R.id.QRScannerFragment,
+                R.id.profileFragment
+                -> binding.bottomNavView.isVisible = true
+
+                else -> binding.bottomNavView.visibility = View.GONE
+            }
+        }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mainViewModel.navigateToAuthModule.collect {

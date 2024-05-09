@@ -1,9 +1,7 @@
 package com.example.presentation.ui.fragments.establishment
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.viewModels
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +13,6 @@ import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
-import com.example.presentation.ui.adapters.BeveragesAdapter
-import com.example.presentation.ui.fragments.home.EstablishmentAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
@@ -46,6 +42,14 @@ class EstablishmentDetailFragment :
         getEstablishmentMenuById()
     }
 
+    override fun setupListeners(): Unit = with(binding) {
+        btnBack.setOnClickListener { findNavController().popBackStack() }
+        scrollView.post {
+            val scrollDistance = tvMenu.top - scrollView.scrollY
+            scrollView.smoothScrollBy(0, scrollDistance)
+        }
+    }
+
     private fun getEstablishmentMenuById() {
         val param = args.establishment.id
         viewModel.getEstablishmentMenuById(param)
@@ -64,6 +68,7 @@ class EstablishmentDetailFragment :
             },
             error = {
                 binding.progressBar.gone()
+                Log.d("log", "Error $it")
                 showShortToast(it)
             }
         )

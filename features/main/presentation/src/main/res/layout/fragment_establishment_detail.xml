@@ -21,6 +21,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_location"
                 android:layout_marginTop="20dp"
+                android:textSize="16sp"
                 android:text="Navat is popular peice" />
 
             <TextView
@@ -87,6 +89,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_desc"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="dgdgfgh gddfg"
+                android:paddingHorizontal="7dp"
+                android:background="@color/color_primary"
                 android:layout_marginTop="15dp" />
 
             <TextView
@@ -116,8 +123,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title_contacts"
                 android:layout_marginTop="20dp"
-                android:text="menu"
-                android:textSize="28sp" />
+                android:text="Menu"
+                android:textSize="32dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_beverages_menu"
@@ -135,7 +142,6 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:indeterminateTint="@color/color_primary"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
