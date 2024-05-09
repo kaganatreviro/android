@@ -1,6 +1,11 @@
 package com.example.presentation.ui.fragments.profile
 
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.core.Constants.DEEPLINK_NAV_TO_AUTH_MODULE
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.loadImageWithGlide
@@ -9,6 +14,8 @@ import com.example.core_ui.extensions.visible
 import com.example.domain.models.User
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
+import com.example.presentation.ui.fragments.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment :
@@ -16,7 +23,17 @@ class ProfileFragment :
 
     override val binding by viewBinding(FragmentProfileBinding::bind)
     override val viewModel by viewModel<ProfileViewModel>()
+    private val mainViewModel by activityViewModel<MainViewModel>()
 
+<<<<<<< HEAD
+=======
+    override fun setupListeners() {
+        binding.btnLogout.setOnClickListener {
+            mainViewModel.logout()
+        }
+    }
+
+>>>>>>> 735401d03cfcf3642c9c71492df0120e343646af
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
             loading = {
