@@ -17,11 +17,12 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import com.example.presentation.ui.adapters.BeveragesAdapter
 import com.example.presentation.ui.fragments.home.EstablishmentAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
     BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(R.layout.fragment_establishment_detail) {
     override val binding by viewBinding(FragmentEstablishmentDetailBinding::bind)
-    override val viewModel by viewModels<EstablishmentDetailViewModel>()
+    override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
         EstablishmentMenuAdapter()
