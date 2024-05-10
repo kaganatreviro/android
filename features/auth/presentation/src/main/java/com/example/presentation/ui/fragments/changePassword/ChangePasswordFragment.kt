@@ -24,14 +24,10 @@ class ChangePasswordFragment :
     override val viewModel by viewModel<ChangePasswordViewModel>()
     private val args: ChangePasswordFragmentArgs by navArgs()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun setupListeners() {
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.etUserPassword.addTextChangedListener {
@@ -115,6 +111,6 @@ class ChangePasswordFragment :
     }
 
     override fun onBackPressed() {
-        findNavController().popBackStack()
+        findNavController().navigateUp()
     }
 }

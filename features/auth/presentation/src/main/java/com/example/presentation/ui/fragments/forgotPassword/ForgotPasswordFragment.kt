@@ -2,23 +2,17 @@ package com.example.presentation.ui.fragments.forgotPassword
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Patterns
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
-import androidx.core.view.size
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.isNotEmpty
+import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.ForgotPasswordRequest
@@ -33,21 +27,15 @@ class ForgotPasswordFragment :
     override val binding by viewBinding(FragmentForgotPasswordBinding::bind)
     override val viewModel by viewModel<ForgotPasswordViewModel>()
     private lateinit var emailArgs: String
-    private lateinit var timer: CountDownTimer
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupListeners()
-    }
 
     override fun setupListeners() {
         binding.btnBack.setOnClickListener {
-            timer.cancel()
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
 
         binding.btnSend.setOnClickListener {
             sendEmail()
+            showShortToast("its worked")
         }
 
         binding.btnResentCode.setOnClickListener {
@@ -70,8 +58,10 @@ class ForgotPasswordFragment :
     }
 
     private fun sendEmail() {
+        showShortToast("its peace")
         val param = binding.etInputEmail.text.toString().lowercase(Locale.getDefault())
         if (isValidEmail(param)) {
+            showShortToast("its request")
             emailArgs = param
             viewModel.userForgotPassword(ForgotPasswordRequest(param))
         } else
@@ -122,7 +112,7 @@ class ForgotPasswordFragment :
 
     @SuppressLint("SetTextI18n")
     private fun setupTimer() {
-        val _timer = object : CountDownTimer(300000, 1000) {
+        val timer = object : CountDownTimer(300000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val minutesLeft = (millisUntilFinished / 1000) / 60 // Оставшиеся минуты
                 val secondsLeft = (millisUntilFinished / 1000) % 60 // Оставшиеся секунды
@@ -139,7 +129,6 @@ class ForgotPasswordFragment :
                 binding.btnResentCode.isVisible = true
             }
         }
-        timer = _timer
         timer.start()
     }
 
@@ -178,7 +167,6 @@ class ForgotPasswordFragment :
     }
 
     override fun onBackPressed() {
-        timer.cancel()
-        findNavController().popBackStack()
+        findNavController().navigateUp()
     }
 }

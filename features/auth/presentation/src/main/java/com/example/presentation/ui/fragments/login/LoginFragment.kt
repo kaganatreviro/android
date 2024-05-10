@@ -2,6 +2,7 @@ package com.example.presentation.ui.fragments.login
 
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
@@ -60,6 +61,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
         val request = NavDeepLinkRequest.Builder
             .fromUri(DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
             .build()
-        findNavController().navigate(request)
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.nav_graph_auth, false)
+            .build()
+        findNavController().navigate(request, navOptions)
     }
 }

@@ -13,11 +13,6 @@ class MainViewModel(
     private val _navigateToAuthModule = MutableStateFlow<Either<String, Boolean>?>(null)
     val navigateToAuthModule = _navigateToAuthModule.asStateFlow()
 
-//    fun navigateToAuthModule() {
-//        _navigateToAuthModule.value = logoutUseCase()
-//        _navigateToAuthModule.value = false
-//    }
-
     fun logout() {
         _navigateToAuthModule.value = logoutUseCase.invoke()
     }

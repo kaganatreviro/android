@@ -10,16 +10,16 @@ class ForgotPasswordViewModel(
     private val repository: AuthRepository
 ) : BaseViewModel() {
 
-    private val _ForgotPasswordState = mutableUiStateFlow<ForgotPasswordRequest>()
-    val forgotPasswordState = _ForgotPasswordState.asStateFlow()
-    private val _ResetPasswordState = mutableUiStateFlow<String>()
-    val resetPasswordState = _ResetPasswordState.asStateFlow()
+    private val _forgotPasswordState = mutableUiStateFlow<String>()
+    val forgotPasswordState = _forgotPasswordState.asStateFlow()
+    private val _resetPasswordState = mutableUiStateFlow<String>()
+    val resetPasswordState = _resetPasswordState.asStateFlow()
 
     fun userForgotPassword(userData: ForgotPasswordRequest) {
-        repository.userForgotPassword(userData)
+        repository.userForgotPassword(userData).gatherRequest(_forgotPasswordState)
     }
 
     fun userResetPassword(userData: ResetPasswordRequest) {
-        repository.userResetPassword(userData).gatherRequest(_ResetPasswordState)
+        repository.userResetPassword(userData).gatherRequest(_resetPasswordState)
     }
 }
