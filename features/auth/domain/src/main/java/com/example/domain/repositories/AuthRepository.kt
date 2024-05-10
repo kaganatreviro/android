@@ -15,6 +15,6 @@ interface AuthRepository {
     fun userLogin(userData: UserLoginRequest): Flow<Either<String, Unit>>
     fun userRegister(userData: UserRegisterRequest): Flow<Either<String, UserRegisterResponse>>
     fun userForgotPassword(userData: ForgotPasswordRequest): Flow<Either<String, String>>
-    fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, UserLoginResponse>>
+    fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, String>>
     fun userChangePassword(userData: ChangePasswordRequest): Flow<Either<String, String>>
 }

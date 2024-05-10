@@ -27,7 +27,7 @@ interface AuthApiService {
     suspend fun userForgotPassword(@Body userData: UserForgotPasswordRequestDto): String
 
     @POST(CLIENT_RESET_PASSWORD_ENDPOINT)
-    suspend fun userResetPassword(@Body userData: UserResetPasswordRequestDto): UserLoginResponseDto
+    suspend fun userResetPassword(@Body userData: UserResetPasswordRequestDto): String
 
     @POST(CLIENT_CHANGE_PASSWORD_ENDPOINT)
     suspend fun userChangePassword(@Body userData: UserChangePasswordRequestDto): String

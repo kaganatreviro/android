@@ -38,8 +38,8 @@ class AuthRepositoryImpl(
     override fun userForgotPassword(userData: ForgotPasswordRequest): Flow<Either<String, String>> =
         makeNetworkRequest { authApiService.userForgotPassword(userData.toDto()) }
 
-    override fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, UserLoginResponse>> =
-        makeNetworkRequest { authApiService.userResetPassword(userData.toDto()).toDomain() }
+    override fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, String>> =
+        makeNetworkRequest { authApiService.userResetPassword(userData.toDto()) }
 
     override fun userChangePassword(userData: ChangePasswordRequest): Flow<Either<String, String>> =
         makeNetworkRequest { authApiService.userChangePassword(userData.toDto()) }

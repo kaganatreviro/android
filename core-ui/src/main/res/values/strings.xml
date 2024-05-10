@@ -20,6 +20,7 @@
     <string name="happy_time">Happy hours time at:</string>
     <string name="resent_code_timer">Resend more after </string>
     <string name="resent_code">Resend code again</string>
+    <string name="reset_password">Reset password</string>
     <string name="enter_pin_title">Enter the 4-digit code sent to </string>
     <string name="password_valid_size">Password must be at least 8 characters long</string>
     <string name="password_valid_long">Password cannot exceed 255 characters</string>

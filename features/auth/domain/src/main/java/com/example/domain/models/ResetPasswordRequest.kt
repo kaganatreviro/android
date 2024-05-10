@@ -4,5 +4,5 @@ import java.io.Serializable
 
 data class ResetPasswordRequest(
     val email: String,
-    val resetCode: String
+    val reset_code: String
 ): Serializable
