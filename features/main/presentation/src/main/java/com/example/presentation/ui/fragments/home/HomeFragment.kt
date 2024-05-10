@@ -4,20 +4,17 @@ import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.EstablishmentDetails
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home),
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     EstablishmentAdapter.ItemClickListener {
-
-    override val binding by viewBinding(FragmentHomeBinding::bind)
+    override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
     override val viewModel by viewModel<HomeViewModel>()
     private lateinit var adapter: EstablishmentAdapter
 

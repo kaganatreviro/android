@@ -4,7 +4,6 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
@@ -14,9 +13,8 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layout.fragment_login) {
-
-    override val binding by viewBinding(FragmentLoginBinding::bind)
+class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+    override fun getViewBinding() = FragmentLoginBinding.inflate(layoutInflater)
     override val viewModel by viewModel<LoginViewModel>()
 
     override fun setupListeners() {

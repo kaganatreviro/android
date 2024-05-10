@@ -10,19 +10,16 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
-import com.example.presentation.R
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
-        QRScannerViewModel>(R.layout.qrscanner_fragment), ZBarScannerView.ResultHandler {
-    override val binding by viewBinding(QrscannerFragmentBinding::bind)
+        QRScannerViewModel>(), ZBarScannerView.ResultHandler {
+    override fun getViewBinding() = QrscannerFragmentBinding.inflate(layoutInflater)
     override val viewModel by viewModel<QRScannerViewModel>()
     private lateinit var zbScanner: ZBarScannerView
     private lateinit var pLauncher: ActivityResultLauncher<String>

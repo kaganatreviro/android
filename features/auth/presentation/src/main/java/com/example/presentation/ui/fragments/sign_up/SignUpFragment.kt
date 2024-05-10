@@ -8,7 +8,6 @@ import androidx.core.net.toUri
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
@@ -17,13 +16,12 @@ import com.example.core_ui.extensions.setupDateTextWatcher
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.UserRegisterRequest
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentSignUpBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment :
-    BaseFragment<FragmentSignUpBinding, SignUpViewModel>(R.layout.fragment_sign_up) {
-    override val binding by viewBinding(FragmentSignUpBinding::bind)
+    BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
+    override fun getViewBinding() = FragmentSignUpBinding.inflate(layoutInflater)
     override val viewModel by viewModel<SignUpViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -8,7 +8,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.isNotEmpty
@@ -17,14 +16,13 @@ import com.example.core_ui.extensions.showSimpleDialog
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentForgotPasswordBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
 class ForgotPasswordFragment :
-    BaseFragment<FragmentForgotPasswordBinding, ForgotPasswordViewModel>(R.layout.fragment_forgot_password) {
-    override val binding by viewBinding(FragmentForgotPasswordBinding::bind)
+    BaseFragment<FragmentForgotPasswordBinding, ForgotPasswordViewModel>() {
+    override fun getViewBinding() = FragmentForgotPasswordBinding.inflate(layoutInflater)
     override val viewModel by viewModel<ForgotPasswordViewModel>()
     private lateinit var emailArgs: String
 
@@ -35,7 +33,6 @@ class ForgotPasswordFragment :
 
         binding.btnSend.setOnClickListener {
             sendEmail()
-            showShortToast("its worked")
         }
 
         binding.btnResentCode.setOnClickListener {
@@ -58,10 +55,8 @@ class ForgotPasswordFragment :
     }
 
     private fun sendEmail() {
-        showShortToast("its peace")
         val param = binding.etInputEmail.text.toString().lowercase(Locale.getDefault())
         if (isValidEmail(param)) {
-            showShortToast("its request")
             emailArgs = param
             viewModel.userForgotPassword(ForgotPasswordRequest(param))
         } else
@@ -117,7 +112,7 @@ class ForgotPasswordFragment :
                 val minutesLeft = (millisUntilFinished / 1000) / 60 // Оставшиеся минуты
                 val secondsLeft = (millisUntilFinished / 1000) % 60 // Оставшиеся секунды
                 binding.tvResentCode.text =
-                    resources.getString(com.example.core_ui.R.string.resent_code_timer) + " " + String.format(
+                    context?.getString(com.example.core_ui.R.string.resent_code_timer) + " " + String.format(
                         "%02d:%02d",
                         minutesLeft,
                         secondsLeft

@@ -1,9 +1,10 @@
 package com.example.core_ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,14 +14,28 @@ import com.example.core_ui.ui.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes layoutId: Int) :
-    Fragment(layoutId) {
+abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
+    Fragment() {
 
-    protected abstract val binding: VB
+    lateinit var binding: VB
     protected abstract val viewModel: VM
     private lateinit var callback: OnBackPressedCallback
     open var backPressedTime: Long = 0
     open val doubleBackPressInterval = 2000
+    protected abstract fun getViewBinding(): VB
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = getViewBinding()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initialize()

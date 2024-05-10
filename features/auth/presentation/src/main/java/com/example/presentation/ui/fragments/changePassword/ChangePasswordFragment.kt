@@ -1,26 +1,22 @@
 package com.example.presentation.ui.fragments.changePassword
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.ChangePasswordRequest
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentChangePasswordBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChangePasswordFragment :
-    BaseFragment<FragmentChangePasswordBinding, ChangePasswordViewModel>(R.layout.fragment_change_password) {
-    override val binding by viewBinding(FragmentChangePasswordBinding::bind)
+    BaseFragment<FragmentChangePasswordBinding, ChangePasswordViewModel>() {
+    override fun getViewBinding() = FragmentChangePasswordBinding.inflate(layoutInflater)
     override val viewModel by viewModel<ChangePasswordViewModel>()
     private val args: ChangePasswordFragmentArgs by navArgs()
 

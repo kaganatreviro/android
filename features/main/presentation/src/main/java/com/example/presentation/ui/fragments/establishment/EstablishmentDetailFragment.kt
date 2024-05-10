@@ -16,8 +16,8 @@ import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
-    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(R.layout.fragment_establishment_detail) {
-    override val binding by viewBinding(FragmentEstablishmentDetailBinding::bind)
+    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>() {
+    override fun getViewBinding() = FragmentEstablishmentDetailBinding.inflate(layoutInflater)
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
