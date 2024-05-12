@@ -59,16 +59,15 @@ class EstablishmentDetailFragment :
     override fun launchObservers() {
         viewModel.establishmentMenuState.spectateUiState(
             loading = {
-                binding.progressBar.visible()
+                showDialog()
             },
             success = {
-                binding.progressBar.gone()
+                hideDialog()
                 menuAdapter.submitList(it)
                 menuAdapter.notifyDataSetChanged()
             },
             error = {
-                binding.progressBar.gone()
-                Log.d("log", "Error $it")
+                hideDialog()
                 showShortToast(it)
             }
         )

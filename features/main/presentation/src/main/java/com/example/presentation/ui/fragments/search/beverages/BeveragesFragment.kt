@@ -29,13 +29,13 @@ class BeveragesFragment :
         viewModel.beveragesState.spectateUiState(
             error = {
                 showShortToast(it)
-                binding.progressBar.gone()
+                hideDialog()
             },
             loading = {
-                binding.progressBar.visible()
+                showDialog()
             },
             success = {
-                binding.progressBar.gone()
+                hideDialog()
                 beverageAdapter.submitList(it)
             }
         )

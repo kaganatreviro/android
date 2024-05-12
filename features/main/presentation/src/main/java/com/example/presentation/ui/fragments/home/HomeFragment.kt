@@ -34,15 +34,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateUiState(
             loading = {
-                binding.progressBar.visible()
+                showDialog()
             },
             success = {
-                binding.progressBar.gone()
+                hideDialog()
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                binding.progressBar.gone()
+                hideDialog()
                 showShortToast(it)
             }
         )

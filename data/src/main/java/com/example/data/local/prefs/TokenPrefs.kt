@@ -35,6 +35,8 @@ class TokenPrefs(private val context: Context) {
     }
 
     fun clearUserData() {
+        access = ""
+        refresh = ""
         sharedPreferences.edit().clear().apply()
     }
 

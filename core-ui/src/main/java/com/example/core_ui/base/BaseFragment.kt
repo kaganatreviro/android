@@ -22,6 +22,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
     private lateinit var callback: OnBackPressedCallback
     open var backPressedTime: Long = 0
     open val doubleBackPressInterval = 2000
+    private val alertDialog: FullScreenProgressDialog by lazy { FullScreenProgressDialog() }
     protected abstract fun getViewBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +42,14 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
         initialize()
         setupListeners()
         launchObservers()
+    }
+
+    fun showDialog() {
+        alertDialog.show(requireActivity().supportFragmentManager, "popUp")
+    }
+
+    fun hideDialog() {
+        alertDialog.dismiss()
     }
 
     protected open fun initialize() {}

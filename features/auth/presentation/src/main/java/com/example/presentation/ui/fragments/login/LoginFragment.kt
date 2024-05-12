@@ -36,20 +36,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun launchObservers() {
         viewModel.loginState.spectateUiState(
             loading = {
-                binding.progressBar.visible()
-                binding.btnLogin.isEnabled = false
-                binding.btnLogin.text = ""
+                showDialog()
             },
             success = {
-                binding.progressBar.gone()
-                binding.btnLogin.isEnabled = true
-                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                hideDialog()
                 navigateToMain()
             },
             error = {
-                binding.progressBar.gone()
-                binding.btnLogin.isEnabled = true
-                binding.btnLogin.text = getString(com.example.core_ui.R.string.sign_in)
+                hideDialog()
                 showShortToast(it)
             }
         )
