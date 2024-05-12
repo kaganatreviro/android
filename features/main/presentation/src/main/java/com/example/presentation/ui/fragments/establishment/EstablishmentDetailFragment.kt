@@ -16,8 +16,8 @@ import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
-    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(R.layout.fragment_establishment_detail) {
-    override val binding by viewBinding(FragmentEstablishmentDetailBinding::bind)
+    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>() {
+    override fun getViewBinding() = FragmentEstablishmentDetailBinding.inflate(layoutInflater)
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
@@ -59,16 +59,15 @@ class EstablishmentDetailFragment :
     override fun launchObservers() {
         viewModel.establishmentMenuState.spectateUiState(
             loading = {
-                binding.progressBar.visible()
+                showDialog()
             },
             success = {
-                binding.progressBar.gone()
+                hideDialog()
                 menuAdapter.submitList(it)
                 menuAdapter.notifyDataSetChanged()
             },
             error = {
-                binding.progressBar.gone()
-                Log.d("log", "Error $it")
+                hideDialog()
                 showShortToast(it)
             }
         )

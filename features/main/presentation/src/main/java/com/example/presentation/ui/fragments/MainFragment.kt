@@ -21,9 +21,8 @@ import com.example.presentation.databinding.FragmentMainFlowBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class MainFragment : BaseFlowFragment(R.layout.fragment_main_flow, R.id.nav_host_main) {
-
-    private val binding by viewBinding(FragmentMainFlowBinding::bind)
+class MainFragment : BaseFlowFragment<FragmentMainFlowBinding>(R.id.nav_host_main) {
+    override fun getViewBinding() = FragmentMainFlowBinding.inflate(layoutInflater)
     private val mainViewModel by activityViewModel<MainViewModel>()
 
     override fun setupNavigation(navController: NavController) {

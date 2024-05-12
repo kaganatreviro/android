@@ -9,11 +9,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment :
-    BaseFragment<FragmentSearchBinding, SearchViewModel>(R.layout.fragment_search) {
-
-    override val binding by viewBinding(FragmentSearchBinding::bind)
+    BaseFragment<FragmentSearchBinding, SearchViewModel>() {
+    override fun getViewBinding() = FragmentSearchBinding.inflate(layoutInflater)
     override val viewModel by viewModel<SearchViewModel>()
-
     private val pagerAdapter: SearchPagerAdapter by lazy {
         SearchPagerAdapter(this)
     }
