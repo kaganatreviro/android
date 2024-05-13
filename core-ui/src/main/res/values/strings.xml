@@ -10,6 +10,7 @@
     <string name="edit">Edit</string>
     <string name="create_account">Create account</string>
     <string name="sign_in">Log In</string>
+    <string name="sign_in_title">Sign in to continue</string>
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="Happy_title">Happy Hours</string>
