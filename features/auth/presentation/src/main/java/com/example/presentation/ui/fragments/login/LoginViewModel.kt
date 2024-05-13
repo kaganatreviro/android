@@ -4,8 +4,7 @@ import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.UserLoginRequest
 import com.example.domain.use_cases.UserLoginUseCase
 import kotlinx.coroutines.flow.asStateFlow
-
-class LoginViewModel(
+class  LoginViewModel(
     private val loginUseCase: UserLoginUseCase
 ) : BaseViewModel() {
 

@@ -12,11 +12,11 @@ data class UserResetPasswordRequestDto(
 
     override fun toDomain() = ResetPasswordRequest(
         email = email,
-        resetCode = resetCode
+        reset_code = resetCode
     )
 }
 
 fun ResetPasswordRequest.toDto() = UserResetPasswordRequestDto(
     email = email,
-    resetCode = resetCode
+    resetCode = reset_code
 )

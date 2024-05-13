@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.search
 
+import android.util.Log
 import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.Beverage
 import com.example.domain.use_cases.GetBeverageUserCase
