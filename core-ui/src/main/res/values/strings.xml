@@ -4,6 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
+    <string name="title_edit_profile">Edit profile</string>
     <string name="logout">Logout</string>
     <string name="order_history">Order history</string>
     <string name="notification">Notification</string>
@@ -31,4 +32,8 @@
     <string name="enter_new_password_title">Change password</string>
     <string name="new_password_title">To complete the password reset, please enter a new password in the field below. Your new password must contain at least 8 characters and include uppercase and lowercase letters, numbers, and special characters to ensure the security of your account.</string>
     <string name="forgot_password_title">Please enter your email address. We will send you 4-digit code to drop your password.</string>
+    <string name="update">Update</string>
+    <string name="email">Email</string>
+    <string name="date">Date</string>
+    <string name="full_name">Full name</string>
 </resources>
