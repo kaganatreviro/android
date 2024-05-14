@@ -4,11 +4,9 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
+import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
-import com.example.core_ui.extensions.visible
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +22,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 binding.etUserPassword.text.toString()
             )
         }
-
         binding.tvNoneAccount.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
@@ -35,15 +32,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override fun launchObservers() {
         viewModel.loginState.spectateUiState(
-            loading = {
-                showDialog()
-            },
             success = {
-                hideDialog()
                 navigateToMain()
             },
             error = {
-                hideDialog()
                 showShortToast(it)
             }
         )
@@ -51,7 +43,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private fun navigateToMain() {
         val request = NavDeepLinkRequest.Builder
-            .fromUri(DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
             .build()
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.nav_graph_auth, false)

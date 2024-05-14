@@ -8,7 +8,7 @@ import androidx.core.net.toUri
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import com.example.core.Constants.DEEPLINK_NAV_TO_MAIN_MODULE
+import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
 import com.example.core_ui.extensions.gone
@@ -71,21 +71,10 @@ class SignUpFragment :
 
     override fun launchObservers() {
         viewModel.registerState.spectateUiState(
-            loading = {
-                binding.btnNext.text = ""
-                binding.btnNext.isEnabled = false
-                binding.progressBar.visible()
-            },
             success = {
-                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
-                binding.btnNext.isEnabled = true
-                binding.progressBar.gone()
                 navigateToMain()
             },
             error = {
-                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
-                binding.btnNext.isEnabled = true
-                binding.progressBar.gone()
                 showShortToast(it)
             }
         )
@@ -93,7 +82,7 @@ class SignUpFragment :
 
     private fun navigateToMain() {
         val request = NavDeepLinkRequest.Builder
-            .fromUri(DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_MAIN_MODULE.toUri())
             .build()
         findNavController().navigate(request)
     }

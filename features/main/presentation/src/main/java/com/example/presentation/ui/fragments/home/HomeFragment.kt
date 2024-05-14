@@ -5,9 +5,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
-import com.example.core_ui.extensions.visible
 import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,16 +31,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
         viewModel.establishmentListState.spectateUiState(
-            loading = {
-                showDialog()
-            },
             success = {
-                hideDialog()
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                hideDialog()
                 showShortToast(it)
             }
         )

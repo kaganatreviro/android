@@ -12,7 +12,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        buildConfigField("String", "BASE_URL", "\"http://16.170.203.161/\"")
+        buildConfigField("String", "BASE_URL", "\"https://happyhours.zapto.org/\"")
     }
 
     buildTypes {
