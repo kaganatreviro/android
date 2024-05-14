@@ -10,12 +10,15 @@
     <string name="edit">Edit</string>
     <string name="create_account">Create account</string>
     <string name="sign_in">Log In</string>
+    <string name="sign_in_title">Sign in to continue</string>
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="Happy_title">Happy Hours</string>
     <string name="main_title">Happy Hours</string>
     <string name="subs_status">Subscription</string>
-    <string name="none_account">New Member? Sign up Here</string>
+    <string name="none_account">
+        New Member?
+        <font color ="#FB7E00">Sign up Here</font></string>
     <string name="create_client">Create an Account</string>
     <string name="happy_time">Happy hours time at:</string>
     <string name="resent_code_timer">Resend more after </string>
