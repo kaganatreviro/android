@@ -22,7 +22,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 binding.etUserPassword.text.toString()
             )
         }
-
         binding.tvNoneAccount.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
         }
@@ -33,15 +32,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override fun launchObservers() {
         viewModel.loginState.spectateUiState(
-            loading = {
-                showDialog()
-            },
             success = {
-                hideDialog()
                 navigateToMain()
             },
             error = {
-                hideDialog()
                 showShortToast(it)
             }
         )

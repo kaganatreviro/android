@@ -4,40 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.fragment.app.DialogFragment
-import com.example.core_ui.R
-import com.example.core_ui.databinding.FullscreenProgressBinding
+import androidx.fragment.app.FragmentManager
+import com.example.core_ui.databinding.DialogFullScreenProgressBinding
 
-class FullScreenProgressDialog : DialogFragment() {
+class TestLoadingFragment : DialogFragment() {
 
-    lateinit var binding: FullscreenProgressBinding
+    private lateinit var binding: DialogFullScreenProgressBinding
 
-    private var onCancel: (() -> Unit)? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.AlertDialog_FullScreenDialogStyle)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        binding = FullscreenProgressBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DialogFullScreenProgressBinding.inflate(layoutInflater)
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        dialog?.apply {
-            onCancel?.let { setOnCancelListener { it() } }
-            val width = ViewGroup.LayoutParams.MATCH_PARENT
-            val height = ViewGroup.LayoutParams.MATCH_PARENT
-            window?.setLayout(width, height)
+        dialog?.window?.apply {
+            setBackgroundDrawableResource(android.R.color.transparent)
+            setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         }
-
     }
 
-    fun setOnCancelListener(onCancel: () -> Unit) {
-        this.onCancel = onCancel
+    companion object {
+        const val TAG = "FullscreenLoadingDialog"
     }
+}
 
+fun FragmentManager.showLoading() {
+    val existingDialog = findFragmentByTag(TestLoadingFragment.TAG) as? TestLoadingFragment
+    if (existingDialog == null || !existingDialog.isAdded) {
+        TestLoadingFragment().show(this, TestLoadingFragment.TAG)
+    }
+}
+
+fun FragmentManager.hideLoading() {
+    (findFragmentByTag(TestLoadingFragment.TAG) as? TestLoadingFragment)
+        ?.run { dismiss() }
 }

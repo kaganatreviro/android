@@ -1,11 +1,10 @@
 package com.example.presentation.ui.fragments.profile.edit_profile
 
-import android.util.Log
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
-import com.example.core.either.Either
+import com.example.core_ui.R
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
 import com.example.core_ui.extensions.getFileFromUri
@@ -14,14 +13,14 @@ import com.example.core_ui.extensions.setupDateTextWatcher
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.ui.UIState
 import com.example.domain.models.User
-import com.example.core_ui.R
 import com.example.presentation.databinding.FragmentEditProfileBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.presentation.ui.fragments.profile.ProfileViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import java.io.File
 
-class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfileViewModel>() {
+class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileViewModel>() {
 
-    override val viewModel by viewModel<EditProfileViewModel>()
+    override val viewModel by activityViewModel<ProfileViewModel>()
     override fun getViewBinding() = FragmentEditProfileBinding.inflate(layoutInflater)
 
     private var imageFile: File? = null
@@ -57,7 +56,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
             } else {
                 viewModel.updateData(
                     name = etUserName.text.toString(),
-                    date = "2020-02-02",
+                    date = etDate.text.toString().dateFormatter(),
                     avatar = imageFile,
                 )
             }
@@ -66,27 +65,11 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
 
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
-            loading = {
-                showDialog()
-            },
             success = { user ->
-                hideDialog()
                 setUserData(user)
             },
             error = {
-                hideDialog()
-            }
-        )
-
-        viewModel.updateUserDataState.spectateUiState(
-            loading = {
-
-            },
-            success = {
-                Log.e("ololo", "success")
-            },
-            error = {
-                Log.e("ololo", "error $it")
+                showShortToast(it)
             }
         )
     }

@@ -71,21 +71,10 @@ class SignUpFragment :
 
     override fun launchObservers() {
         viewModel.registerState.spectateUiState(
-            loading = {
-                binding.btnNext.text = ""
-                binding.btnNext.isEnabled = false
-                binding.progressBar.visible()
-            },
             success = {
-                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
-                binding.btnNext.isEnabled = true
-                binding.progressBar.gone()
                 navigateToMain()
             },
             error = {
-                binding.btnNext.text = getString(com.example.core_ui.R.string.create_account)
-                binding.btnNext.isEnabled = true
-                binding.progressBar.gone()
                 showShortToast(it)
             }
         )
