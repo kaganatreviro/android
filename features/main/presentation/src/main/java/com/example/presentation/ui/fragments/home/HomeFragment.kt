@@ -43,7 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 adapter.notifyDataSetChanged()
             },
             error = {
-                Log.e("ololo", it)
                 hideDialog()
                 showShortToast(it)
             }
