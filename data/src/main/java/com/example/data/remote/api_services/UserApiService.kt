@@ -26,7 +26,3 @@ interface UserApiService {
         const val UPDATE_USER_DATA_ENDPOINT = "api/v1/user/users/profile/"
     }
 }
-
-data class UpdateUserDataRequestDto(
-    val image: MultipartBody.Part
-)

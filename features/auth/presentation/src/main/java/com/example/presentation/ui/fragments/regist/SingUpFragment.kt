@@ -2,13 +2,11 @@ package com.example.presentation.ui.fragments.regist
 
 
 import androidx.fragment.app.viewModels
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
-import com.example.presentation.R
-import com.example.presentation.databinding.FragmentSingUpBinding
+import com.example.presentation.databinding.FragmentSignUpBinding
 
-class SingUpFragment : BaseFragment<FragmentSingUpBinding, SingUpViewModel>(R.layout.fragment_sing_up) {
+class SingUpFragment : BaseFragment<FragmentSignUpBinding, SingUpViewModel>() {
 
-    override val binding by viewBinding(FragmentSingUpBinding::bind)
     override val viewModel by viewModels<SingUpViewModel>()
+    override fun getViewBinding() = FragmentSignUpBinding.inflate(layoutInflater)
 }
