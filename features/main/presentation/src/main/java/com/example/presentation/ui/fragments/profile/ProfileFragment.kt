@@ -46,6 +46,6 @@ class ProfileFragment :
     }
 
     private fun navigateToEditProfile() {
-        findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
     }
 }

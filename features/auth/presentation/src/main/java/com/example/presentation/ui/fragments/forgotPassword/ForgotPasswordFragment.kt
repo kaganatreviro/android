@@ -9,10 +9,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.isNotEmpty
 import com.example.core_ui.extensions.showSimpleDialog
-import com.example.core_ui.extensions.visible
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
 import com.example.presentation.databinding.FragmentForgotPasswordBinding
@@ -64,33 +62,18 @@ class ForgotPasswordFragment :
 
     override fun launchObservers() {
         viewModel.forgotPasswordState.spectateUiState(
-            loading = {
-                binding.btnSend.text = ""
-                binding.btnSend.isEnabled = false
-                binding.progressBar.visible()
-            },
             success = {
-                binding.progressBar.gone()
-                binding.btnSend.text = getString(com.example.core_ui.R.string.send)
-                binding.btnSend.isEnabled = true
                 binding.flResetPassword.isVisible = false
                 binding.flPinConfirm.isVisible = true
                 setupConfirmPinView()
             },
             error = {
-                binding.progressBar.gone()
-                binding.btnSend.text = getString(com.example.core_ui.R.string.send)
-                binding.btnSend.isEnabled = true
                 showSimpleDialog(it, "")
             }
         )
 
         viewModel.resetPasswordState.spectateUiState(
-            loading = {
-                binding.flProgressBar.visible()
-            },
             success = {
-                binding.flProgressBar.gone()
                 findNavController().navigate(
                     ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToChangePasswordFragment(
                         emailArgs
@@ -98,7 +81,6 @@ class ForgotPasswordFragment :
                 )
             },
             error = {
-                binding.flProgressBar.gone()
                 showSimpleDialog(it, "")
             }
         )
