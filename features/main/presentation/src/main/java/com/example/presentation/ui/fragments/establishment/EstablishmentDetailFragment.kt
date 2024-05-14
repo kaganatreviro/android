@@ -58,16 +58,11 @@ class EstablishmentDetailFragment :
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
         viewModel.establishmentMenuState.spectateUiState(
-            loading = {
-                showDialog()
-            },
             success = {
-                hideDialog()
                 menuAdapter.submitList(it)
                 menuAdapter.notifyDataSetChanged()
             },
             error = {
-                hideDialog()
                 showShortToast(it)
             }
         )

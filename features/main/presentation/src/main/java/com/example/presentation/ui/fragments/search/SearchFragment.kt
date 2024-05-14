@@ -1,8 +1,6 @@
 package com.example.presentation.ui.fragments.search
 
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentSearchBinding
 import com.example.presentation.ui.adapters.SearchPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator

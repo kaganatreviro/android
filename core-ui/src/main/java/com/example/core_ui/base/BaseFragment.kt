@@ -22,7 +22,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
     private lateinit var callback: OnBackPressedCallback
     open var backPressedTime: Long = 0
     open val doubleBackPressInterval = 2000
-    private val alertDialog: FullScreenProgressDialog by lazy { FullScreenProgressDialog() }
     protected abstract fun getViewBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +41,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
         initialize()
         setupListeners()
         launchObservers()
-    }
-
-    fun showDialog() {
-        alertDialog.show(requireActivity().supportFragmentManager, "popUp")
-    }
-
-    fun hideDialog() {
-        alertDialog.dismiss()
     }
 
     protected open fun initialize() {}
@@ -77,9 +68,18 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
             collect {
                 when (it) {
                     is UIState.Idle -> idle?.invoke(it)
-                    is UIState.Loading -> loading?.invoke(it)
-                    is UIState.Error -> error?.invoke(it.error)
-                    is UIState.Success -> success?.invoke(it.data)
+                    is UIState.Loading -> {
+                        showLoading()
+                        loading?.invoke(it)
+                    }
+                    is UIState.Error -> {
+                        hideLoading()
+                        error?.invoke(it.error)
+                    }
+                    is UIState.Success -> {
+                        hideLoading()
+                        success?.invoke(it.data)
+                    }
                 }
             }
         }
@@ -94,5 +94,13 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
                 gather()
             }
         }
+    }
+
+    private fun showLoading() {
+        requireActivity().supportFragmentManager.showLoading()
+    }
+
+    private fun hideLoading() {
+        requireActivity().supportFragmentManager.hideLoading()
     }
 }
