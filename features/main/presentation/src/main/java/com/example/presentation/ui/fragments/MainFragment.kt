@@ -1,18 +1,17 @@
 package com.example.presentation.ui.fragments
 
 import android.view.View
-import androidx.core.view.isVisible
-import androidx.navigation.NavController
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import by.kirich1409.viewbindingdelegate.viewBinding
-import com.example.core.Constants.DEEPLINK_NAV_TO_AUTH_MODULE
+import com.example.core.Constants
 import com.example.core.either.Either
 import com.example.core_ui.base.BaseFlowFragment
 import com.example.core_ui.extensions.showShortToast
@@ -58,7 +57,7 @@ class MainFragment : BaseFlowFragment<FragmentMainFlowBinding>(R.id.nav_host_mai
 
     private fun navigateToAuth() {
         val request = NavDeepLinkRequest.Builder
-            .fromUri(DEEPLINK_NAV_TO_AUTH_MODULE.toUri())
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_AUTH_MODULE.toUri())
             .build()
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.nav_graph_bottom_nav, false)

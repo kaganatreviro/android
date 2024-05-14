@@ -36,4 +36,5 @@
     <string name="email">Email</string>
     <string name="date">Date</string>
     <string name="full_name">Full name</string>
+    <string name="data_has_not_been_changed">Data has not been changed</string>
 </resources>

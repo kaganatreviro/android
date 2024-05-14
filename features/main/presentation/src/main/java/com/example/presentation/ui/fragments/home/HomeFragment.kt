@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 adapter.notifyDataSetChanged()
             },
             error = {
+                Log.e("ololo", it)
                 hideDialog()
                 showShortToast(it)
             }

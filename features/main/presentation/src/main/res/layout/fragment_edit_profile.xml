@@ -38,13 +38,16 @@
         android:layout_marginTop="12dp">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_user_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@color/material_dynamic_primary95"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_person"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_edit_avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -70,6 +73,7 @@
             android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edit_text"
@@ -88,29 +92,12 @@
             android:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edit_text"
             android:elevation="4dp"
             android:inputType="date"
-            android:padding="8dp"
-            android:text="@string/title_profile"
-            tools:ignore="LabelFor" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/sf_pro_display_medium"
-            android:text="@string/email"
-            android:textColor="@color/black" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_edit_text"
-            android:elevation="4dp"
-            android:inputType="textEmailAddress"
             android:padding="8dp"
             android:text="@string/title_profile"
             tools:ignore="LabelFor" />
