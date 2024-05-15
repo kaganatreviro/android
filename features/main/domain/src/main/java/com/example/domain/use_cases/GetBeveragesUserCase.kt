@@ -2,8 +2,8 @@ package com.example.domain.use_cases
 
 import com.example.domain.repositories.BeverageRepository
 
-class GetBeverageUserCase(
+class GetBeveragesUserCase(
     private val repository: BeverageRepository
 ) {
-    operator fun invoke() = repository.getBeverages()
+    operator fun invoke(search: String?) = repository.getBeverages(search)
 }
