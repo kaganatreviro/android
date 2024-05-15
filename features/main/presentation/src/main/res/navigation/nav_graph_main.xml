@@ -55,8 +55,8 @@
         android:label="fragment_establishment_detail"
         tools:layout="@layout/fragment_establishment_detail" >
         <argument
-            android:name="establishment"
-            app:argType="com.example.domain.models.EstablishmentDetails" />
+            android:name="establishmentId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"

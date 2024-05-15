@@ -88,19 +88,10 @@ class ChangePasswordFragment :
 
     override fun launchObservers() {
         viewModel.changePasswordState.spectateUiState(
-            loading = {
-                binding.btnDone.text = ""
-                binding.btnDone.isEnabled = false
-                binding.progressBar.visible()
-            },
             success = {
-                binding.progressBar.gone()
                 findNavController().navigate(ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment())
             },
             error = {
-                binding.progressBar.gone()
-                binding.btnDone.isEnabled = true
-                binding.btnDone.text = getString(com.example.core_ui.R.string.done)
                 showShortToast(it)
             }
         )

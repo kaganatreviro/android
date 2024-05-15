@@ -1,17 +1,13 @@
 package com.example.presentation.ui.fragments.establishment
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.loadImageWithGlide
+import com.example.core_ui.extensions.setImageWithGlide
 import com.example.core_ui.extensions.showShortToast
-import com.example.core_ui.extensions.visible
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,16 +26,7 @@ class EstablishmentDetailFragment :
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvBeveragesMenu.adapter = menuAdapter
 
-        ivEstImage.loadImageWithGlide(args.establishment.logo)
-        tvName.text = args.establishment.name
-        tvAddress.text = args.establishment.address
-        tvDesc.text = args.establishment.description
-        tvLocation.text = args.establishment.location.type
-        tvPhoneNumber.text = args.establishment.phoneNumber
-        tvTitleHappyHoursTime.text =
-            getString(com.example.core_ui.R.string.happy_time) + " " + args.establishment.happyHoursStart + " from " + args.establishment.happyHoursEnd
-
-        getEstablishmentMenuById()
+        getEstablishmentDetailsById()
     }
 
     override fun setupListeners(): Unit = with(binding) {
@@ -51,12 +38,37 @@ class EstablishmentDetailFragment :
     }
 
     private fun getEstablishmentMenuById() {
-        val param = args.establishment.id
+        val param = args.establishmentId
         viewModel.getEstablishmentMenuById(param)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun launchObservers() {
+    private fun getEstablishmentDetailsById() {
+        val param = args.establishmentId
+        viewModel.getEstablishmentDetailsById(param)
+    }
+
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    override fun launchObservers() = with(binding) {
+        viewModel.establishmentDetailsState.spectateUiState(
+            success = {
+                getEstablishmentMenuById()
+
+                if(it.logo.isEmpty())
+                    ivEstImage.setImageWithGlide(com.example.core_ui.R.drawable.ic_logo)
+                    else ivEstImage.loadImageWithGlide(it.logo)
+                tvName.text = it.name
+                tvAddress.text = it.address
+                tvDesc.text = it.description
+                tvLocation.text = it.location.type
+                tvPhoneNumber.text = it.phoneNumber
+                tvTitleHappyHoursTime.text =
+                    getString(com.example.core_ui.R.string.happy_time) + " " + it.happyHoursStart + " from " + it.happyHoursEnd
+            },
+            error = {
+                showShortToast(it)
+            }
+        )
+
         viewModel.establishmentMenuState.spectateUiState(
             success = {
                 menuAdapter.submitList(it)
