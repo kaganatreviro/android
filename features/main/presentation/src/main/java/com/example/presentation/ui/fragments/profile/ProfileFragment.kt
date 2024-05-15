@@ -5,7 +5,6 @@ import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.User
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
 import com.example.presentation.ui.fragments.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel

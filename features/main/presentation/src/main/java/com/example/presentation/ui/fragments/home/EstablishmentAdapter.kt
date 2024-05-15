@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
@@ -63,8 +62,8 @@ class EstablishmentAdapter(private val clickListener: ItemClickListener) :
 
             item.apply {
                 binding.tvName.text = item.name
-                binding.tvHappyTime.text =
-                    "in ${item.happyHoursStart.dropLast(3)} from ${item.happyHoursEnd.dropLast(3)}"
+                binding.tvHappyTime.text = "in " +
+                        item.happyHoursStart + " from " + item.happyHoursEnd
                 binding.ivRestImage.loadImageWithGlide(item.logo)
             }
         }
