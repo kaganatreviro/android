@@ -14,7 +14,7 @@ import com.example.core_ui.ui.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
+abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
     Fragment() {
 
     lateinit var binding: VB
@@ -58,6 +58,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
     }
 
     protected fun <T> StateFlow<UIState<T>>.spectateUiState(
+        showLoader: Boolean = true,
         lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
         success: ((data: T) -> Unit)? = null,
         loading: ((data: UIState.Loading<T>) -> Unit)? = null,
@@ -69,15 +70,20 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>:
                 when (it) {
                     is UIState.Idle -> idle?.invoke(it)
                     is UIState.Loading -> {
-                        showLoading()
+                        if (showLoader)
+                            showLoading()
                         loading?.invoke(it)
                     }
+
                     is UIState.Error -> {
-                        hideLoading()
+                        if (showLoader)
+                            hideLoading()
                         error?.invoke(it.error)
                     }
+
                     is UIState.Success -> {
-                        hideLoading()
+                        if (showLoader)
+                            hideLoading()
                         success?.invoke(it.data)
                     }
                 }

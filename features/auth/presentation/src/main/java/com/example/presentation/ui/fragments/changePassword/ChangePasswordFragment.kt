@@ -6,10 +6,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
-import com.example.core_ui.extensions.visible
 import com.example.domain.models.ChangePasswordRequest
 import com.example.presentation.databinding.FragmentChangePasswordBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -88,19 +86,10 @@ class ChangePasswordFragment :
 
     override fun launchObservers() {
         viewModel.changePasswordState.spectateUiState(
-            loading = {
-                binding.btnDone.text = ""
-                binding.btnDone.isEnabled = false
-                binding.progressBar.visible()
-            },
             success = {
-                binding.progressBar.gone()
                 findNavController().navigate(ChangePasswordFragmentDirections.actionChangePasswordFragmentToLoginFragment())
             },
             error = {
-                binding.progressBar.gone()
-                binding.btnDone.isEnabled = true
-                binding.btnDone.text = getString(com.example.core_ui.R.string.done)
                 showShortToast(it)
             }
         )
