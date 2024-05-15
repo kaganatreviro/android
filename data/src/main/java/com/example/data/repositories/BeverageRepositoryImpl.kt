@@ -10,7 +10,7 @@ class BeverageRepositoryImpl(
     private val apiService: BeverageApiService
 ): BeverageRepository {
 
-    override fun getBeverages(): Flow<Either<String, List<Beverage>>> = makeNetworkRequest {
-        apiService.getBeverages().map { it.toDomain() }
+    override fun getBeverages(search: String?): Flow<Either<String, List<Beverage>>> = makeNetworkRequest {
+        apiService.getBeverages(search).map { it.toDomain() }
     }
 }

@@ -6,7 +6,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
-import com.example.core_ui.extensions.setImageWithGlide
 import com.example.core_ui.extensions.showShortToast
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,9 +52,7 @@ class EstablishmentDetailFragment :
             success = {
                 getEstablishmentMenuById()
 
-                if(it.logo.isEmpty())
-                    ivEstImage.setImageWithGlide(com.example.core_ui.R.drawable.ic_logo)
-                    else ivEstImage.loadImageWithGlide(it.logo)
+                ivEstImage.loadImageWithGlide(it.logo)
                 tvName.text = it.name
                 tvAddress.text = it.address
                 tvDesc.text = it.description

@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.core_ui.extensions.gone
 import com.example.core_ui.extensions.loadImageWithGlide
+import com.example.core_ui.extensions.visible
 import com.example.domain.models.Beverage
 import com.example.presentation.databinding.ItemBeverageBinding
 
@@ -23,6 +25,16 @@ class BeveragesAdapter : ListAdapter<Beverage, BeveragesAdapter.BeverageViewHold
         ViewHolder(binding.root) {
 
         fun onBind(beverage: Beverage): Unit = with(binding) {
+            val availabilityStatus = if(beverage.availabilityStatus) {
+                tvAvailabilityStatus.isEnabled = true
+                "available"
+            } else {
+                tvAvailabilityStatus.isEnabled = false
+                "unavailable"
+            }
+            tvAvailabilityStatus.visible()
+            btnGetBeverage.gone()
+            tvAvailabilityStatus.text = availabilityStatus
             tvName.text = beverage.name
             tvPrice.text = beverage.price
         }

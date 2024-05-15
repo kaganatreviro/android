@@ -63,5 +63,3 @@
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
-
-    <!--<deepLink app:uri="reviroApp://features/main/presentation/" />-->

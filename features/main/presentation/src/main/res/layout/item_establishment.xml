@@ -24,6 +24,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Barashek"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_rest_image"/>
+
         <ImageView
             android:id="@+id/iv_time"
             android:layout_width="25dp"
@@ -31,39 +44,23 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_happy_haours_time"
             app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_happy_time"
-            app:layout_constraintEnd_toStartOf="@+id/tv_happy_time"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
-            app:layout_constraintTop_toTopOf="@+id/tv_happy_time" />
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Barashek"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
-            app:layout_constraintTop_toTopOf="@+id/iv_rest_image"
-            app:layout_constraintBottom_toTopOf="@id/tv_happy_time"/>
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_happy_time"
             style="@style/empty_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginVertical="10dp"
-            android:maxLines="3"
-            android:text="in 16:00 from 17:00"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_rest_image"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            tools:text="in 16:00 from 17:00"
+            android:textSize="16sp"
+            android:fontFamily="@font/sf_pro_display_medium"
+            app:layout_constraintStart_toEndOf="@+id/iv_time"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_time"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
