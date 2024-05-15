@@ -18,4 +18,8 @@ class EstablishmentRepositoryImpl(
     override fun getEstablishmentMenuById(id: Int): Flow<Either<String, List<Menu>>> = makeNetworkRequest {
         apiService.getEstablishmentMenuById(id).map { it.toDomain() }
     }
+
+    override fun getEstablishmentDetailsById(id: Int): Flow<Either<String, EstablishmentDetails>> = makeNetworkRequest {
+        apiService.getEstablishmentDetailsById(id).toDomain()
+    }
 }

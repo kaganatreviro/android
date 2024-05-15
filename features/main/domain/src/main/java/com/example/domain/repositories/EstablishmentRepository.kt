@@ -10,4 +10,5 @@ interface EstablishmentRepository {
 
       fun getEstablishmentList(): Flow<Either<String, List<EstablishmentDetails>>>
       fun getEstablishmentMenuById(id: Int): Flow<Either<String, List<Menu>>>
+      fun getEstablishmentDetailsById(id: Int): Flow<Either<String, EstablishmentDetails>>
 }

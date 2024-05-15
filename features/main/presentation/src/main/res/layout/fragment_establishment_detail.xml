@@ -49,7 +49,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@id/tv_location"
-                android:text="123 Main St, Anytown,"
                 android:textColor="@color/disable_text_color" />
 
             <TextView
@@ -60,7 +59,6 @@
                 android:layout_below="@id/iv_est_image"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
-                android:text="Bishkek"
                 android:textColor="@color/disable_text_color" />
 
             <TextView
@@ -76,12 +74,10 @@
             <TextView
                 android:id="@+id/tv_desc"
                 style="@style/empty_text_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_location"
-                android:layout_marginTop="20dp"
-                android:textSize="16sp"
-                android:text="Navat is popular peice" />
+                android:layout_below="@id/tv_address"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/tv_title_happy_hours_time"
@@ -91,7 +87,6 @@
                 android:layout_below="@id/tv_desc"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                android:text="dgdgfgh gddfg"
                 android:paddingHorizontal="7dp"
                 android:background="@color/color_primary"
                 android:layout_marginTop="15dp" />
@@ -113,8 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title_happy_hours_time"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
-                android:text="+996 709 764 829" />
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/tv_menu"
