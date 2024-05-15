@@ -1,17 +1,21 @@
 package com.example.presentation.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.core_ui.extensions.gone
-import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.visible
 import com.example.domain.models.Beverage
+import com.example.core_ui.R
 import com.example.presentation.databinding.ItemBeverageBinding
 
-class BeveragesAdapter : ListAdapter<Beverage, BeveragesAdapter.BeverageViewHolder>(callback) {
+class BeveragesAdapter(
+    private val context: Context,
+    private val onItemClick: (beverageId: Int) -> Unit
+) : ListAdapter<Beverage, BeveragesAdapter.BeverageViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BeverageViewHolder(
         ItemBeverageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,18 +29,23 @@ class BeveragesAdapter : ListAdapter<Beverage, BeveragesAdapter.BeverageViewHold
         ViewHolder(binding.root) {
 
         fun onBind(beverage: Beverage): Unit = with(binding) {
-            val availabilityStatus = if(beverage.availabilityStatus) {
+            val availabilityStatus = if (beverage.availabilityStatus) {
                 tvAvailabilityStatus.isEnabled = true
-                "available"
+                context.getString(R.string.status_available)
             } else {
                 tvAvailabilityStatus.isEnabled = false
-                "unavailable"
+                context.getString(R.string.status_unavailable)
             }
             tvAvailabilityStatus.visible()
             btnGetBeverage.gone()
             tvAvailabilityStatus.text = availabilityStatus
             tvName.text = beverage.name
             tvPrice.text = beverage.price
+        }
+        init {
+            binding.root.setOnClickListener {
+                onItemClick(getItem(adapterPosition).id)
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import com.example.presentation.ui.fragments.profile.ProfileViewModel
 import com.example.presentation.ui.fragments.home.HomeViewModel
 import com.example.presentation.ui.fragments.MainViewModel
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailViewModel
+import com.example.presentation.ui.fragments.beveage.BeverageDetailsViewModel
 import org.koin.dsl.module
 
 val mainModule = module {
@@ -16,4 +17,5 @@ val mainModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::MainViewModel)
     viewModelOf(::EstablishmentDetailViewModel)
+    viewModelOf(::BeverageDetailsViewModel)
 }

@@ -13,4 +13,8 @@ class BeverageRepositoryImpl(
     override fun getBeverages(search: String?): Flow<Either<String, List<Beverage>>> = makeNetworkRequest {
         apiService.getBeverages(search).map { it.toDomain() }
     }
+
+    override fun getBeverageById(id: Int): Flow<Either<String, Beverage>> = makeNetworkRequest {
+        apiService.getBeverageById(id).toDomain()
+    }
 }

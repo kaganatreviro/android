@@ -7,6 +7,7 @@ import com.example.domain.use_cases.GetEstablishmentListUseCase
 import com.example.domain.use_cases.LogoutUseCase
 import com.example.domain.use_cases.GetEstablishmentMenuByIdUseCase
 import com.example.domain.use_cases.UpdateUserDataUseCase
+import com.example.domain.use_cases.GetBeverageByIdUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -16,4 +17,5 @@ val domainModule = module {
     factoryOf(::LogoutUseCase)
     factoryOf(::GetEstablishmentMenuByIdUseCase)
     factoryOf(::UpdateUserDataUseCase)
+    factoryOf(::GetBeverageByIdUseCase)
 }
