@@ -9,7 +9,11 @@
         android:id="@+id/searchFragment"
         android:name="com.example.presentation.ui.fragments.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_beverageDetailsFragment"
+            app:destination="@id/beverageDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.presentation.ui.fragments.profile.ProfileFragment"
@@ -63,4 +67,13 @@
         android:name="com.example.presentation.ui.fragments.profile.edit_profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/beverageDetailsFragment"
+        android:name="com.example.presentation.ui.fragments.beveage.BeverageDetailsFragment"
+        android:label="fragment_beverage_details"
+        tools:layout="@layout/fragment_beverage_details" >
+        <argument
+            android:name="beverage_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

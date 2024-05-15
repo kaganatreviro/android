@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface BeverageRepository {
 
     fun getBeverages(search: String?): Flow<Either<String, List<Beverage>>>
+    fun getBeverageById(id: Int): Flow<Either<String, Beverage>>
 }
