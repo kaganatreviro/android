@@ -63,8 +63,8 @@ class EstablishmentAdapter(private val clickListener: ItemClickListener) :
 
             item.apply {
                 binding.tvName.text = item.name
-                binding.tvHappyTime.text = "in " +
-                        item.happyHoursStart + " from " + item.happyHoursEnd
+                binding.tvHappyTime.text =
+                    "in ${item.happyHoursStart.dropLast(3)} from ${item.happyHoursEnd.dropLast(3)}"
                 binding.ivRestImage.loadImageWithGlide(item.logo)
             }
         }
