@@ -3,6 +3,7 @@ package com.example.presentation.ui.fragments.qr_scranner
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,11 +51,13 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun handleResult(result: Result?) {
-//        findNavController().navigate(
-//            QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
-//                result.toString().toInt()
-//            )
-//        )
+        Log.d("log" , "result = ${result?.contents!!.toInt()}")
+        val param = result?.contents!!.toInt()
+        findNavController().navigate(
+            QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
+                param
+            )
+        )
     }
 
     private fun checkCameraPermission() {
