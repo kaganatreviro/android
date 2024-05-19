@@ -31,7 +31,6 @@ class MainFragment : BaseFlowFragment<FragmentMainFlowBinding>(R.id.nav_host_mai
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.searchFragment,
-                R.id.QRScannerFragment,
                 R.id.profileFragment
                 -> binding.bottomNavView.isVisible = true
 
