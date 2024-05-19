@@ -5,6 +5,7 @@ import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.Menu
 import com.example.domain.use_cases.GetEstablishmentDetailsByIdUseCase
 import com.example.domain.use_cases.GetEstablishmentMenuByIdUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asStateFlow
 
 class EstablishmentDetailViewModel(
@@ -18,11 +19,9 @@ class EstablishmentDetailViewModel(
     private val _establishmentDetailsState = mutableUiStateFlow<EstablishmentDetails>()
     val establishmentDetailsState = _establishmentDetailsState.asStateFlow()
 
-    fun getEstablishmentMenuById(id: Int) {
+    suspend fun getEstablishmentDetailsById(id: Int) {
         getEstablishmentMenuUseCase(id).gatherRequest(_establishmentMenuState)
-    }
-
-    fun getEstablishmentDetailsById(id: Int) {
+        delay(500)
         getEstablishmentDetailsUseCase(id).gatherRequest(_establishmentDetailsState)
     }
 }

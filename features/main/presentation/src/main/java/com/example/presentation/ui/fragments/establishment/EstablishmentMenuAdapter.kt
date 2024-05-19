@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.establishment
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.Menu
 import com.example.presentation.databinding.ItemBeverageBinding
 
-class EstablishmentMenuAdapter: ListAdapter<Menu, EstablishmentMenuAdapter.MenuViewHolder>(callback) {
+class EstablishmentMenuAdapter(
+    private val context: Context,
+    private val onItemClick: (beverageId: Int) -> Unit
+) : ListAdapter<Menu, EstablishmentMenuAdapter.MenuViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MenuViewHolder(
         ItemBeverageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +28,12 @@ class EstablishmentMenuAdapter: ListAdapter<Menu, EstablishmentMenuAdapter.MenuV
         fun onBind(menu: Menu): Unit = with(binding) {
             tvName.text = menu.name
             tvPrice.text = menu.price.toString()
+        }
+
+        init {
+            binding.root.setOnClickListener {
+                onItemClick(getItem(adapterPosition).id)
+            }
         }
     }
 

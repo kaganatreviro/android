@@ -8,6 +8,9 @@ import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
+import kotlinx.coroutines.async
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
@@ -16,7 +19,7 @@ class EstablishmentDetailFragment :
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
-        EstablishmentMenuAdapter()
+        EstablishmentMenuAdapter(requireContext(), ::onBeverageItemClick)
     }
 
     @SuppressLint("SetTextI18n")
@@ -25,7 +28,10 @@ class EstablishmentDetailFragment :
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvBeveragesMenu.adapter = menuAdapter
 
-        getEstablishmentDetailsById()
+        runBlocking {
+            joinAll(
+                async { getEstablishmentDetailsById() })
+        }
     }
 
     override fun setupListeners(): Unit = with(binding) {
@@ -36,12 +42,7 @@ class EstablishmentDetailFragment :
         }
     }
 
-    private fun getEstablishmentMenuById() {
-        val param = args.establishmentId
-        viewModel.getEstablishmentMenuById(param)
-    }
-
-    private fun getEstablishmentDetailsById() {
+    private suspend fun getEstablishmentDetailsById() {
         val param = args.establishmentId
         viewModel.getEstablishmentDetailsById(param)
     }
@@ -50,8 +51,6 @@ class EstablishmentDetailFragment :
     override fun launchObservers() = with(binding) {
         viewModel.establishmentDetailsState.spectateUiState(
             success = {
-                getEstablishmentMenuById()
-
                 ivEstImage.loadImageWithGlide(it.logo)
                 tvName.text = it.name
                 tvAddress.text = it.address
@@ -79,5 +78,13 @@ class EstablishmentDetailFragment :
 
     override fun onBackPressed() {
         findNavController().popBackStack()
+    }
+
+    private fun onBeverageItemClick(id: Int) {
+        findNavController().navigate(
+            EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToBeverageDetailsFragment(
+                id
+            )
+        )
     }
 }

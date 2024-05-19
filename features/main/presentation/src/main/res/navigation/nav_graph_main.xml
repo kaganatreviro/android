@@ -59,6 +59,14 @@
         <argument
             android:name="establishmentId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_establishmentDetailFragment_to_beverageDetailsFragment"
+            app:destination="@id/beverageDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/establishmentDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
