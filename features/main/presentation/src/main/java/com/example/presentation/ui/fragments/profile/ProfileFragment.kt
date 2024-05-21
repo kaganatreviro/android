@@ -25,6 +25,9 @@ class ProfileFragment :
         binding.btnEditProfile.setOnClickListener {
             navigateToEditProfile()
         }
+        binding.btnOrderHistory.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOrderHistoryFragment())
+        }
     }
 
     override fun launchObservers() {

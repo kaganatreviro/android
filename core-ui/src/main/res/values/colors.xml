@@ -7,8 +7,8 @@
     <color name="dark_grey">#686E78</color>
     <color name="light_grey">#DEDEDE</color>
     <color name="grey_t_20">#33767676</color>
-    <color name="enable_false_button">#F1F6F9</color>
-    <color name="enable_true_button">#292929</color>
+    <color name="enable_false_button">#E9EAEB</color>
+    <color name="enable_true_button">#FB7E00</color>
     <color name="color_primary">#FB7E00</color>
 
     <color name="enable_button">#FB7E00</color>

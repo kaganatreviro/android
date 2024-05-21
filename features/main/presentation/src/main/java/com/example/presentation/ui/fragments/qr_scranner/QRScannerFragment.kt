@@ -51,8 +51,8 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun handleResult(result: Result?) {
-        Log.d("log" , "result = ${result?.contents!!.toInt()}")
         val param = result?.contents!!.toInt()
+        paymentAction = true
         findNavController().navigate(
             QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
                 param

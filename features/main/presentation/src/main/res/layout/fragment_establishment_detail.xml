@@ -129,13 +129,4 @@
                 tools:listitem="@layout/item_beverage" />
         </RelativeLayout>
     </ScrollView>
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/color_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
