@@ -7,70 +7,62 @@
     android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_beverage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:ellipsize="end"
             android:fontFamily="@font/sf_pro_display_medium"
             android:maxLines="2"
+            android:text="Lorem ipsum"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_establishment_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/sf_pro_display_regular"
             android:maxLines="2"
+            android:text="Lorem ipsum"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"/>
+            app:layout_constraintStart_toStartOf="@+id/tv_beverage_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_beverage_name" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_availability_status"
-            android:layout_margin="8dp"
-            android:elevation="4dp"
+            android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_beverage_status"
+            android:elevation="4dp"
+            android:fontFamily="@font/sf_pro_display_medium"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp"
-            android:fontFamily="@font/sf_pro_display_medium"
             android:textColor="@color/white"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="available" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_get_beverage"
-            android:backgroundTint="@drawable/color_selector_for_pay_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_create_time"
+            style="@style/empty_text_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/sf_pro_display_medium"
-            android:text="Get for\n free"
-            android:textSize="14sp"
-            style="@style/enable_button"
+            android:gravity="end"
+            android:text="Get for free"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="5dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_get_beverage"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_establishment_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

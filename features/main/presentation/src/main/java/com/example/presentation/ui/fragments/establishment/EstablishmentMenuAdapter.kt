@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.Menu
 import com.example.presentation.databinding.ItemBeverageBinding
+import com.example.presentation.ui.fragments.qr_scranner.QRScannerFragment
 
 class EstablishmentMenuAdapter(
     private val context: Context,
-    private val onItemClick: (beverageId: Int) -> Unit
+    private val enabledAction: Boolean,
+    private val onItemClick: (beverageId: Int) -> Unit,
+    private val onGetForFreeBtnClick: (beverageId: Int) -> Unit
 ) : ListAdapter<Menu, EstablishmentMenuAdapter.MenuViewHolder>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MenuViewHolder(
@@ -28,11 +31,15 @@ class EstablishmentMenuAdapter(
         fun onBind(menu: Menu): Unit = with(binding) {
             tvName.text = menu.name
             tvPrice.text = menu.price.toString()
+            binding.btnGetBeverage.isEnabled = enabledAction
         }
 
         init {
             binding.root.setOnClickListener {
                 onItemClick(getItem(adapterPosition).id)
+            }
+            binding.btnGetBeverage.setOnClickListener {
+                onGetForFreeBtnClick(getItem(adapterPosition).id)
             }
         }
     }

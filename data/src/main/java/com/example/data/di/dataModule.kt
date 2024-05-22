@@ -1,11 +1,11 @@
 package com.example.data.di
 
-import android.system.Os.bind
 import com.example.data.BuildConfig.BASE_URL
 import com.example.data.local.prefs.TokenPrefs
 import com.example.data.remote.api_services.AuthApiService
 import com.example.data.remote.api_services.BeverageApiService
 import com.example.data.remote.api_services.EstablishmentApiService
+import com.example.data.remote.api_services.OrderApiService
 import com.example.data.remote.api_services.UserApiService
 import com.example.data.remote.interceptors.TokenAuthenticator
 import com.example.data.remote.interceptors.AuthInterceptor
@@ -13,9 +13,11 @@ import com.example.data.repositories.AuthRepositoryImpl
 import com.example.data.repositories.BeverageRepositoryImpl
 import com.example.data.repositories.UserRepositoryImpl
 import com.example.domain.repositories.AuthRepository
+import com.example.data.repositories.OrderRepositoryImpl
 import com.example.domain.repositories.BeverageRepository
 import com.example.domain.repositories.EstablishmentRepository
 import com.example.data.repositories.EstablishmentRepositoryImpl
+import com.example.domain.repositories.OrderRepository
 import com.example.domain.repositories.UserRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,12 +51,16 @@ val dataModule = module {
     singleOf(::AuthRepositoryImpl) {
         bind<AuthRepository>()
     }
+    singleOf(::OrderRepositoryImpl) {
+        bind<OrderRepository>()
+    }
     singleOf(::TokenPrefs)
 
     //ApiServices
     singleOf(::provideBeverageApi)
     singleOf(::provideUserApi)
     singleOf(::provideEstablishmentApi)
+    singleOf(::provideOrderApi)
     single<AuthApiService> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -101,6 +107,10 @@ fun provideBeverageApi(retrofit: Retrofit): BeverageApiService {
 
 fun provideUserApi(retrofit: Retrofit): UserApiService {
     return retrofit.create(UserApiService::class.java)
+}
+
+fun provideOrderApi(retrofit: Retrofit): OrderApiService{
+    return retrofit.create(OrderApiService::class.java)
 }
 
 fun provideEstablishmentApi(retrofit: Retrofit): EstablishmentApiService{

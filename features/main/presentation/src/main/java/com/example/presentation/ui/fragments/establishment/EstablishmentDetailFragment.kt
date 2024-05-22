@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.OrderRequest
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
 import kotlinx.coroutines.async
 import kotlinx.coroutines.joinAll
@@ -19,7 +21,7 @@ class EstablishmentDetailFragment :
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
-        EstablishmentMenuAdapter(requireContext(), ::onBeverageItemClick)
+        EstablishmentMenuAdapter(requireContext(), args.enabledButton, ::onBeverageItemClick, ::onGetForFreeBtnClick)
     }
 
     @SuppressLint("SetTextI18n")
@@ -74,6 +76,15 @@ class EstablishmentDetailFragment :
                 showShortToast(it)
             }
         )
+
+        viewModel.orderState.spectateUiState(
+            success = {
+                showSimpleDialog("Success", " ")
+            },
+            error = {
+                showSimpleDialog(it, "")
+            }
+        )
     }
 
     override fun onBackPressed() {
@@ -86,5 +97,10 @@ class EstablishmentDetailFragment :
                 id
             )
         )
+    }
+
+    private fun onGetForFreeBtnClick(id: Int){
+        val param = OrderRequest(id)
+        viewModel.makeOrder(param)
     }
 }
