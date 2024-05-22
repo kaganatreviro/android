@@ -74,7 +74,6 @@ class EstablishmentAdapter(private val clickListener: ItemClickListener) :
             happyHoursEnd.format(formatterWithoutSeconds)
 
             item.apply {
-
                 binding.tvName.text = item.name
                 binding.tvHappyTime.text = "$happyHoursStart - $happyHoursEnd"
                 binding.ivRestImage.loadImageWithGlide(item.logo)

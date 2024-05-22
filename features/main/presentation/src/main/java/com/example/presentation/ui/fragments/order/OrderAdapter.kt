@@ -1,14 +1,19 @@
 package com.example.presentation.ui.fragments.order
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.Order
 import com.example.presentation.databinding.ItemOrderBinding
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 enum class OrderStatus{
     PENDING, CANCELLED, IN_PREPARATION, COMPLETED
@@ -20,12 +25,20 @@ class OrderAdapter(private val context: Context) : ListAdapter<Order, OrderAdapt
         ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         getItem(position)?.let { holder.onBind(it) }
     }
 
     inner class OrderViewHolder(private val binding: ItemOrderBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX")
+        @RequiresApi(Build.VERSION_CODES.O)
+        val displayFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy:MM:dd, HH:mm")
+
+        @RequiresApi(Build.VERSION_CODES.O)
         fun onBind(order: Order): Unit = with(binding) {
             when(order.status){
                 OrderStatus.CANCELLED.name.lowercase() -> {
@@ -44,7 +57,9 @@ class OrderAdapter(private val context: Context) : ListAdapter<Order, OrderAdapt
             tvBeverageName.text = order.beverageName
             tvEstablishmentName.text = order.establishmentName
             tvStatus.text = order.status
-            tvCreateTime.text = order.orderDate
+
+            val dateTime = LocalDateTime.parse(order.orderDate, formatter)
+            tvCreateTime.text = dateTime.format(displayFormatter)
         }
     }
 
