@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.order
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
@@ -37,11 +38,12 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
     override fun launchObservers() {
         viewModel.orderHistoryState.spectateUiState(
             success = {
-                orderAdapter.submitList(it.toMutableList())
+                orderAdapter.submitList(it)
                 orderAdapter.notifyDataSetChanged()
             },
             error = {
                 showShortToast(it)
+                Log.d("error", "Error = $it")
             }
         )
     }

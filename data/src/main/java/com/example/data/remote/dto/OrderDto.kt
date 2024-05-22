@@ -1,7 +1,7 @@
 package com.example.data.remote.dto
 
 import com.example.data.utils.DataMapper
-import com.example.domain.models.OrderRequest
+import com.example.domain.models.Order
 import com.google.gson.annotations.SerializedName
 
 data class OrderDto(
@@ -14,21 +14,13 @@ data class OrderDto(
     val beverageName: String,
     val client: Int,
     val status: String
-) : DataMapper<com.example.domain.models.Order> {
-    override fun toDomain() = com.example.domain.models.Order(
+) : DataMapper<Order> {
+    override fun toDomain() = Order(
         id = id,
         orderDate = orderDate,
         establishmentName = establishmentName,
         beverageName = beverageName,
         client = client,
         status = status
-    )
-}
-
-data class OrderRequestDto(
-    val beverage: Int
-): DataMapper<OrderRequest>{
-    override fun toDomain() = OrderRequest(
-        beverage = beverage
     )
 }

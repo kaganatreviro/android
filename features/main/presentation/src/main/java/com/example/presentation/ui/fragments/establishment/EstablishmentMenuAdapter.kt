@@ -12,6 +12,7 @@ import com.example.presentation.ui.fragments.qr_scranner.QRScannerFragment
 
 class EstablishmentMenuAdapter(
     private val context: Context,
+    private val enabledAction: Boolean,
     private val onItemClick: (beverageId: Int) -> Unit,
     private val onGetForFreeBtnClick: (beverageId: Int) -> Unit
 ) : ListAdapter<Menu, EstablishmentMenuAdapter.MenuViewHolder>(callback) {
@@ -26,11 +27,11 @@ class EstablishmentMenuAdapter(
 
     inner class MenuViewHolder(private val binding: ItemBeverageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var flag = EstablishmentDetailFragment().paymentAction
+
         fun onBind(menu: Menu): Unit = with(binding) {
             tvName.text = menu.name
             tvPrice.text = menu.price.toString()
-            binding.btnGetBeverage.isEnabled = flag
+            binding.btnGetBeverage.isEnabled = enabledAction
         }
 
         init {

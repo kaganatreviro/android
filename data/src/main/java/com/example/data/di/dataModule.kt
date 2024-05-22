@@ -5,6 +5,7 @@ import com.example.data.local.prefs.TokenPrefs
 import com.example.data.remote.api_services.AuthApiService
 import com.example.data.remote.api_services.BeverageApiService
 import com.example.data.remote.api_services.EstablishmentApiService
+import com.example.data.remote.api_services.OrderApiService
 import com.example.data.remote.api_services.UserApiService
 import com.example.data.remote.interceptors.TokenAuthenticator
 import com.example.data.remote.interceptors.AuthInterceptor
@@ -59,6 +60,7 @@ val dataModule = module {
     singleOf(::provideBeverageApi)
     singleOf(::provideUserApi)
     singleOf(::provideEstablishmentApi)
+    singleOf(::provideOrderApi)
     single<AuthApiService> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -105,6 +107,10 @@ fun provideBeverageApi(retrofit: Retrofit): BeverageApiService {
 
 fun provideUserApi(retrofit: Retrofit): UserApiService {
     return retrofit.create(UserApiService::class.java)
+}
+
+fun provideOrderApi(retrofit: Retrofit): OrderApiService{
+    return retrofit.create(OrderApiService::class.java)
 }
 
 fun provideEstablishmentApi(retrofit: Retrofit): EstablishmentApiService{

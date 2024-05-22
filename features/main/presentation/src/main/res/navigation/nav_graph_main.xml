@@ -75,6 +75,9 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/establishmentDetailFragment" />
+        <argument
+            android:name="enabledButton"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"

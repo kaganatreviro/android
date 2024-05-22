@@ -1,7 +1,6 @@
 package com.example.data.remote.api_services
 
 import com.example.data.remote.dto.EstablishmentDetailsDto
-import com.example.data.remote.dto.GetEstablishmentMenuByIdDto
 import com.example.data.remote.dto.MenuDto
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -55,7 +55,7 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
         paymentAction = true
         findNavController().navigate(
             QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
-                param
+                param, true
             )
         )
     }

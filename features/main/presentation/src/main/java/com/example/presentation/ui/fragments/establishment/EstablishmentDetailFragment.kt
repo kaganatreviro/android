@@ -21,7 +21,7 @@ class EstablishmentDetailFragment :
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val menuAdapter: EstablishmentMenuAdapter by lazy {
-        EstablishmentMenuAdapter(requireContext(), ::onBeverageItemClick, ::onGetForFreeBtnClick)
+        EstablishmentMenuAdapter(requireContext(), args.enabledButton, ::onBeverageItemClick, ::onGetForFreeBtnClick)
     }
 
     @SuppressLint("SetTextI18n")
@@ -79,7 +79,7 @@ class EstablishmentDetailFragment :
 
         viewModel.orderState.spectateUiState(
             success = {
-                showSimpleDialog("", " ")
+                showSimpleDialog("Success", " ")
             },
             error = {
                 showSimpleDialog(it, "")

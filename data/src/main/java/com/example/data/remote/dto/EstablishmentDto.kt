@@ -8,18 +8,6 @@ import com.example.domain.models.Results
 import com.example.domain.models.UserLoginRequest
 import com.google.gson.annotations.SerializedName
 
-data class EstablishmentListDto(
-    val count: String,
-    val next: String,
-    val results: List<EstablishmentDetails>,
-) : DataMapper<EstablishmentList> {
-    override fun toDomain() = EstablishmentList(
-        count = count,
-        next = next,
-        results = results,
-    )
-}
-
 data class EstablishmentDetailsDto(
     val id: Int,
     val name: String,
