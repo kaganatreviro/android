@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_color"
     tools:context=".ui.fragments.search.SearchFragment">
 
     <androidx.appcompat.widget.SearchView
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/color_primary"
         app:tabRippleColor="@null"
+        android:background="@color/background_color"
         app:tabSelectedTextColor="@color/color_primary"
         app:tabTextColor="@color/empty_text" />
 

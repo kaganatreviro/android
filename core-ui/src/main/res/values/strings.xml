@@ -17,7 +17,7 @@
     <string name="done">Confirm</string>
     <string name="Happy_title">Happy Hours</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status">Subscription</string>
+    <string name="subs_status">Subscription is active</string>
     <string name="none_account">
         New Member?
         <font color="#FB7E00">Sign up Here</font></string>
