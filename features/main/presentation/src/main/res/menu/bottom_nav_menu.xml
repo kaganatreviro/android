@@ -17,6 +17,11 @@
         android:title="@string/title_qr_scanner" />
 
     <item
+        android:id="@+id/orderHistoryFragment"
+        android:icon="@drawable/ic_order_history"
+        android:title="@string/orders" />
+
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person"
         android:title="@string/title_profile" />

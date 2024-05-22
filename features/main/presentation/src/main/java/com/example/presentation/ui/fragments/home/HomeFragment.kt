@@ -58,7 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun onItemClick(item: EstablishmentDetails, index: Int) {
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToEstablishmentDetailFragment(
-                item.id, false
+                item.id, true
             )
         )
     }

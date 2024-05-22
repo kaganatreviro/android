@@ -6,6 +6,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_edit_profile">Edit profile</string>
     <string name="logout">Logout</string>
+    <string name="orders">Orders</string>
     <string name="order_history">Order history</string>
     <string name="notification">Notification</string>
     <string name="edit">Edit</string>

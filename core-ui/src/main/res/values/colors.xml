@@ -10,6 +10,7 @@
     <color name="enable_false_button">#E9EAEB</color>
     <color name="enable_true_button">#FB7E00</color>
     <color name="color_primary">#FB7E00</color>
+    <color name="green">#1BA228</color>
 
     <color name="enable_button">#FB7E00</color>
     <color name="disable_button">#E9EAEB</color>

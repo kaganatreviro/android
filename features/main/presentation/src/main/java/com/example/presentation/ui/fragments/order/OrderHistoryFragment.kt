@@ -13,12 +13,10 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
     override fun getViewBinding() = FragmentOrderHistoryBinding.inflate(layoutInflater)
     override val viewModel by viewModel<OrderHistoryViewModel>()
     private val orderAdapter: OrderAdapter by lazy {
-        OrderAdapter()
+        OrderAdapter(requireContext())
     }
 
     override fun setupListeners() {
-        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-
         getOrderHistory()
     }
 
