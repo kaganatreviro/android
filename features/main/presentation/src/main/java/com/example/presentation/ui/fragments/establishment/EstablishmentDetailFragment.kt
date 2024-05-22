@@ -79,7 +79,7 @@ class EstablishmentDetailFragment :
 
         viewModel.orderState.spectateUiState(
             success = {
-                showSimpleDialog("Success", " ")
+                showSimpleDialog("Success", "")
             },
             error = {
                 showSimpleDialog(it, "")
