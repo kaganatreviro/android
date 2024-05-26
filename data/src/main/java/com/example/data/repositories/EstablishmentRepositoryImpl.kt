@@ -2,7 +2,6 @@ package com.example.data.repositories
 
 import com.example.core.either.Either
 import com.example.data.remote.api_services.EstablishmentApiService
-import com.example.data.remote.dto.GetEstablishmentMenuByIdDto
 import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.Menu
 import com.example.domain.repositories.EstablishmentRepository
