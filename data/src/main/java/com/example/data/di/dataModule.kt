@@ -19,6 +19,7 @@ import com.example.domain.repositories.EstablishmentRepository
 import com.example.data.repositories.EstablishmentRepositoryImpl
 import com.example.domain.repositories.OrderRepository
 import com.example.domain.repositories.UserRepository
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.bind
@@ -26,6 +27,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 val dataModule = module {
@@ -82,6 +84,8 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory.invoke())
         .client(okHttpClient)
         .build()
 }
