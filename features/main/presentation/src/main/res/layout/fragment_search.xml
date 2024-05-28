@@ -4,16 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_color"
+    android:orientation="vertical"
     tools:context=".ui.fragments.search.SearchFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:text="@string/main_title"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_availability_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/sf_pro_display_medium"
+            android:paddingHorizontal="8dp"
+            android:text="@string/status_all"
+            android:textColor="@color/color_primary"
+            android:textSize="16sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/screen_margin"
-        android:layout_marginTop="@dimen/screen_margin"
         android:background="@drawable/bg_search_view"
         android:elevation="2dp"
         app:iconifiedByDefault="false"
@@ -25,9 +52,9 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_color"
         app:tabIndicatorColor="@color/color_primary"
         app:tabRippleColor="@null"
-        android:background="@color/background_color"
         app:tabSelectedTextColor="@color/color_primary"
         app:tabTextColor="@color/empty_text" />
 
