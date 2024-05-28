@@ -2,7 +2,6 @@ package com.example.domain.repositories
 
 import com.example.core.either.Either
 import com.example.domain.models.EstablishmentDetails
-import com.example.domain.models.EstablishmentList
 import com.example.domain.models.Menu
 import kotlinx.coroutines.flow.Flow
 

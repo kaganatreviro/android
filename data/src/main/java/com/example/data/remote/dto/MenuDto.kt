@@ -1,9 +1,6 @@
 package com.example.data.remote.dto
 
 import com.example.data.utils.DataMapper
-import com.example.domain.models.Menu
-import com.example.domain.models.UserLoginRequest
-import com.example.domain.use_cases.GetEstablishmentMenuByIdUseCase
 import com.google.gson.annotations.SerializedName
 
 data class MenuDto(

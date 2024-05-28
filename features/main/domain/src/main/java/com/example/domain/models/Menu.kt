@@ -10,7 +10,8 @@ data class Menu(
     val availabilityStatus: Boolean,
     val category: String,
     val establishment: String
-): Serializable
+) : Serializable
+
 
 data class MenuRequest(
     val id: Int
