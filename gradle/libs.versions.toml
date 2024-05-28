@@ -19,6 +19,7 @@ logging-interceptor = "4.11.0"
 pin-view = "v1.5"
 qr-scanner = "1.8.4"
 glide = "4.16.0"
+paging = "3.3.0"
 splashscreen = "1.0.0"
 
 [libraries]
@@ -61,6 +62,10 @@ okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-
 
 #Glide
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+
+#Paging3
+paging_runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+paging_common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 
 #Test
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
