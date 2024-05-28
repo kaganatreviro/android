@@ -20,6 +20,7 @@ pin-view = "v1.5"
 qr-scanner = "1.8.4"
 glide = "4.16.0"
 paging = "3.3.0"
+splashscreen = "1.0.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -31,6 +32,7 @@ ui-material = { group = "com.google.android.material", name = "material", versio
 ui-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 ui-viewBindingDelegate = { group = "com.github.kirich1409", name = "viewbindingpropertydelegate-noreflection", version.ref = "viewBindingDelegate" }
 ui-pinview = {  group = "com.github.GoodieBag", name = "Pinview", version.ref = "pin-view"  }
+ui-splashscreen = {  group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen"  }
 
 #Navigation
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "jetpack-navigation" }

@@ -43,6 +43,7 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
+    implementation(libs.ui.splashscreen)
 
     //Navigation
     implementation(libs.navigation.fragment)
