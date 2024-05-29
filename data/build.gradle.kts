@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.coroutines.android)
     implementation(libs.bundles.retrofit)
+    implementation(libs.paging.runtime)
 
     //Test
     testImplementation(libs.test.junit)

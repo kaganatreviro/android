@@ -40,12 +40,13 @@ dependencies {
 
     implementation(project(":core-ui"))
     implementation(project(":features:main:domain"))
+    implementation(project(":features:auth:domain"))
 
     implementation(libs.qr.scanner)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.koin.android)
-    implementation(project(":features:auth:domain"))
+    implementation(libs.paging.runtime)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)

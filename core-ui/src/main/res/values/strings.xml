@@ -15,7 +15,6 @@
     <string name="sign_in_title">Sign in to continue</string>
     <string name="send">Send</string>
     <string name="done">Confirm</string>
-    <string name="Happy_title">Happy Hours</string>
     <string name="main_title">Happy Hours</string>
     <string name="subs_status">Subscription is active</string>
     <string name="none_account">
@@ -46,6 +45,14 @@
     <string name="data_has_not_been_changed">Data has not been changed</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="status_available">available</string>
-    <string name="status_unavailable">unavailable</string>
+    <string name="status_available">Available</string>
+    <string name="status_unavailable">Unavailable</string>
+    <string name="status_all">All</string>
+
+    <!-- Arrays -->
+    <string-array name="spinner_items">
+        <item>all</item>
+        <item>available</item>
+        <item>unavailable</item>
+    </string-array>
 </resources>
