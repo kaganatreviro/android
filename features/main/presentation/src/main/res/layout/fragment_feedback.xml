@@ -16,18 +16,10 @@
         style="@style/enable_button"
         android:layout_marginTop="20dp"/>
 
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/swipe_ref"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:background="@color/background_color">-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         tools:listitem="@layout/item_feedback" />
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 </LinearLayout>

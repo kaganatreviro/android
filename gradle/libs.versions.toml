@@ -81,6 +81,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 navigation-safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "jetpack-navigation" }
 
 [bundles]
-ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide", "ui-swipe-ref"]
+ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide", "ui-swipe-ref", "ui-splashscreen"]
 lifecycle = ["lifecycle-livedata", "lifecycle-viewmodel", "lifecycle-runtime"]
 retrofit = ["retrofit2-retrofit", "retrofit2-converter-gson", "retrofit2-converter-scalars", "retrofit2-coroutines-adapter", "okhttp3-logging-interceptor"]

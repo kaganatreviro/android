@@ -37,8 +37,6 @@ class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
         btnShowEditor.setOnClickListener {
             showBottomSheet()
         }
-
-//        binding.swipeRef.setOnRefreshListener { getFeedbackList() }
     }
 
     private fun setupAddCommentBottomSheet() {
@@ -71,23 +69,20 @@ class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
     override fun launchObservers() = with(binding) {
         viewModel.establishmentFeedbackListState.spectateUiState(
             success = {
-//                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-//                binding.swipeRef.isRefreshing = false
                 showShortToast(it)
             }
         )
 
         viewModel.postFeedbackState.spectateUiState(
             success = {
-                Log.d("log", "success $it")
                 showShortToast("Success")
+                getFeedbackList()
             },
             error = {
-                Log.d("log", "error $it")
                 showShortToast(it)
             }
         )
