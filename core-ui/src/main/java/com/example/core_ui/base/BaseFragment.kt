@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.example.core_ui.extensions.setupUIToHideKeyboardOnTouch
 import com.example.core_ui.ui.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -39,6 +40,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupUIToHideKeyboardOnTouch(view)
         initialize()
         setupListeners()
         launchObservers()

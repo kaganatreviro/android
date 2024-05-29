@@ -12,3 +12,11 @@ data class Order(
     val client: Int,
     val status: String
 )
+
+data class OrderResponse(
+    val id: Int,
+    val client: Int,
+    val beverage: Int,
+    val establishment: Int,
+    val orderDate: String
+)

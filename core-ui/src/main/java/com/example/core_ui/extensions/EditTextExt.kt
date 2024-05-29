@@ -1,8 +1,15 @@
 package com.example.core_ui.extensions
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import java.util.Calendar
 
 fun EditText.setupDateTextWatcher() {

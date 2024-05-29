@@ -70,6 +70,14 @@
         <argument
             android:name="enabledButton"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_establishmentDetailFragment_to_feedbackDetailsFragment"
+            app:destination="@id/feedbackDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/establishmentDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -90,4 +98,13 @@
         android:name="com.example.presentation.ui.fragments.order.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/feedbackDetailsFragment"
+        android:name="com.example.presentation.ui.fragments.establishment.feedback.FeedbackDetailsFragment"
+        android:label="fragment_feedback_details"
+        tools:layout="@layout/fragment_feedback_details" >
+        <argument
+            android:name="feedbackId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

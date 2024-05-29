@@ -11,6 +11,9 @@ import com.example.domain.use_cases.UpdateUserDataUseCase
 import com.example.domain.use_cases.GetOrderHistoryUseCase
 import com.example.domain.use_cases.MakeOrderUseCase
 import com.example.domain.use_cases.GetBeverageByIdUseCase
+import com.example.domain.use_cases.GetEstablishmentFeedbackListUseCase
+import com.example.domain.use_cases.PostFeedbackUseCase
+import com.example.domain.use_cases.GetFeedbackAnswersUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -24,4 +27,7 @@ val domainModule = module {
     factoryOf(::GetBeverageByIdUseCase)
     factoryOf(::GetOrderHistoryUseCase)
     factoryOf(::MakeOrderUseCase)
+    factoryOf(::GetEstablishmentFeedbackListUseCase)
+    factoryOf(::PostFeedbackUseCase)
+    factoryOf(::GetFeedbackAnswersUseCase)
 }
