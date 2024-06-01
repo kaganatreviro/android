@@ -19,7 +19,7 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
     var items: MutableList<Feedback> = mutableListOf()
 
     interface ItemClickListener {
-        fun onItemClick(feedbackId: Int, answers: Boolean)
+        fun onItemClick(feedback: Feedback, answers: Boolean)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -77,7 +77,7 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
                 val dateTime = LocalDateTime.parse(item.createdAt, formatter)
                 binding.tvPostTime.text = dateTime.format(displayFormatter)
                 binding.tvFeedback.text = item.text
-                binding.tvReplay.isVisible = item.answers
+                binding.tvReplied.isVisible = item.answers
             }
         }
 
@@ -87,7 +87,7 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 return Holder(binding).apply {
                     itemView.setOnClickListener {
-                        clickListener.onItemClick(item.id, item.answers)
+                        clickListener.onItemClick(item, item.answers)
                     }
                 }
             }

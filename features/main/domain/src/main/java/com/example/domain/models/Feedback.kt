@@ -1,5 +1,7 @@
 package com.example.domain.models
 
+import java.io.Serializable
+
 data class Feedback(
     val id: Int,
     val user: String,
@@ -8,7 +10,7 @@ data class Feedback(
     val text: String,
     val answers: Boolean,
     val userRole: String
-)
+): Serializable
 
 data class PostFeedback(
     val establishment: Int,

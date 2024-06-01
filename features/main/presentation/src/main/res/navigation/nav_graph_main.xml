@@ -104,7 +104,7 @@
         android:label="fragment_feedback_details"
         tools:layout="@layout/fragment_feedback_details" >
         <argument
-            android:name="feedbackId"
-            app:argType="integer" />
+            android:name="feedback"
+            app:argType="com.example.domain.models.Feedback" />
     </fragment>
 </navigation>

@@ -48,7 +48,7 @@ class EstablishmentDetailFragment :
                 tvLocation.text = it.location.type
                 tvPhoneNumber.text = it.phoneNumber
                 tvTitleHappyHoursTime.text =
-                    getString(com.example.core_ui.R.string.happy_time) + " " + it.happyHoursStart + " from " + it.happyHoursEnd
+                    getString(com.example.core_ui.R.string.happy_time) + " " + it.happyHoursStart + " to " + it.happyHoursEnd
                 setupTabBar(it.feedbackCount)
             },
             error = {
