@@ -35,6 +35,7 @@ ui-constraintlayout = { group = "androidx.constraintlayout", name = "constraintl
 ui-viewBindingDelegate = { group = "com.github.kirich1409", name = "viewbindingpropertydelegate-noreflection", version.ref = "viewBindingDelegate" }
 ui-pinview = {  group = "com.github.GoodieBag", name = "Pinview", version.ref = "pin-view"  }
 ui-splashscreen = {  group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen"  }
+ui-swipe-ref = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version = "1.1.0"}
 
 #Navigation
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "jetpack-navigation" }
@@ -86,6 +87,6 @@ navigation-safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref 
 secretsGradle = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets-gradle" }
 
 [bundles]
-ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide"]
+ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide", "ui-swipe-ref", "ui-splashscreen"]
 lifecycle = ["lifecycle-livedata", "lifecycle-viewmodel", "lifecycle-runtime"]
 retrofit = ["retrofit2-retrofit", "retrofit2-converter-gson", "retrofit2-converter-scalars", "retrofit2-coroutines-adapter", "okhttp3-logging-interceptor"]

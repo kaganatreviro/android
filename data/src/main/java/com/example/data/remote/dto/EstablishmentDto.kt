@@ -21,7 +21,8 @@ data class EstablishmentDetailsDto(
     val happyHoursStart: String,
     @SerializedName("happyhours_end")
     val happyHoursEnd: String,
-    val owner: Int
+    @SerializedName("feedback_count")
+    val feedbackCount: String
 ) : DataMapper<EstablishmentDetails> {
     override fun toDomain() = EstablishmentDetails(
         id = id,
@@ -33,5 +34,6 @@ data class EstablishmentDetailsDto(
         address = address,
         happyHoursStart = happyHoursStart,
         happyHoursEnd = happyHoursEnd,
+        feedbackCount = feedbackCount
     )
 }

@@ -1,6 +1,8 @@
 package com.example.data.remote.api_services
 
 import com.example.data.remote.dto.OrderDto
+import com.example.data.remote.dto.OrderRequestDto
+import com.example.data.remote.dto.OrderResponseDto
 import com.example.domain.models.OrderRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,7 +15,7 @@ interface OrderApiService {
 
     @Headers("Content-Type: application/json")
     @POST(MAKE_ORDER)
-    suspend fun makeOrder(@Body beverage: OrderRequest): String
+    suspend fun makeOrder(@Body beverage: OrderRequestDto): OrderResponseDto
 
     companion object {
         const val GET_ORDER_HISTORY = "api/v1/order/client-order-history/"

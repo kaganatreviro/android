@@ -33,7 +33,7 @@ interface AuthApiService {
     suspend fun userChangePassword(@Body userData: UserChangePasswordRequestDto): String
 
     companion object {
-        const val CLIENT_LOGIN_ENDPOINT = "api/v1/user/auth/token/"
+        const val CLIENT_LOGIN_ENDPOINT = "/api/v1/user/client/auth/token/"
         const val CLIENT_REGISTER_ENDPOINT = "api/v1/user/client/register/"
         const val CLIENT_TOKEN_REFRESH = "api/v1/user/auth/token/refresh/"
         const val CLIENT_FORGOT_PASSWORD_ENDPOINT = "api/v1/user/client/password/forgot/"

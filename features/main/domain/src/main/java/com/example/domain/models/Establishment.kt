@@ -11,7 +11,8 @@ data class EstablishmentDetails(
     val logo: String,
     val address: String?,
     val happyHoursStart: String,
-    val happyHoursEnd: String
+    val happyHoursEnd: String,
+    val feedbackCount: String
 ):Serializable
 
 
