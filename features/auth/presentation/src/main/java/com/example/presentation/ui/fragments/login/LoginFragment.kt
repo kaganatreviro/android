@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.login
 
+import android.util.Patterns
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
@@ -7,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,10 +19,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override fun setupListeners() {
         binding.btnLogin.setOnClickListener {
-            viewModel.userLogin(
-                binding.etUserEmail.text.toString(),
-                binding.etUserPassword.text.toString()
-            )
+            makeLogin()
         }
         binding.tvNoneAccount.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
@@ -39,6 +38,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 showShortToast(it)
             }
         )
+    }
+
+    private fun isValidEmail(email: String?): Boolean {
+        return !email.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun makeLogin() {
+        if (isValidEmail(binding.etUserEmail.text.toString())) {
+            viewModel.userLogin(
+                binding.etUserEmail.text.toString().lowercase(),
+                binding.etUserPassword.text.toString()
+            )
+        } else showSimpleDialog("Error", "Incorrect email")
     }
 
     private fun navigateToMain() {

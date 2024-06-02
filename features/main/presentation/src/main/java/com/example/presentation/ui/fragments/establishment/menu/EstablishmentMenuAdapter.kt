@@ -1,4 +1,4 @@
-package com.example.presentation.ui.fragments.establishment
+package com.example.presentation.ui.fragments.establishment.menu
 
 import android.view.LayoutInflater
 import android.view.View

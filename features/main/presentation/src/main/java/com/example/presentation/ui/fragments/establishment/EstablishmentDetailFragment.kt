@@ -1,52 +1,38 @@
 package com.example.presentation.ui.fragments.establishment
 
 import android.annotation.SuppressLint
-import android.util.Log
+import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core_ui.R
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
-import com.example.core_ui.extensions.showSimpleDialog
-import com.example.domain.models.Menu
-import com.example.domain.models.OrderRequest
 import com.example.presentation.databinding.FragmentEstablishmentDetailBinding
-import kotlinx.coroutines.async
-import kotlinx.coroutines.joinAll
-import kotlinx.coroutines.runBlocking
+import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EstablishmentDetailFragment :
-    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(), EstablishmentMenuAdapter.ItemClickListener {
+    BaseFragment<FragmentEstablishmentDetailBinding, EstablishmentDetailViewModel>(){
     override fun getViewBinding() = FragmentEstablishmentDetailBinding.inflate(layoutInflater)
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
-    private lateinit var categories: List<Menu>
-    private lateinit var groupedEvents: Map<String, List<Menu>>
-    private lateinit var menuAdapter: EstablishmentMenuAdapter
-
+    private val pagerAdapter: EstbDetPagerAdapter by lazy {
+        EstbDetPagerAdapter(args, this)
+    }
 
     @SuppressLint("SetTextI18n")
     override fun initialize(): Unit = with(binding) {
-        rvBeveragesMenu.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        getEstablishmentDetailsById()
 
-        runBlocking {
-            joinAll(
-                async { getEstablishmentDetailsById() })
-        }
+        binding.viewPager.adapter = pagerAdapter
     }
 
     override fun setupListeners(): Unit = with(binding) {
         btnBack.setOnClickListener { findNavController().popBackStack() }
-        scrollView.post {
-            val scrollDistance = tvMenu.top - scrollView.scrollY
-            scrollView.smoothScrollBy(0, scrollDistance)
-        }
     }
 
-    private suspend fun getEstablishmentDetailsById() {
+    private fun getEstablishmentDetailsById() {
         val param = args.establishmentId
         viewModel.getEstablishmentDetailsById(param)
     }
@@ -62,50 +48,25 @@ class EstablishmentDetailFragment :
                 tvLocation.text = it.location.type
                 tvPhoneNumber.text = it.phoneNumber
                 tvTitleHappyHoursTime.text =
-                    getString(com.example.core_ui.R.string.happy_time) + " " + it.happyHoursStart + " from " + it.happyHoursEnd
+                    getString(com.example.core_ui.R.string.happy_time) + " " + it.happyHoursStart + " to " + it.happyHoursEnd
+                setupTabBar(it.feedbackCount)
             },
             error = {
                 showShortToast(it)
             }
         )
+    }
 
-        viewModel.establishmentMenuState.spectateUiState(
-            success = { menuList ->
-                categories = menuList
-                groupedEvents = categories.groupBy { it.category }
-                menuAdapter = EstablishmentMenuAdapter(args.enabledButton, this@EstablishmentDetailFragment, groupedEvents)
-                rvBeveragesMenu.adapter = menuAdapter
-            },
-            error = {
-                showShortToast(it)
+    private fun setupTabBar(feedbackCount: String){
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = getString(R.string.menu_tab_title)
+                1 -> tab.text = getString(R.string.feedback_tab_title) + " " + feedbackCount
             }
-        )
-
-        viewModel.orderState.spectateUiState(
-            success = {
-                showSimpleDialog("Success", "")
-            },
-            error = {
-                Log.d("error", "error - $it")
-                showSimpleDialog(it, "")
-            }
-        )
+        }.attach()
     }
 
     override fun onBackPressed() {
         findNavController().popBackStack()
-    }
-
-    override fun onItemClick(beverageId: Int) {
-        findNavController().navigate(
-            EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToBeverageDetailsFragment(
-                beverageId
-            )
-        )
-    }
-
-    override fun onBuyBtnClick(beverageId: Int) {
-        val param = OrderRequest(beverageId)
-        viewModel.makeOrder(param)
     }
 }

@@ -34,8 +34,9 @@
             android:id="@+id/iv_user_avatar"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@color/material_dynamic_primary95"
+            android:background="@color/white"
             android:src="@drawable/ic_person"
+            class = "com.fragment.NavigationDrawerFragment"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <LinearLayout

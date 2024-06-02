@@ -24,6 +24,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         getEstablishmentList()
     }
 
+    override fun initialize() {
+        binding.swipeRef.setOnRefreshListener {
+            getEstablishmentList()
+        }
+    }
+
     private fun getEstablishmentList() {
         viewModel.getEstablishmentList()
     }
@@ -32,10 +38,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateUiState(
             success = {
+                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
+                binding.swipeRef.isRefreshing = false
                 showShortToast(it)
             }
         )

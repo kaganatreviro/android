@@ -16,15 +16,17 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
         OrderAdapter(requireContext())
     }
 
-    override fun setupListeners() {
-        getOrderHistory()
-    }
-
     override fun initialize() = with(binding) {
         rvOrder.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvOrder.adapter = orderAdapter
+        getOrderHistory()
+    }
 
+    override fun setupListeners() {
+        binding.swipeRef.setOnRefreshListener {
+            getOrderHistory()
+        }
     }
 
     override fun onBackPressed() {
@@ -36,10 +38,12 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
     override fun launchObservers() {
         viewModel.orderHistoryState.spectateUiState(
             success = {
+                binding.swipeRef.isRefreshing = false
                 orderAdapter.submitList(it)
                 orderAdapter.notifyDataSetChanged()
             },
             error = {
+                binding.swipeRef.isRefreshing = false
                 showShortToast(it)
                 Log.d("error", "Error = $it")
             }

@@ -9,6 +9,8 @@ import com.example.presentation.ui.fragments.MainViewModel
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailViewModel
 import com.example.presentation.ui.fragments.beveage.BeverageDetailsViewModel
 import com.example.presentation.ui.fragments.order.OrderHistoryViewModel
+import com.example.presentation.ui.fragments.establishment.feedback.FeedbackViewModel
+import com.example.presentation.ui.fragments.establishment.menu.MenuViewModel
 import org.koin.dsl.module
 
 val mainModule = module {
@@ -20,4 +22,6 @@ val mainModule = module {
     viewModelOf(::EstablishmentDetailViewModel)
     viewModelOf(::BeverageDetailsViewModel)
     viewModelOf(::OrderHistoryViewModel)
+    viewModelOf(::FeedbackViewModel)
+    viewModelOf(::MenuViewModel)
 }
