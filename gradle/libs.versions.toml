@@ -2,6 +2,7 @@
 agp = "8.2.1"
 kotlin-android = "1.9.22"
 kotlin-jvm = "1.9.22"
+secrets-gradle = "2.0.1"
 core-ktx = "1.12.0"
 appcompat = "1.6.1"
 material = "1.11.0"
@@ -21,6 +22,7 @@ qr-scanner = "1.8.4"
 glide = "4.16.0"
 paging = "3.3.0"
 splashscreen = "1.0.0"
+googleMap = "5.0.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -67,6 +69,9 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 paging_runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 paging_common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 
+#Google
+google-map = { group = "com.google.maps.android", name = "maps-ktx", version.ref = "googleMap" }
+
 #Test
 test-junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-junit-ext = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ext" }
@@ -78,6 +83,7 @@ agp-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-android" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 navigation-safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "jetpack-navigation" }
+secretsGradle = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets-gradle" }
 
 [bundles]
 ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide"]

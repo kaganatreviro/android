@@ -19,7 +19,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
     }
 
     override fun initialize() {
-        binding.viewPager.adapter = pagerAdapter
+        binding.viewPager.apply {
+            adapter = pagerAdapter
+            isUserInputEnabled = false
+        }
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.tab_title_1)

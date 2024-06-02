@@ -48,6 +48,9 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.paging.runtime)
 
+    implementation(libs.google.map)
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.test.junit.ext)
     androidTestImplementation(libs.test.espresso)
