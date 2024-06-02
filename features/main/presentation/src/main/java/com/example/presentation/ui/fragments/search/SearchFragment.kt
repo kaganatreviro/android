@@ -45,7 +45,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.beverageSearch(newText)
+                viewModel.searchBy(newText)
                 return true
             }
         })
