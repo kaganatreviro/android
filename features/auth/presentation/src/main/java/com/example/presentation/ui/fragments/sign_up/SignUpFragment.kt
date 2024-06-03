@@ -45,9 +45,15 @@ class SignUpFragment :
         }
     }
 
+    private fun containsDigits(text: String): Boolean {
+        return text.any { it.isDigit() }
+    }
+
     private fun checkInputData(): Unit = with(binding) {
         if (etEnterName.text.toString().isEmpty()) {
             showShortToast("Enter your name")
+        }else if (containsDigits(etEnterName.text.toString())){
+            showShortToast("Name should not be empty and contains digits")
         } else if (etEnterBirth.text.toString().length < 10) {
             showShortToast("Enter your birthday")
         } else if (etEnterEmail.text.toString().isEmpty()) {

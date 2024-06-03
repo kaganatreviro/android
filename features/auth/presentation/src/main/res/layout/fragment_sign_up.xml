@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_for_edit_text"
                     android:hint="Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:paddingVertical="20dp"
                     android:paddingStart="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
