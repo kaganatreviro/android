@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface EstablishmentRepository {
 
-      fun getEstablishmentList(): Flow<Either<String, List<EstablishmentDetails>>>
+      fun getEstablishmentList(search: String?): Flow<Either<String, List<EstablishmentDetails>>>
       fun getEstablishmentMenuById(id: Int): Flow<Either<String, List<Menu>>>
       fun getEstablishmentDetailsById(id: Int): Flow<Either<String, EstablishmentDetails>>
       fun getEstablishmentFeedbackList(id: Int): Flow<Either<String, List<Feedback>>>

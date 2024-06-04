@@ -13,7 +13,6 @@ class HomeViewModel(
     val establishmentListState = _establishmentListState.asStateFlow()
 
      fun getEstablishmentList() {
-        getEstablishmentUseCase().gatherRequest(_establishmentListState)
+        getEstablishmentUseCase(null).gatherRequest(_establishmentListState)
     }
-
 }

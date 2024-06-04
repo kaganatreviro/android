@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.application)
     alias(libs.plugins.kotlin.android)
+    id(libs.plugins.secretsGradle.get().pluginId)
 }
 
 android {
