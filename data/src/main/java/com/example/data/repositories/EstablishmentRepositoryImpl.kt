@@ -8,6 +8,7 @@ import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.Feedback
 import com.example.domain.models.Menu
 import com.example.domain.models.PostFeedback
+import com.example.domain.models.PostFeedbackInAnswers
 import com.example.domain.repositories.EstablishmentRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -32,6 +33,10 @@ class EstablishmentRepositoryImpl(
 
     override fun postFeedback(param: PostFeedback): Flow<Either<String, Feedback>> = makeNetworkRequest{
         apiService.postFeedback(param.toDto()).toDomain()
+    }
+
+    override fun postFeedbackInAnswers(param: PostFeedbackInAnswers): Flow<Either<String, Feedback>> = makeNetworkRequest{
+        apiService.postFeedbackInAnswers(param.toDto()).toDomain()
     }
 
     override fun getFeedbackAnswers(feedbackId: Int): Flow<Either<String, List<Feedback>>> = makeNetworkRequest {

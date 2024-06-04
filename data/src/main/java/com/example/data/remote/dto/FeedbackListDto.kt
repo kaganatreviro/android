@@ -12,7 +12,7 @@ data class FeedbackListDto(
     @SerializedName("created_at")
     val createdAt: String,
     val text: String,
-    val answers: Boolean,
+    val answers: Int,
     @SerializedName("user_role")
     val userRole: String
 ) : DataMapper<Feedback> {
