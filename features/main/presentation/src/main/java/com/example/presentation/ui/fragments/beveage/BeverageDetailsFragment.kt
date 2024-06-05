@@ -40,7 +40,7 @@ class BeverageDetailsFragment : BaseFragment<FragmentBeverageDetailsBinding, Bev
     @SuppressLint("SetTextI18n")
     private fun setBeverageData(beverage: Beverage): Unit = with(binding) {
         tvTitle.text = beverage.name
-        tvPrice.text = "${beverage.price}KGS"
+        tvPrice.text = "${beverage.price} KGS"
         tvDescription.text = beverage.description
         tvCategory.text = beverage.category
         val status = if (beverage.availabilityStatus) {

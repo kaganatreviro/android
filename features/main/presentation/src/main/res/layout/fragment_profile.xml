@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/sf_pro_display_medium"
-            android:text="@string/title_profile"
+            android:text="@string/main_title"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
