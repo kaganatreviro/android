@@ -25,12 +25,25 @@ class ProfileFragment :
         binding.btnEditProfile.setOnClickListener {
             navigateToEditProfile()
         }
+        binding.btnLogout.setOnClickListener {
+            viewModel.logout()
+        }
     }
 
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
             success = { user ->
                 setUserData(user)
+            },
+            error = {
+                showShortToast(it)
+            }
+        )
+
+        viewModel.userLogoutState.spectateUiState(
+            success = {
+                logout()
+                viewModel.resetUserLogoutState()
             },
             error = {
                 showShortToast(it)

@@ -27,4 +27,7 @@ abstract class BaseViewModel : ViewModel() {
             }
         }
     }
+    protected fun <T> MutableStateFlow<UIState<T>>.reset() {
+        value = UIState.Idle()
+    }
 }
