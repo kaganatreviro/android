@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/sf_pro_display_medium"
-            android:text="@string/title_profile"
+            android:text="@string/main_title"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -66,16 +66,6 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/btn_edit_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="4dp"
-            android:text="@string/edit"
-            android:textSize="14sp"
-            app:drawableStartCompat="@drawable/ic_edit" />
-
     </LinearLayout>
 
     <View

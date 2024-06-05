@@ -33,6 +33,11 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_loginFragment_to_main_graph"
+            app:destination="@+id/nav_graph_bottom_nav"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"

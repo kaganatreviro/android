@@ -11,6 +11,7 @@ import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.User
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ProfileFragment :
@@ -22,13 +23,27 @@ class ProfileFragment :
         binding.containerProfile.setOnClickListener {
             navigateToEditProfile()
         }
-        binding.btnEditProfile.setOnClickListener {
-            navigateToEditProfile()
-        }
+
         binding.btnLogout.setOnClickListener {
-            viewModel.logout()
+            showLogoutDialog()
         }
     }
+
+    private fun showLogoutDialog(){
+        MaterialAlertDialogBuilder(requireContext(),
+            androidx.appcompat.R.style.AlertDialog_AppCompat)
+            .setMessage("Do you really want to leave?")
+            .setTitle("Exit")
+            .setPositiveButton("Yes") { dialog, which ->
+                dialog.dismiss()
+                viewModel.logout()
+            }
+            .setNegativeButton("Cancel"){ dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
 
     override fun launchObservers() {
         viewModel.userState.spectateUiState(

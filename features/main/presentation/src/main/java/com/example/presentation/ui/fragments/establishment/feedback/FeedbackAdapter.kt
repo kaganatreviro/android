@@ -19,7 +19,7 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
     var items: MutableList<Feedback> = mutableListOf()
 
     interface ItemClickListener {
-        fun onItemClick(feedback: Feedback, answers: Boolean)
+        fun onItemClick(feedback: Feedback, answers: Int)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -71,13 +71,13 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
             val displayFormatter: DateTimeFormatter =
                 DateTimeFormatter.ofPattern("yyyy:MM:dd, HH:mm")
 
-
             item.apply {
                 binding.tvUserName.text = item.displayUser
                 val dateTime = LocalDateTime.parse(item.createdAt, formatter)
                 binding.tvPostTime.text = dateTime.format(displayFormatter)
                 binding.tvFeedback.text = item.text
-                binding.tvReplied.isVisible = item.answers
+                binding.tvReplied.isVisible = item.answers > 0
+                binding.tvReplied.text = "Answers: " + item.answers
             }
         }
 

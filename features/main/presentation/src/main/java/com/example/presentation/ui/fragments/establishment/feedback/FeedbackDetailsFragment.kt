@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.showSimpleDialog
 import com.example.domain.models.Feedback
+import com.example.domain.models.PostFeedback
+import com.example.domain.models.PostFeedbackInAnswers
 import com.example.presentation.databinding.FragmentFeedbackDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
@@ -46,6 +48,9 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
 
     override fun setupListeners() {
        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.btnSend.setOnClickListener {
+            postNewFeedbackInAnswers()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -56,15 +61,30 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
                adapter.notifyDataSetChanged()
            },
            error = {
-               Log.d("error", "error - $it")
                showSimpleDialog(it, "")
            }
        )
+
+        viewModel.postFeedbackInAnswersState.spectateUiState(
+            success = {
+                getFeedbackAnswer()
+                binding.etInputAnswer.text?.clear()
+            },
+            error = {
+                showSimpleDialog(it, "")
+            }
+        )
     }
 
     private fun getFeedbackAnswer(){
         viewModel.getFeedbackAnswers(args.feedback.id)
     }
 
-    override fun onItemClick(feedback: Feedback, answers: Boolean) {}
+    private fun postNewFeedbackInAnswers(){
+        val params =
+            PostFeedbackInAnswers(args.feedback.id, binding.etInputAnswer.text.toString())
+        viewModel.postFeedbackInAnswers(params)
+    }
+
+    override fun onItemClick(feedback: Feedback, answers: Int) {}
 }
