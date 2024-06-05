@@ -5,5 +5,5 @@ import com.example.domain.repositories.EstablishmentRepository
 class GetEstablishmentListUseCase(
     private val repo: EstablishmentRepository
 ) {
-    operator fun invoke() = repo.getEstablishmentList()
+    operator fun invoke(search: String?) = repo.getEstablishmentList(search)
 }

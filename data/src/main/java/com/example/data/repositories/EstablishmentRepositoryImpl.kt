@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.Flow
 class EstablishmentRepositoryImpl(
     private val apiService: EstablishmentApiService
 ): EstablishmentRepository {
-    override  fun getEstablishmentList(): Flow<Either<String, List<EstablishmentDetails>>> = makeNetworkRequest {
-        apiService.getEstablishmentList().map { it.toDomain() }
+    override  fun getEstablishmentList(search: String?): Flow<Either<String, List<EstablishmentDetails>>> = makeNetworkRequest {
+        apiService.getEstablishmentList(search).map { it.toDomain() }
     }
 
     override fun getEstablishmentMenuById(id: Int): Flow<Either<String, List<Menu>>> = makeNetworkRequest {

@@ -9,10 +9,13 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface EstablishmentApiService {
     @GET(GET_ESTABLISHMENTS_LIST)
-    suspend fun getEstablishmentList(): List<EstablishmentDetailsDto>
+    suspend fun getEstablishmentList(
+        @Query("search") search: String?
+    ): List<EstablishmentDetailsDto>
 
     @GET(GET_ESTABLISHMENT_BY_ID)
     suspend fun getEstablishmentDetailsById(@Path("id") id: Int): EstablishmentDetailsDto

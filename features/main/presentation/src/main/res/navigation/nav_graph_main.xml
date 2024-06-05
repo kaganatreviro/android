@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_main.xml"
+    android:id="@+id/nav_graph_main"
     app:startDestination="@id/homeFragment">
 
-    <deepLink app:uri="happyhours://features/authFlowFragment"/>
+    <deepLink app:uri="happyhours://main/mainFlowFragment"/>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -37,7 +37,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/QRScannerFragment" />
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
