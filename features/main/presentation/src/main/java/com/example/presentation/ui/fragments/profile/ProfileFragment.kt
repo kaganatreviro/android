@@ -22,9 +22,6 @@ class ProfileFragment :
         binding.containerProfile.setOnClickListener {
             navigateToEditProfile()
         }
-        binding.btnEditProfile.setOnClickListener {
-            navigateToEditProfile()
-        }
     }
 
     override fun launchObservers() {

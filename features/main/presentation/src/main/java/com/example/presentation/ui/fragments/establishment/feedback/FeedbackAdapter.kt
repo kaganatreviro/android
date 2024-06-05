@@ -71,7 +71,6 @@ class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
             val displayFormatter: DateTimeFormatter =
                 DateTimeFormatter.ofPattern("yyyy:MM:dd, HH:mm")
 
-
             item.apply {
                 binding.tvUserName.text = item.displayUser
                 val dateTime = LocalDateTime.parse(item.createdAt, formatter)
