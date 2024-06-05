@@ -1,29 +1,32 @@
 package com.example.presentation.ui.fragments.profile
 
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.User
+import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
-import com.example.presentation.ui.fragments.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ProfileFragment :
     BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
     override val viewModel by activityViewModel<ProfileViewModel>()
-    private val mainViewModel by activityViewModel<MainViewModel>()
 
     override fun setupListeners() {
-        binding.btnLogout.setOnClickListener {
-            mainViewModel.logout()
-        }
         binding.containerProfile.setOnClickListener {
             navigateToEditProfile()
         }
         binding.btnEditProfile.setOnClickListener {
             navigateToEditProfile()
+        }
+        binding.btnLogout.setOnClickListener {
+            viewModel.logout()
         }
     }
 
@@ -31,6 +34,16 @@ class ProfileFragment :
         viewModel.userState.spectateUiState(
             success = { user ->
                 setUserData(user)
+            },
+            error = {
+                showShortToast(it)
+            }
+        )
+
+        viewModel.userLogoutState.spectateUiState(
+            success = {
+                logout()
+                viewModel.resetUserLogoutState()
             },
             error = {
                 showShortToast(it)
@@ -46,5 +59,15 @@ class ProfileFragment :
 
     private fun navigateToEditProfile() {
         findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
+    }
+
+    private fun logout() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_AUTH_MODULE.toUri())
+            .build()
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.nav_graph_main, false)
+            .build()
+        findNavController().navigate(request, navOptions)
     }
 }
