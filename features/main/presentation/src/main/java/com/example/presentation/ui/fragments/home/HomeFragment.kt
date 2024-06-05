@@ -2,11 +2,16 @@ package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.EstablishmentDetails
+import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
