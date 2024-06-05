@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -51,9 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:maxLines="1"
+            android:text="202020"
             android:textSize="14sp"
             android:fontFamily="@font/sf_pro_display_medium"
             app:layout_constraintStart_toEndOf="@+id/iv_time"
+            app:layout_constraintTop_toTopOf="@id/iv_time"
             app:layout_constraintBottom_toBottomOf="@+id/iv_time"/>
 
         <View
