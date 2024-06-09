@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,8 +60,13 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     override fun launchObservers() {
         viewModel.feedbackAnswersState.spectateUiState(
             success = {
-                adapter.items = it.toMutableList()
-                adapter.notifyDataSetChanged()
+                if (it.isEmpty()) {
+                    binding.tvAnswers.isVisible = false
+                }else {
+                    binding.tvAnswers.isVisible = true
+                    adapter.items = it.toMutableList()
+                    adapter.notifyDataSetChanged()
+                }
             },
             error = {
                 showSimpleDialog(it, "")
