@@ -74,8 +74,8 @@ class EstablishmentsFragment : BaseFragment<FragmentEstablishmentsBinding, Searc
                         title(establishment.name)
                         position(
                             LatLng(
-                                establishment.location.coordinates[0].toDouble(),
-                                establishment.location.coordinates[1].toDouble()
+                                establishment.location.coordinates[1].toDouble(),
+                                establishment.location.coordinates[0].toDouble()
                             )
                         )
                     }
