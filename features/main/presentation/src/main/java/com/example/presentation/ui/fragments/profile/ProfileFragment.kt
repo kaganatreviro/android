@@ -34,7 +34,7 @@ class ProfileFragment :
             androidx.appcompat.R.style.AlertDialog_AppCompat)
             .setMessage("Do you really want to leave?")
             .setTitle("Exit")
-            .setPositiveButton("Yes") { dialog, which ->
+            .setPositiveButton("Logout") { dialog, which ->
                 dialog.dismiss()
                 viewModel.logout()
             }

@@ -112,7 +112,7 @@ class EstablishmentMenuAdapter(
             index = position
 
             item.apply {
-                binding.tvPrice.text = item.price.toString()
+                binding.tvEstablishmentName.text = item.establishment
                 binding.tvName.text = item.name
             }
         }

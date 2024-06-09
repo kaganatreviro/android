@@ -26,7 +26,7 @@ class BeveragePagingAdapter(
         fun onBind(beverage: Beverage) = with(binding) {
             btnGetBeverage.gone()
             tvName.text = beverage.name
-            tvPrice.text = beverage.price
+            tvEstablishmentName.text = beverage.establishment
         }
         init {
             binding.root.setOnClickListener {
