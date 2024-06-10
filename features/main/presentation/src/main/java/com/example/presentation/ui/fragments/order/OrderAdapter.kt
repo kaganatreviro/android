@@ -42,21 +42,24 @@ class OrderAdapter(private val context: Context) : ListAdapter<Order, OrderAdapt
         fun onBind(order: Order): Unit = with(binding) {
             when(order.status){
                 OrderStatus.CANCELLED.name.lowercase() -> {
+                    tvStatus.text = "Cancelled"
                     tvStatus.background = AppCompatResources.getDrawable(context, com.example.core_ui.R.drawable.bg_order_status_cancelled)
                 }
                 OrderStatus.PENDING.name.lowercase() -> {
+                    tvStatus.text = "Pending"
                     tvStatus.background = AppCompatResources.getDrawable(context, com.example.core_ui.R.drawable.bg_order_status_pending)
                 }
                 OrderStatus.IN_PREPARATION.name.lowercase() -> {
+                    tvStatus.text = "In preparation"
                     tvStatus.background = AppCompatResources.getDrawable(context, com.example.core_ui.R.drawable.bg_order_status_in_preparation)
                 }
                 OrderStatus.COMPLETED.name.lowercase() -> {
+                    tvStatus.text = "Completed"
                     tvStatus.background = AppCompatResources.getDrawable(context, com.example.core_ui.R.drawable.bg_order_status_completed)
                 }
             }
             tvBeverageName.text = order.beverageName
             tvEstablishmentName.text = order.establishmentName
-            tvStatus.text = order.status
 
             val dateTime = LocalDateTime.parse(order.orderDate, formatter)
             tvCreateTime.text = dateTime.format(displayFormatter)

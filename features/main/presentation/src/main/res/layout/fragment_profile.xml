@@ -32,8 +32,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_user_avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:background="@color/white"
             android:src="@drawable/ic_person"
             class = "com.fragment.NavigationDrawerFragment"

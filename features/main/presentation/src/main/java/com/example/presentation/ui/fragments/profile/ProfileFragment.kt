@@ -32,7 +32,7 @@ class ProfileFragment :
     private fun showLogoutDialog(){
         MaterialAlertDialogBuilder(requireContext(),
             androidx.appcompat.R.style.AlertDialog_AppCompat)
-            .setMessage("Do you really want to leave?")
+            .setMessage("Are you sure you want to Log Out?")
             .setTitle("Exit")
             .setPositiveButton("Yes") { dialog, which ->
                 dialog.dismiss()

@@ -72,9 +72,9 @@ val dataModule = module {
             .client(
                 OkHttpClient().newBuilder()
                     .addInterceptor(get<HttpLoggingInterceptor>())
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
+                    .connectTimeout(20, TimeUnit.SECONDS)
+                    .readTimeout(20, TimeUnit.SECONDS)
+                    .writeTimeout(20, TimeUnit.SECONDS)
                     .retryOnConnectionFailure(true)
                     .build()
             )
@@ -102,9 +102,9 @@ fun provideOkHttpClientWithAuth(
         .addInterceptor(loggingInterceptor)
         .addNetworkInterceptor(authInterceptor)
         .authenticator(authenticator)
-        .connectTimeout(10, TimeUnit.SECONDS)
-        .readTimeout(10, TimeUnit.SECONDS)
-        .writeTimeout(10, TimeUnit.SECONDS)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
         .build()
 }
 

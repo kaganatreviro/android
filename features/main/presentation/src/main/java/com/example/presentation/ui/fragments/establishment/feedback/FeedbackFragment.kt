@@ -91,12 +91,10 @@ class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
     }
 
     override fun onItemClick(feedback: Feedback, answers: Int) {
-        if (answers > 0) {
-            findNavController().navigate(
-                EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToFeedbackDetailsFragment(
-                    feedback
-                )
+        findNavController().navigate(
+            EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToFeedbackDetailsFragment(
+                feedback
             )
-        }
+        )
     }
 }
