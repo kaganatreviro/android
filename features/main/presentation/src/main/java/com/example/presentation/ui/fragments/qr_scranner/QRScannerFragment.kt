@@ -11,8 +11,11 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
@@ -51,8 +54,17 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun handleResult(result: Result?) {
-        val param = result?.contents!!.toInt()
-        paymentAction = true
+
+        if (result?.contents?.isDigitsOnly() == true){
+            val param = result.contents!!.toInt()
+            navigateToMenu(param)
+        }else{
+            showSimpleDialog("", "QR not recognized!")
+            zbScanner.resumeCameraPreview(this)
+        }
+    }
+
+    private fun navigateToMenu(param: Int){
         findNavController().navigate(
             QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
                 param, true
