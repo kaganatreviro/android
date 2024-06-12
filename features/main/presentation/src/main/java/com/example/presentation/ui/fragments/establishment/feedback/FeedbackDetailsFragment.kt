@@ -4,18 +4,23 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
 import com.example.domain.models.Feedback
+import com.example.domain.models.PostFeedback
+import com.example.domain.models.PostFeedbackInAnswers
 import com.example.presentation.databinding.FragmentFeedbackDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, FeedbackViewModel>(), FeedbackAdapter.ItemClickListener {
+class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, FeedbackViewModel>(),
+    FeedbackAdapter.ItemClickListener {
     override fun getViewBinding() = FragmentFeedbackDetailsBinding.inflate(layoutInflater)
     override val viewModel by viewModel<FeedbackViewModel>()
     private val args: FeedbackDetailsFragmentArgs by navArgs()
@@ -33,7 +38,7 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun setupView(){
+    private fun setupView() {
         val formatter: DateTimeFormatter =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX")
         val displayFormatter: DateTimeFormatter =
@@ -45,26 +50,57 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     }
 
     override fun setupListeners() {
-       binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.btnSend.setOnClickListener {
+            postNewFeedbackInAnswers()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
-       viewModel.feedbackAnswersState.spectateUiState(
-           success = {
-               adapter.items = it.toMutableList()
-               adapter.notifyDataSetChanged()
-           },
-           error = {
-               Log.d("error", "error - $it")
-               showSimpleDialog(it, "")
-           }
-       )
+        viewModel.feedbackAnswersState.spectateUiState(
+            success = {
+                if (it.isEmpty()) {
+                    binding.tvAnswers.isVisible = false
+                }else {
+                    binding.tvAnswers.isVisible = true
+                    adapter.items = it.toMutableList()
+                    adapter.notifyDataSetChanged()
+                }
+            },
+            error = {
+                showSimpleDialog(it, "")
+            }
+        )
+
+        viewModel.postFeedbackInAnswersState.spectateUiState(
+            success = {
+                getFeedbackAnswer()
+                binding.etInputAnswer.text?.clear()
+            },
+            error = {
+                showSimpleDialog(it, "")
+            }
+        )
     }
 
-    private fun getFeedbackAnswer(){
+    private fun getFeedbackAnswer() {
         viewModel.getFeedbackAnswers(args.feedback.id)
     }
 
-    override fun onItemClick(feedback: Feedback, answers: Boolean) {}
+    private fun postNewFeedbackInAnswers() {
+        if (checkEmptyField()) {
+            binding.etInputAnswer.error = "The field must not be empty!"
+        } else {
+            val params =
+                PostFeedbackInAnswers(args.feedback.id, binding.etInputAnswer.text.toString())
+            viewModel.postFeedbackInAnswers(params)
+        }
+    }
+
+    private fun checkEmptyField(): Boolean {
+        return binding.etInputAnswer.text.toString().isEmpty()
+    }
+
+    override fun onItemClick(feedback: Feedback, answers: Int) {}
 }

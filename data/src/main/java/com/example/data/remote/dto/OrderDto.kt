@@ -12,7 +12,7 @@ data class OrderDto(
     val establishmentName: String,
     @SerializedName("beverage_name")
     val beverageName: String,
-    val client: Int,
+    val client: String,
     val status: String
 ) : DataMapper<Order> {
     override fun toDomain() = Order(

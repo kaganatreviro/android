@@ -8,11 +8,16 @@ data class Feedback(
     val displayUser: String,
     val createdAt: String,
     val text: String,
-    val answers: Boolean,
+    val answers: Int,
     val userRole: String
 ): Serializable
 
 data class PostFeedback(
     val establishment: Int,
+    val text: String
+)
+
+data class PostFeedbackInAnswers(
+    val feedback: Int,
     val text: String
 )

@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.extensions.hideKeyboard
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.Feedback
 import com.example.domain.models.PostFeedback
@@ -89,13 +90,11 @@ class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
         )
     }
 
-    override fun onItemClick(feedback: Feedback, answers: Boolean) {
-        if (answers) {
-            findNavController().navigate(
-                EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToFeedbackDetailsFragment(
-                    feedback
-                )
+    override fun onItemClick(feedback: Feedback, answers: Int) {
+        findNavController().navigate(
+            EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToFeedbackDetailsFragment(
+                feedback
             )
-        }
+        )
     }
 }

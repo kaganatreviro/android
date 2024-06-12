@@ -9,7 +9,7 @@ data class Order(
     val orderDate: String,
     val establishmentName: String,
     val beverageName: String,
-    val client: Int,
+    val client: String,
     val status: String
 )
 
