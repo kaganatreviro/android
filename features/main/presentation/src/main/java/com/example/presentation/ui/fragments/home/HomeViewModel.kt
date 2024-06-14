@@ -9,10 +9,10 @@ class HomeViewModel(
     private val getEstablishmentUseCase: GetEstablishmentListUseCase
 ) : BaseViewModel() {
 
-    private val _establishmentListState = mutableUiStateFlow<List<EstablishmentDetails>>()
+    private val _establishmentListState = mutableNewUiStateFlow<List<EstablishmentDetails>>()
     val establishmentListState = _establishmentListState.asStateFlow()
 
      fun getEstablishmentList() {
-        getEstablishmentUseCase(null).gatherRequest(_establishmentListState)
+        getEstablishmentUseCase(null).newGatherRequest(state = _establishmentListState)
     }
 }

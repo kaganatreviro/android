@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
@@ -8,6 +9,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.Constants
+import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.EstablishmentDetails
@@ -41,7 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
 
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
-        viewModel.establishmentListState.spectateUiState(
+        viewModel.establishmentListState.spectateNewUiState(
             success = {
                 binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
@@ -49,7 +51,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
             },
             error = {
                 binding.swipeRef.isRefreshing = false
-                showShortToast(it)
+                when(it) {
+                    is NetworkError.AuthApi -> {
+                        if (it.errorResponse.code == 401) {
+                            navigateToAuth()
+                        }
+                        showShortToast(it.errorResponse.message)
+                    }
+                    is NetworkError.Api -> {
+                        showShortToast(it.error)
+                    }
+                    else -> {}
+                }
             }
         )
     }
@@ -74,5 +87,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 item.id, false
             )
         )
+    }
+
+    private fun navigateToAuth() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_AUTH_MODULE.toUri())
+            .build()
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.nav_graph_main, false)
+            .build()
+        findNavController().navigate(request, navOptions)
     }
 }

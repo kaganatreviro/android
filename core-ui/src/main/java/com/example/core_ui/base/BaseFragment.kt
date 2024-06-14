@@ -10,7 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.example.core.either.NetworkError
 import com.example.core_ui.extensions.setupUIToHideKeyboardOnTouch
+import com.example.core_ui.ui.NewUIState
 import com.example.core_ui.ui.UIState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -85,6 +87,40 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
                     }
 
                     is UIState.Success -> {
+                        if (showLoader)
+                            hideLoading()
+                        success?.invoke(it.data)
+                    }
+                }
+            }
+        }
+    }
+
+    protected fun <T> StateFlow<NewUIState<T>>.spectateNewUiState(
+        showLoader: Boolean = true,
+        lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
+        success: ((data: T) -> Unit)? = null,
+        loading: ((data: NewUIState.Loading<T>) -> Unit)? = null,
+        error: ((error: NetworkError) -> Unit)? = null,
+        idle: ((idle: NewUIState.Idle<T>) -> Unit)? = null,
+    ) {
+        safeFlowGather(lifecycleState) {
+            collect {
+                when (it) {
+                    is NewUIState.Idle -> idle?.invoke(it)
+                    is NewUIState.Loading -> {
+                        if (showLoader)
+                            showLoading()
+                        loading?.invoke(it)
+                    }
+
+                    is NewUIState.Error -> {
+                        if (showLoader)
+                            hideLoading()
+                        error?.invoke(it.error)
+                    }
+
+                    is NewUIState.Success -> {
                         if (showLoader)
                             hideLoading()
                         success?.invoke(it.data)
