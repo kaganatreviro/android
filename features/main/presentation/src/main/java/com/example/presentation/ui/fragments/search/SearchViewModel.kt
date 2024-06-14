@@ -21,7 +21,7 @@ class SearchViewModel(
     private val getEstablishmentListUseCase: GetEstablishmentListUseCase
 ) : BaseViewModel() {
 
-    private val _establishmentsState = mutableUiStateFlow<List<EstablishmentDetails>>()
+    private val _establishmentsState = mutableNewUiStateFlow<List<EstablishmentDetails>>()
     val establishmentsState = _establishmentsState.asStateFlow()
 
     private val searchBy = MutableStateFlow<String?>("")
@@ -33,7 +33,7 @@ class SearchViewModel(
     }
 
     private fun getEstablishments(query: String? = null) {
-        getEstablishmentListUseCase(query).gatherRequest(_establishmentsState)
+        getEstablishmentListUseCase(query).newGatherRequest(_establishmentsState)
     }
 
     fun getBeverages(): Flow<PagingData<Beverage>> {
