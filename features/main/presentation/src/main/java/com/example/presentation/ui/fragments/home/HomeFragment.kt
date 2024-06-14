@@ -21,17 +21,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override val viewModel by viewModel<HomeViewModel>()
     private lateinit var adapter: EstablishmentAdapter
 
-    override fun setupListeners() = with(binding) {
+    override fun initialize() = with(binding) {
         rvRestList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
+        checkSubscriptionStatus()
     }
 
-    override fun initialize() {
+    override fun setupListeners() {
         binding.swipeRef.setOnRefreshListener {
+            binding.swipeRef.isRefreshing = false
             getEstablishmentList()
+            checkSubscriptionStatus()
         }
     }
 
@@ -39,17 +42,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         viewModel.getEstablishmentList()
     }
 
+    private fun checkSubscriptionStatus() {
+        viewModel.checkSubscriptionStatus()
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
         viewModel.establishmentListState.spectateUiState(
             success = {
-                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                binding.swipeRef.isRefreshing = false
                 showShortToast(it)
+            }
+        )
+
+        viewModel.checkSubscriptionStatusState.spectateUiState(
+            success = {
+                binding.tvSubsStatusValue.isEnabled = it.isActive
+                subscriptionStatus = it.isActive
+                if (it.isActive)
+                    binding.tvSubsStatusTitle.text =
+                        resources.getString(com.example.core_ui.R.string.subs_status_active)
+                else binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
+            },
+            error = {
+                binding.tvSubsStatusValue.isEnabled = false
+                subscriptionStatus = false
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
             }
         )
     }

@@ -32,6 +32,14 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_subscriptionsDetailsFragment"
+            app:destination="@id/subscriptionsDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/QRScannerFragment"
@@ -45,7 +53,15 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/homeFragment" />
+            app:popUpTo="@id/QRScannerFragment" />
+        <action
+            android:id="@+id/action_QRScannerFragment_to_subscriptionsDetailsFragment"
+            app:destination="@id/subscriptionsDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/QRScannerFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -116,5 +132,27 @@
         <argument
             android:name="feedback"
             app:argType="com.example.domain.models.Feedback" />
+    </fragment>
+    <fragment
+        android:id="@+id/subscriptionsDetailsFragment"
+        android:name="com.example.presentation.ui.fragments.profile.subscriptions.SubscriptionsDetailsFragment"
+        android:label="fragment_subscriptions_details"
+        tools:layout="@layout/fragment_subscriptions_details" >
+        <action
+            android:id="@+id/action_subscriptionsDetailsFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/subscriptionsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.presentation.ui.fragments.profile.subscriptions.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument
+            android:name="Url"
+            app:argType="string" />
     </fragment>
 </navigation>

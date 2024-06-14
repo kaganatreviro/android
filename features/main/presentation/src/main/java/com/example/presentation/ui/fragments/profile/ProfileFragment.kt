@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.profile
 
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -19,9 +20,28 @@ class ProfileFragment :
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
     override val viewModel by activityViewModel<ProfileViewModel>()
 
+    override fun initialize() {
+        if (subscriptionStatus){
+            binding.containerSubscription.isVisible = true
+            binding.containerSubscriptionEmpty.isVisible = false
+        }else{
+            binding.containerSubscription.isVisible = false
+            binding.containerSubscriptionEmpty.isVisible = true
+        }
+    }
+
+
     override fun setupListeners() {
-        binding.containerProfile.setOnClickListener {
+        binding.btnEditProfile.setOnClickListener {
             navigateToEditProfile()
+        }
+
+        binding.containerSubscription.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSubscriptionsDetailsFragment())
+        }
+
+        binding.containerSubscriptionEmpty.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSubscriptionsDetailsFragment())
         }
 
         binding.btnLogout.setOnClickListener {
@@ -29,21 +49,22 @@ class ProfileFragment :
         }
     }
 
-    private fun showLogoutDialog(){
-        MaterialAlertDialogBuilder(requireContext(),
-            androidx.appcompat.R.style.AlertDialog_AppCompat)
+    private fun showLogoutDialog() {
+        MaterialAlertDialogBuilder(
+            requireContext(),
+            androidx.appcompat.R.style.AlertDialog_AppCompat
+        )
             .setMessage("Are you sure you want to Log Out?")
             .setTitle("Exit")
             .setPositiveButton("Yes") { dialog, which ->
                 dialog.dismiss()
                 viewModel.logout()
             }
-            .setNegativeButton("Cancel"){ dialog, which ->
+            .setNegativeButton("Cancel") { dialog, which ->
                 dialog.dismiss()
             }
             .show()
     }
-
 
     override fun launchObservers() {
         viewModel.userState.spectateUiState(
