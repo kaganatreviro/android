@@ -12,17 +12,17 @@ class HomeViewModel(
     private val checkSubscriptionStatusUserCase: CheckSubscriptionStatusUserCase
 ) : BaseViewModel() {
 
-    private val _establishmentListState = mutableUiStateFlow<List<EstablishmentDetails>>()
+    private val _establishmentListState = mutableNewUiStateFlow<List<EstablishmentDetails>>()
     val establishmentListState = _establishmentListState.asStateFlow()
 
     private val _checkSubscriptionStatusState = mutableUiStateFlow<Subscription>()
     val checkSubscriptionStatusState = _checkSubscriptionStatusState.asStateFlow()
 
     fun getEstablishmentList() {
-        getEstablishmentUseCase(null).gatherRequest(_establishmentListState)
+        getEstablishmentUseCase(null).newGatherRequest(state = _establishmentListState)
     }
 
-    fun checkSubscriptionStatus(){
+    fun checkSubscriptionStatus() {
         checkSubscriptionStatusUserCase().gatherRequest(_checkSubscriptionStatusState)
     }
 }

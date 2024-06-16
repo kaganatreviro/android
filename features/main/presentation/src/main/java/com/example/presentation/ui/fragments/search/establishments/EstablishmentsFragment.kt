@@ -65,7 +65,7 @@ class EstablishmentsFragment : BaseFragment<FragmentEstablishmentsBinding, Searc
     }
 
     private fun addMarkers(googleMap: GoogleMap) {
-        viewModel.establishmentsState.spectateUiState(
+        viewModel.establishmentsState.spectateNewUiState(
             showLoader = false,
             success = { establishments ->
                 googleMap.clear()

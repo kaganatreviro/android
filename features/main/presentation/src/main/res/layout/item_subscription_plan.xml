@@ -46,7 +46,8 @@
             android:textAllCaps="true"
             android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/iv_your_plan"
-            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+            app:layout_constraintTop_toTopOf="@id/iv_your_plan"
+            app:layout_constraintBottom_toBottomOf="@id/iv_your_plan"/>
 
         <TextView
             android:id="@+id/tv_price"

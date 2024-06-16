@@ -2,9 +2,14 @@ package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.Constants
+import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
@@ -12,6 +17,7 @@ import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanI
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.EstablishmentDetails
+import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,41 +27,51 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override val viewModel by viewModel<HomeViewModel>()
     private lateinit var adapter: EstablishmentAdapter
 
-    override fun initialize() = with(binding) {
+    override fun setupListeners() = with(binding) {
         rvRestList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
-
         getEstablishmentList()
         checkSubscriptionStatus()
     }
 
-    override fun setupListeners() {
+    override fun initialize() {
         binding.swipeRef.setOnRefreshListener {
-            binding.swipeRef.isRefreshing = false
             getEstablishmentList()
-            checkSubscriptionStatus()
         }
+    }
+
+    private fun checkSubscriptionStatus(){
+        viewModel.checkSubscriptionStatus()
     }
 
     private fun getEstablishmentList() {
         viewModel.getEstablishmentList()
     }
 
-    private fun checkSubscriptionStatus() {
-        viewModel.checkSubscriptionStatus()
-    }
-
     @SuppressLint("NotifyDataSetChanged")
     override fun launchObservers() {
-        viewModel.establishmentListState.spectateUiState(
+        viewModel.establishmentListState.spectateNewUiState(
             success = {
+                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                showShortToast(it)
+                binding.swipeRef.isRefreshing = false
+                when(it) {
+                    is NetworkError.AuthApi -> {
+                        if (it.errorResponse.code == 401) {
+                            navigateToAuth()
+                        }
+                        showShortToast(it.errorResponse.message)
+                    }
+                    is NetworkError.Api -> {
+                        showShortToast(it.error)
+                    }
+                    else -> {}
+                }
             }
         )
 
@@ -100,5 +116,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 item.id, false
             )
         )
+    }
+
+    private fun navigateToAuth() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(Constants.Deeplink.DEEPLINK_NAV_TO_AUTH_MODULE.toUri())
+            .build()
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.nav_graph_main, false)
+            .build()
+        findNavController().navigate(request, navOptions)
     }
 }

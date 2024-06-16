@@ -1,5 +1,7 @@
 package com.example.data.remote.interceptors
 
+import android.util.Log
+import androidx.paging.LOG_TAG
 import com.example.data.local.prefs.TokenPrefs
 import com.example.data.remote.api_services.AuthApiService
 import com.example.data.remote.dto.RefreshTokenRequestDto
@@ -18,15 +20,21 @@ class TokenAuthenticator(
             return null
         }
         if (response.code == 401) {
-            tokenPrefs.refresh?.let {
-                val refreshedRequest = runBlocking {
-                    authApiService.refreshToken(RefreshTokenRequestDto(it))
+            try {
+                tokenPrefs.refresh?.let {
+                    val refreshedRequest = runBlocking {
+                        authApiService.refreshToken(RefreshTokenRequestDto(it))
+                    }
+                    Log.e("ololo", refreshedRequest.code().toString())
+                    Log.e("ololo", refreshedRequest.message())
+//                    tokenPrefs.access = refreshedRequest.access
+//                    tokenPrefs.refresh = refreshedRequest.refresh
+                    return response.request.newBuilder()
+                        .header("Authorization", "Bearer ${tokenPrefs.access}")
+                        .build()
                 }
-                tokenPrefs.access = refreshedRequest.access
-                tokenPrefs.refresh = refreshedRequest.refresh
-                return response.request.newBuilder()
-                    .header("Authorization", "Bearer ${tokenPrefs.access}")
-                    .build()
+            } catch (e: Exception) {
+                Log.e("ololo", "ebat")
             }
         }
         return null

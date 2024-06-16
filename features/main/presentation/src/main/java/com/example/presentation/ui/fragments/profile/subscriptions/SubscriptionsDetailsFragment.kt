@@ -1,6 +1,7 @@
 package com.example.presentation.ui.fragments.profile.subscriptions
 
 import android.annotation.SuppressLint
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
@@ -33,6 +34,7 @@ class SubscriptionsDetailsFragment :
         )
         rvPlans.adapter = adapter
         binding.btnSubscribe.isEnabled = false
+        binding.btnSubscribe.isVisible = !subscriptionStatus
         getSubscriptionPlan()
     }
 
