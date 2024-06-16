@@ -28,7 +28,6 @@ class EstablishmentDetailFragment :
     @SuppressLint("SetTextI18n")
     override fun initialize(): Unit = with(binding) {
         getEstablishmentDetailsById()
-
         binding.viewPager.adapter = pagerAdapter
     }
 
