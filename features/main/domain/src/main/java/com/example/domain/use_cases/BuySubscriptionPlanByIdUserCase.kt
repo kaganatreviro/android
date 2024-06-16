@@ -8,5 +8,5 @@ import com.example.domain.repositories.SubscriptionRepository
 class BuySubscriptionPlanByIdUserCase(
     private val repository: SubscriptionRepository
 ) {
-    operator fun invoke(plan: BuySubscription) = repository.buySubscription(plan)
+    operator fun invoke(planId: Int) = repository.buySubscription(planId)
 }

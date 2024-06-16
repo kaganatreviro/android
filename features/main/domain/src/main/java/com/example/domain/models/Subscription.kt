@@ -24,3 +24,7 @@ data class Plan(
 data class BuySubscription(
     val planId: Int
 )
+
+data class BuySubscriptionResponse(
+    val approvalUrl: String
+):Serializable

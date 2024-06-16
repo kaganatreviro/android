@@ -1,32 +1,39 @@
 package com.example.presentation.ui.fragments.profile.subscriptions
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
 import com.example.core_ui.extensions.showShortToast
-import com.example.domain.models.BuySubscription
+import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.BuySubscriptionResponse
 import com.example.domain.models.Plan
 import com.example.presentation.databinding.FragmentSubscriptionsDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
-class SubscriptionsDetailsFragment : BaseFragment<FragmentSubscriptionsDetailsBinding, SubscriptionsViewModel>(),
-SubscriptionAdapter.ItemClickListener{
+class SubscriptionsDetailsFragment :
+    BaseFragment<FragmentSubscriptionsDetailsBinding, SubscriptionsViewModel>(),
+    SubscriptionAdapter.ItemClickListener {
 
     override val viewModel by activityViewModel<SubscriptionsViewModel>()
     override fun getViewBinding() = FragmentSubscriptionsDetailsBinding.inflate(layoutInflater)
     private lateinit var adapter: SubscriptionAdapter
-    private lateinit var planId: BuySubscription
-    private lateinit var paypalUrl: String
+    private var planId: Int = 0
+    private lateinit var paypalUrl: BuySubscriptionResponse
 
     override fun initialize() = with(binding) {
         rvPlans.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = SubscriptionAdapter(this@SubscriptionsDetailsFragment, subscriptionStatus)
+        adapter = SubscriptionAdapter(
+            this@SubscriptionsDetailsFragment,
+            subscriptionStatus,
+            subscriptionsPlanId.toInt()
+        )
         rvPlans.adapter = adapter
-        getSubscriptionPlan()
         binding.btnSubscribe.isEnabled = false
+        getSubscriptionPlan()
     }
 
     override fun setupListeners() {
@@ -39,11 +46,11 @@ SubscriptionAdapter.ItemClickListener{
         }
     }
 
-    private fun buySubscription(){
+    private fun buySubscription() {
         viewModel.buySubscriptionPlanById(planId)
     }
 
-    private fun getSubscriptionPlan(){
+    private fun getSubscriptionPlan() {
         viewModel.getSubscriptionPlan()
     }
 
@@ -62,19 +69,21 @@ SubscriptionAdapter.ItemClickListener{
         viewModel.buySubscriptionPlanByIdState.spectateUiState(
             success = {
                 paypalUrl = it
-                findNavController().navigate(SubscriptionsDetailsFragmentDirections.actionSubscriptionsDetailsFragmentToWebViewFragment(paypalUrl))
+                findNavController().navigate(
+                    SubscriptionsDetailsFragmentDirections.actionSubscriptionsDetailsFragmentToWebViewFragment(
+                        paypalUrl
+                    )
+                )
             },
             error = {
-                Log.d("error", "Error " + it)
-                showShortToast(it)
+                showSimpleDialog("", it)
             }
         )
     }
 
     override fun onItemClick(item: Plan, index: Int) {
-        planId = BuySubscription(item.id)
+        planId = item.id
         adapter.selectItem(index)
         binding.btnSubscribe.isEnabled = true
     }
-
 }

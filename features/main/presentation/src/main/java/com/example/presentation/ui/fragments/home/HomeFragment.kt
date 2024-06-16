@@ -2,16 +2,16 @@ package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
 import android.widget.Toast
-import androidx.core.net.toUri
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.NavOptions
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.EstablishmentDetails
-import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,6 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
+
         getEstablishmentList()
         checkSubscriptionStatus()
     }
@@ -60,19 +61,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
 
         viewModel.checkSubscriptionStatusState.spectateUiState(
             success = {
-                binding.tvSubsStatusValue.isEnabled = it.isActive
                 subscriptionStatus = it.isActive
-                if (it.isActive)
-                    binding.tvSubsStatusTitle.text =
-                        resources.getString(com.example.core_ui.R.string.subs_status_active)
-                else binding.tvSubsStatusTitle.text =
-                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
+                subscriptionsPlanName = it.plan.name
+                subscriptionEndDate = it.endDate
+                subscriptionsPlanId = it.plan.id.toString()
+                binding.tvSubsStatusValue.isEnabled = true
+                binding.tvSubsStatusValue.isVisible = true
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
-                binding.tvSubsStatusValue.isEnabled = false
-                subscriptionStatus = false
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_inactive)
+                binding.tvSubsStatusValue.isEnabled = false
+                binding.tvSubsStatusValue.isVisible = true
+
             }
         )
     }

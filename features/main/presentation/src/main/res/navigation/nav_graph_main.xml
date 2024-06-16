@@ -153,6 +153,6 @@
         android:label="WebViewFragment" >
         <argument
             android:name="Url"
-            app:argType="string" />
+            app:argType="com.example.domain.models.BuySubscriptionResponse" />
     </fragment>
 </navigation>

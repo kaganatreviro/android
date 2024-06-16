@@ -14,7 +14,8 @@ import com.example.presentation.databinding.ItemSubscriptionPlanBinding
 
 class SubscriptionAdapter(
     private val clickListener: ItemClickListener,
-    private val subscriptionStatus: Boolean
+    private val subscriptionStatus: Boolean,
+    private val subscriptionsPlanId: Int
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -46,7 +47,8 @@ class SubscriptionAdapter(
                     items[position],
                     position,
                     subscriptionStatus,
-                    position == selectedPosition
+                    position == selectedPosition,
+                    planId = subscriptionsPlanId
                 )
             }
         }
@@ -70,13 +72,20 @@ class SubscriptionAdapter(
 
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n", "CheckResult")
-        fun bind(_item: Plan, position: Int, subscriptionStatus: Boolean, isSelected: Boolean) {
+        fun bind(
+            _item: Plan,
+            position: Int,
+            subscriptionStatus: Boolean,
+            isSelected: Boolean,
+            planId: Int
+        ) {
             item = _item
             index = position
 
             item.apply {
                 // Управление видимостью элементов
-//                binding.ivYourPlan.isVisible = subscriptionStatus
+                binding.ivYourPlan.isVisible = item.id == planId
+                binding.tvYourPlan.isVisible = item.id == planId
                 itemView.isSelected = isSelected
                 binding.tvPlanDesc.isVisible = isSelected
                 binding.line1.isVisible = isSelected

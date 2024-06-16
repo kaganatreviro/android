@@ -23,7 +23,14 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
     private lateinit var callback: OnBackPressedCallback
     open var backPressedTime: Long = 0
     open val doubleBackPressInterval = 2000
-    open var subscriptionStatus: Boolean = false
+
+    object SubscriptionData {
+        var subscriptionStatus: Boolean = false
+        lateinit var subscriptionEndDate: String
+        lateinit var subscriptionsPlanId: String
+        lateinit var subscriptionsPlanName: String
+    }
+
     protected abstract fun getViewBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {

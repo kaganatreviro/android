@@ -1,6 +1,6 @@
 package com.example.data.remote.api_services
 
-import com.example.data.remote.dto.BuySubscriptionRequestDto
+import com.example.data.remote.dto.BuySubscriptionResponseDto
 import com.example.data.remote.dto.SubscriptionsDto
 import com.example.data.remote.dto.SubscriptionsPlanDto
 import retrofit2.http.GET
@@ -16,7 +16,7 @@ interface SubscriptionApiService {
     suspend fun getSubscriptionPlan(): List<SubscriptionsPlanDto>
 
     @POST(BUY_SUBSCRIPTION)
-    suspend fun buySubscription(@Path("plan_id") id: BuySubscriptionRequestDto): String
+    suspend fun buySubscription(@Path("plan_id") id: Int): BuySubscriptionResponseDto
 
     companion object{
         const val CHECK_SUBSCRIPTION_ACTIVE = "api/v1/subscription/subscriptions/"

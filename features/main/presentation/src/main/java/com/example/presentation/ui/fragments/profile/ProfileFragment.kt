@@ -1,5 +1,8 @@
 package com.example.presentation.ui.fragments.profile
 
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
@@ -7,6 +10,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.User
@@ -14,22 +20,37 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 class ProfileFragment :
     BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
     override val viewModel by activityViewModel<ProfileViewModel>()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun initialize() {
-        if (subscriptionStatus){
+        if (subscriptionStatus) {
             binding.containerSubscription.isVisible = true
             binding.containerSubscriptionEmpty.isVisible = false
-        }else{
+            setSubscriptionData()
+        } else {
             binding.containerSubscription.isVisible = false
             binding.containerSubscriptionEmpty.isVisible = true
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
+    private fun setSubscriptionData() = with(binding) {
+        tvSubsName.text = subscriptionsPlanName
+        tvSubsDuration.text = "1 membership"
+        val dateTime = OffsetDateTime.parse(subscriptionEndDate)
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        val subscriptionEndDateTime = dateTime.format(formatter)
+        tvSubsDeadline.text = "Valid through $subscriptionEndDateTime"
+    }
 
     override fun setupListeners() {
         binding.btnEditProfile.setOnClickListener {

@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.dm7.barcodescanner.zbar.Result
