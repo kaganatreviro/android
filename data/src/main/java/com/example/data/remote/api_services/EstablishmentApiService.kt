@@ -5,6 +5,7 @@ import com.example.data.remote.dto.FeedbackListDto
 import com.example.data.remote.dto.MenuDto
 import com.example.data.remote.dto.PostFeedbackDto
 import com.example.data.remote.dto.PostFeedbackInAnswersDto
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,7 +16,7 @@ interface EstablishmentApiService {
     @GET(GET_ESTABLISHMENTS_LIST)
     suspend fun getEstablishmentList(
         @Query("search") search: String?
-    ): List<EstablishmentDetailsDto>
+    ): Response<List<EstablishmentDetailsDto>>
 
     @GET(GET_ESTABLISHMENT_BY_ID)
     suspend fun getEstablishmentDetailsById(@Path("id") id: Int): EstablishmentDetailsDto

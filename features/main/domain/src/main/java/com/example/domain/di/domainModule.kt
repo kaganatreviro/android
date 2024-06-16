@@ -15,6 +15,9 @@ import com.example.domain.use_cases.GetEstablishmentFeedbackListUseCase
 import com.example.domain.use_cases.PostFeedbackUseCase
 import com.example.domain.use_cases.GetFeedbackAnswersUseCase
 import com.example.domain.use_cases.PostFeedbackInAnswersUseCase
+import com.example.domain.use_cases.CheckSubscriptionStatusUserCase
+import com.example.domain.use_cases.GetSubscriptionPlanUserCase
+import com.example.domain.use_cases.BuySubscriptionPlanByIdUserCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -32,4 +35,8 @@ val domainModule = module {
     factoryOf(::PostFeedbackUseCase)
     factoryOf(::GetFeedbackAnswersUseCase)
     factoryOf(::PostFeedbackInAnswersUseCase)
+    factoryOf(::CheckSubscriptionStatusUserCase)
+    factoryOf(::GetSubscriptionPlanUserCase)
+    factoryOf(::BuySubscriptionPlanByIdUserCase)
+
 }

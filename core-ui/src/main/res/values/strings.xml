@@ -4,6 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
+    <string name="title_subscription">Subscription</string>
     <string name="title_edit_profile">Edit profile</string>
     <string name="logout">Logout</string>
     <string name="orders">Orders</string>
@@ -16,7 +17,8 @@
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status">Subscription is active</string>
+    <string name="subs_status_active">Subscription is active</string>
+    <string name="subs_status_inactive">You do not have an active subscription.</string>
     <string name="none_account">
         New Member?
         <font color="#FB7E00">Sign up Here</font></string>
@@ -43,12 +45,15 @@
     <string name="date">Date of birth</string>
     <string name="full_name">Name</string>
     <string name="data_has_not_been_changed">Data has not been changed</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="status_available">Available</string>
     <string name="status_unavailable">Unavailable</string>
     <string name="status_all">All</string>
-
+    <string name="subscription_plan_title">Enjoy free beverages. You can get one beverages per hour and one beverage at a place within a day.</string>
+    <string name="no_subscription_title">You do not have a subscription</string>
+    <string name="no_subscription_title_select">Select your subscription plan.</string>
+    <string name="no_subscription_in_scanner">You must have a subscription to scan codes. See subscription plans.</string>
     <!-- Arrays -->
     <string-array name="spinner_items">
         <item>all</item>

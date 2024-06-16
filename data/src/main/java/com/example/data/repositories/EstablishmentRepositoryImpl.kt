@@ -1,6 +1,7 @@
 package com.example.data.repositories
 
 import com.example.core.either.Either
+import com.example.core.either.NetworkError
 import com.example.data.remote.api_services.EstablishmentApiService
 import com.example.data.remote.dto.FeedbackListDto
 import com.example.data.remote.dto.toDto
@@ -15,8 +16,8 @@ import kotlinx.coroutines.flow.Flow
 class EstablishmentRepositoryImpl(
     private val apiService: EstablishmentApiService
 ): EstablishmentRepository {
-    override  fun getEstablishmentList(search: String?): Flow<Either<String, List<EstablishmentDetails>>> = makeNetworkRequest {
-        apiService.getEstablishmentList(search).map { it.toDomain() }
+    override  fun getEstablishmentList(search: String?): Flow<Either<NetworkError, List<EstablishmentDetails>>> = makeNetworkRequestToFetchList {
+        apiService.getEstablishmentList(search)
     }
 
     override fun getEstablishmentMenuById(id: Int): Flow<Either<String, List<Menu>>> = makeNetworkRequest {

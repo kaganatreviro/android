@@ -9,7 +9,9 @@ import com.example.data.remote.dto.UserLoginResponseDto
 import com.example.data.remote.dto.UserRegisterRequestDto
 import com.example.data.remote.dto.UserRegisterResponseDto
 import com.example.data.remote.dto.UserResetPasswordRequestDto
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface AuthApiService {
@@ -21,11 +23,12 @@ interface AuthApiService {
     suspend fun userRegister(@Body userData: UserRegisterRequestDto): UserRegisterResponseDto
 
     @POST(CLIENT_TOKEN_REFRESH)
-    suspend fun refreshToken(@Body refreshToken: RefreshTokenRequestDto): TokensDto
+    suspend fun refreshToken(@Body refreshToken: RefreshTokenRequestDto): Response<TokensDto>
 
     @POST(CLIENT_FORGOT_PASSWORD_ENDPOINT)
     suspend fun userForgotPassword(@Body userData: UserForgotPasswordRequestDto): String
 
+    @Headers("Content-Type: application/json")
     @POST(CLIENT_RESET_PASSWORD_ENDPOINT)
     suspend fun userResetPassword(@Body userData: UserResetPasswordRequestDto): String
 
