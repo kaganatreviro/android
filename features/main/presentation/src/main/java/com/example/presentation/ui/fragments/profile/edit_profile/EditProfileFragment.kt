@@ -53,6 +53,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
                 imageFile == null
             ) {
                 showShortToast(getString(R.string.data_has_not_been_changed))
+            } else if (etUserName.text.toString().isEmpty()) {
+                showShortToast(getString(R.string.username_empty_error_message))
+            } else if (etUserName.text.toString().all { it.isDigit() }) {
+                showShortToast(getString(R.string.username_digits_error_message))
             } else {
                 viewModel.updateData(
                     name = etUserName.text.toString(),
