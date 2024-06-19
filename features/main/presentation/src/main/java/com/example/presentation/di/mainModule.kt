@@ -4,6 +4,7 @@ import com.example.domain.di.domainModule
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import com.example.presentation.ui.fragments.search.SearchViewModel
 import com.example.presentation.ui.fragments.profile.ProfileViewModel
+import com.example.presentation.ui.fragments.profile.edit_profile.EditProfileViewModel
 import com.example.presentation.ui.fragments.profile.subscriptions.SubscriptionsViewModel
 import com.example.presentation.ui.fragments.home.HomeViewModel
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailViewModel
@@ -17,6 +18,7 @@ val mainModule = module {
     includes(domainModule)
     viewModelOf(::SearchViewModel)
     viewModelOf(::ProfileViewModel)
+    viewModelOf(::EditProfileViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::EstablishmentDetailViewModel)
     viewModelOf(::BeverageDetailsViewModel)
