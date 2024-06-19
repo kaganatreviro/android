@@ -93,7 +93,7 @@ class SubscriptionAdapter(
                 binding.rbChecked.isChecked = isSelected // Установить состояние RadioButton
                 binding.rbChecked.isEnabled = false
                 binding.tvName.text = item.name
-                binding.tvPrice.text = item.price + " KGS"
+                binding.tvPriceAndDuration.text = item.price + " KGS / " + item.duration
                 binding.tvPlanDesc.text = item.description
             }
         }

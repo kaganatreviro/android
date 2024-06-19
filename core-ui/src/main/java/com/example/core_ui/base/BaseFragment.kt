@@ -30,7 +30,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
     object SubscriptionData {
         var subscriptionStatus: Boolean = false
         lateinit var subscriptionEndDate: String
-        lateinit var subscriptionsPlanId: String
+        var subscriptionsPlanId: Int = 0
         lateinit var subscriptionsPlanName: String
     }
 

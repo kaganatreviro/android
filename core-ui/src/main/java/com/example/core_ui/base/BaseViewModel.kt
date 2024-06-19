@@ -18,6 +18,7 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun <T> Flow<Either<String, T>>.gatherRequest(
         state: MutableStateFlow<UIState<T>>,
+        shouldResetStateOnCompletion: Boolean = false
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             state.value = UIState.Loading()
@@ -28,6 +29,9 @@ abstract class BaseViewModel : ViewModel() {
                         UIState.Success(it.value)
                 }
             }
+        }.invokeOnCompletion {
+            if (shouldResetStateOnCompletion)
+                state.reset()
         }
     }
 

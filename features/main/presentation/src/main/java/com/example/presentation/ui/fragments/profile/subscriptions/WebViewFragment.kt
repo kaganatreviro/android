@@ -1,7 +1,12 @@
 package com.example.presentation.ui.fragments.profile.subscriptions
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.os.Build
 import android.view.MotionEvent
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.findNavController
@@ -40,14 +45,30 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding, SubscriptionsViewMo
     @SuppressLint("SetJavaScriptEnabled")
     override fun initialize() {
 
-        binding.webView.webViewClient = WebViewClient()
+        binding.webView.webViewClient = object : WebViewClient() {
+            override fun shouldInterceptRequest(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): WebResourceResponse? {
+                return super.shouldInterceptRequest(view, request)
+
+            }
+        }
+        binding.webView.webChromeClient = object : WebChromeClient() {
+
+        }
         binding.webView.settings.javaScriptEnabled = true
         // if you want to enable zoom feature
         binding.webView.settings.setSupportZoom(true)
         binding.webView.loadUrl(args.Url.approvalUrl)
+
     }
 
     override fun onBackPressed() {
-        findNavController().popBackStack()
+        if (binding.webView.canGoBack()) {
+            binding.webView.goBack()
+        } else {
+            findNavController().popBackStack()
+        }
     }
 }

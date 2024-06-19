@@ -125,9 +125,12 @@ class ProfileFragment :
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
-                SubscriptionData.subscriptionsPlanId = it.plan.id.toString()
+                SubscriptionData.subscriptionsPlanId = it.plan.id
             },
             error = {
+                subscriptionStatus = false
+                subscriptionsPlanName = ""
+                subscriptionEndDate = ""
             }
         )
     }

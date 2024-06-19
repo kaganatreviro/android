@@ -25,6 +25,7 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
 
     override fun setupListeners() {
         binding.swipeRef.setOnRefreshListener {
+            binding.swipeRef.isRefreshing = false
             getOrderHistory()
         }
     }
@@ -38,14 +39,11 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
     override fun launchObservers() {
         viewModel.orderHistoryState.spectateUiState(
             success = {
-                binding.swipeRef.isRefreshing = false
                 orderAdapter.submitList(it)
                 orderAdapter.notifyDataSetChanged()
             },
             error = {
-                binding.swipeRef.isRefreshing = false
                 showShortToast(it)
-                Log.d("error", "Error = $it")
             }
         )
     }

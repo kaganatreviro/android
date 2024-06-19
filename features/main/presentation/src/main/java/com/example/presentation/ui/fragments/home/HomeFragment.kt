@@ -3,7 +3,6 @@ package com.example.presentation.ui.fragments.home
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -33,11 +32,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
+        if (!subscriptionStatus)
         checkSubscriptionStatus()
     }
 
     override fun initialize() {
         binding.swipeRef.setOnRefreshListener {
+            binding.swipeRef.isRefreshing = false
             getEstablishmentList()
         }
     }
@@ -54,12 +55,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateNewUiState(
             success = {
-                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                binding.swipeRef.isRefreshing = false
                 when(it) {
                     is NetworkError.AuthApi -> {
                         if (it.errorResponse.code == 401) {
@@ -80,11 +79,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
-                subscriptionsPlanId = it.plan.id.toString()
+                subscriptionsPlanId = it.plan.id
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
+                subscriptionStatus = false
+                subscriptionsPlanName = ""
+                subscriptionEndDate = ""
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_inactive)
             }

@@ -2,8 +2,10 @@ package com.example.data.remote.api_services
 
 import com.example.data.remote.dto.BuySubscriptionRequestDto
 import com.example.data.remote.dto.BuySubscriptionResponseDto
+import com.example.data.remote.dto.FreeTrialPlanResponseDto
 import com.example.data.remote.dto.SubscriptionsDto
 import com.example.data.remote.dto.SubscriptionsPlanDto
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -20,7 +22,7 @@ interface SubscriptionApiService {
     suspend fun buySubscription(@Path("plan_id") id: Int): BuySubscriptionResponseDto
 
     @POST(GET_FREE_TRIAL_PLAN)
-    suspend fun getFreeTrialPlan(@Path("plan_id") id: Int): String
+    suspend fun getFreeTrialPlan(@Body id: BuySubscriptionRequestDto): FreeTrialPlanResponseDto
 
     companion object {
         const val CHECK_SUBSCRIPTION_ACTIVE = "api/v1/subscription/subscriptions/"
