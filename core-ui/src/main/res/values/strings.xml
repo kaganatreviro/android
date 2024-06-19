@@ -45,6 +45,7 @@
     <string name="data_has_not_been_changed">Data has not been changed</string>
     <string name="username_digits_error_message">The username must not consist of only digits.</string>
     <string name="username_empty_error_message">The username must not be empty.</string>
+    <string name="avatar_size_error_message">The avatar must not be larger than 3 MB.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="status_available">Available</string>

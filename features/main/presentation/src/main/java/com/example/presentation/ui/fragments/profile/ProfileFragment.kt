@@ -1,10 +1,12 @@
 package com.example.presentation.ui.fragments.profile
 
+import android.util.Log
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
+import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
@@ -46,12 +48,18 @@ class ProfileFragment :
 
 
     override fun launchObservers() {
-        viewModel.userState.spectateUiState(
+        viewModel.userState.spectateNewUiState (
             success = { user ->
+                Log.e("ololo", "success")
                 setUserData(user)
             },
             error = {
-                showShortToast(it)
+                Log.e("ololo", "error")
+                if (it is NetworkError.Api)
+                    showShortToast(it.error)
+            },
+            loading = {
+                Log.e("ololo", "loading")
             }
         )
 

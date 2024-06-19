@@ -1,6 +1,7 @@
 package com.example.data.repositories
 
 import com.example.core.either.Either
+import com.example.core.either.NetworkError
 import com.example.data.local.prefs.TokenPrefs
 import com.example.data.remote.api_services.UserApiService
 import com.example.data.remote.dto.LogoutRequestDto
@@ -21,16 +22,16 @@ class UserRepositoryImpl(
     private val tokenPrefs: TokenPrefs,
 ) : UserRepository {
 
-    override fun getUser(): Flow<Either<String, User>> = makeNetworkRequest {
-        apiService.getUser().toDomain()
+    override fun getUser(): Flow<Either<NetworkError, User>> = makeNetworkRequestWithMapping {
+        apiService.getUser()
     }
 
-    override fun updateUserData(userData: UpdateUserDataRequest): Flow<Either<String, User>> =
-        makeNetworkRequest {
+    override fun updateUserData(userData: UpdateUserDataRequest): Flow<Either<NetworkError, User>> =
+        makeNetworkRequestWithMapping {
             val userName = userData.name?.toRequestBody("text/plain".toMediaTypeOrNull())
             val userDate = userData.date?.toRequestBody("text/plain".toMediaTypeOrNull())
             val userAvatar = userData.avatar?.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            apiService.updateUserData(userName, userDate, userAvatar).toDomain()
+            apiService.updateUserData(userName, userDate, userAvatar)
         }
 
     override fun logout(): Flow<Either<String, Unit>> = flow<Either<String, Unit>> {

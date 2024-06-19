@@ -1,9 +1,14 @@
 package com.example.presentation.ui.fragments.profile.edit_profile
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
+import com.example.core.either.NetworkError
 import com.example.core_ui.R
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.dateFormatter
@@ -11,12 +16,16 @@ import com.example.core_ui.extensions.getFileFromUri
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.setupDateTextWatcher
 import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.ui.NewUIState
 import com.example.core_ui.ui.UIState
 import com.example.domain.models.User
 import com.example.presentation.databinding.FragmentEditProfileBinding
 import com.example.presentation.ui.fragments.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.core.component.getScopeName
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 
 class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileViewModel>() {
 
@@ -29,7 +38,14 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri != null) {
                 binding.ivUserAvatar.setImageURI(uri)
-                imageFile = uri.getFileFromUri(requireContext())
+                val originalFile = uri.getFileFromUri(requireContext())
+                originalFile?.let {
+                    imageFile = if (it.length() > 3 * 1024 * 1024) {
+                        compressImageTo3MB( requireContext(),it)
+                    } else {
+                        it
+                    }
+                }
             }
         }
 
@@ -47,7 +63,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
     }
 
     private fun updateUserData(): Unit = with(binding) {
-        (viewModel.userState.value as? UIState.Success)?.let { user ->
+        (viewModel.userState.value as? NewUIState.Success)?.let { user ->
             if (user.data.name == etUserName.text.toString() &&
                 user.data.dateOfBirth == etDate.text.toString().dateFormatter() &&
                 imageFile == null
@@ -68,12 +84,21 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
     }
 
     override fun launchObservers() {
-        viewModel.userState.spectateUiState(
+        viewModel.userState.spectateNewUiState (
             success = { user ->
                 setUserData(user)
             },
             error = {
-                showShortToast(it)
+                when(it) {
+                    is NetworkError.Api -> {
+                        showShortToast(it.error)
+                    }
+                    is NetworkError.AuthApi -> {
+                        if (it.errorResponse.code == 413)
+                            showShortToast(getString(R.string.avatar_size_error_message))
+                    }
+                    is NetworkError.Timeout -> {}
+                }
             }
         )
     }
@@ -89,5 +114,23 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileView
                 Constants.DatePattern.ddMMyyyy
             )
         )
+    }
+    private fun compressImageTo3MB(context: Context, file: File): File {
+        val maxFileSize = 3 * 1024 * 1024
+        val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+        var quality = 100
+        var compressedData: ByteArray
+
+        do {
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+            compressedData = outputStream.toByteArray()
+            quality -= 5
+        } while (compressedData.size > maxFileSize && quality > 0)
+
+        val compressedFile = File(context.cacheDir, "compressed_${System.currentTimeMillis()}.jpg")
+        FileOutputStream(compressedFile).use { it.write(compressedData) }
+
+        return compressedFile
     }
 }
