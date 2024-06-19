@@ -1,14 +1,15 @@
 package com.example.presentation.ui.fragments.profile
 
-import android.util.Log
 import android.annotation.SuppressLint
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LOG_TAG
 import com.example.core.Constants
 import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
@@ -22,13 +23,15 @@ import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class ProfileFragment :
     BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
+
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
-    override val viewModel by activityViewModel<ProfileViewModel>()
+    override val viewModel by viewModel<ProfileViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initialize() {
@@ -41,6 +44,10 @@ class ProfileFragment :
             binding.containerSubscriptionEmpty.isVisible = true
             checkSubscriptionStatus()
         }
+    }
+
+    override fun fetchData() {
+        viewModel.getUser()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -116,6 +123,7 @@ class ProfileFragment :
         )
 
         viewModel.checkSubscriptionStatusState.spectateUiState(
+            showLoader = false,
             success = {
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name

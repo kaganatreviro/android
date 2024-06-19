@@ -1,6 +1,7 @@
 package com.example.core_ui.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,11 +53,13 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
         setupUIToHideKeyboardOnTouch(view)
         initialize()
         setupListeners()
+        fetchData()
         launchObservers()
     }
 
     protected open fun initialize() {}
     protected open fun setupListeners() {}
+    protected open fun fetchData() {}
     protected open fun launchObservers() {}
     protected open fun onBackPressed() {}
 
@@ -114,7 +117,11 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
         safeFlowGather(lifecycleState) {
             collect {
                 when (it) {
-                    is NewUIState.Idle -> idle?.invoke(it)
+                    is NewUIState.Idle -> {
+                        if (showLoader)
+                            hideLoading()
+                        idle?.invoke(it)
+                    }
                     is NewUIState.Loading -> {
                         if (showLoader)
                             showLoading()

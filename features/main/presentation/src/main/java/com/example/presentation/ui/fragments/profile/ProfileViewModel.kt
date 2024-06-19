@@ -14,7 +14,6 @@ import java.io.File
 
 class ProfileViewModel(
     private val getUserUseCase: GetUserUseCase,
-    private val updateUserDataUseCase: UpdateUserDataUseCase,
     private val logoutUseCase: LogoutUseCase,
     private val checkSubscriptionStatusUserCase: CheckSubscriptionStatusUserCase
 ): BaseViewModel() {
@@ -32,17 +31,8 @@ class ProfileViewModel(
         checkSubscriptionStatusUserCase().gatherRequest(_checkSubscriptionStatusState)
     }
 
-    init {
-        getUser()
-    }
-
-    private fun getUser() {
+    fun getUser() {
         getUserUseCase().newGatherRequest(_userState)
-    }
-
-    fun updateData(name: String? = null, date: String? = null, avatar: File? = null) {
-        updateUserDataUseCase(UpdateUserDataRequest(name, date, avatar))
-            .newGatherRequest(_userState)
     }
 
     fun logout() {
