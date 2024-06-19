@@ -56,6 +56,7 @@ class EstablishmentDetailFragment :
                 tvAddress.text = it.address
                 tvDesc.text = it.description
                 tvPhoneNumber.text = it.phoneNumber
+                tvUserEmail.text = it.email
                 tvTitleHappyHoursTime.text =
                     getString(com.example.core_ui.R.string.happy_time) + " " + happyHoursStart.format(
                         formatterWithoutSeconds

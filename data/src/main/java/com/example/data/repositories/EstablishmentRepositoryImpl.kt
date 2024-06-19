@@ -3,9 +3,8 @@ package com.example.data.repositories
 import com.example.core.either.Either
 import com.example.core.either.NetworkError
 import com.example.data.remote.api_services.EstablishmentApiService
-import com.example.data.remote.dto.FeedbackListDto
 import com.example.data.remote.dto.toDto
-import com.example.domain.models.EstablishmentDetails
+import com.example.domain.models.Establishment
 import com.example.domain.models.Feedback
 import com.example.domain.models.Menu
 import com.example.domain.models.PostFeedback
@@ -16,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 class EstablishmentRepositoryImpl(
     private val apiService: EstablishmentApiService
 ): EstablishmentRepository {
-    override  fun getEstablishmentList(search: String?): Flow<Either<NetworkError, List<EstablishmentDetails>>> = makeNetworkRequestToFetchList {
+    override  fun getEstablishmentList(search: String?): Flow<Either<NetworkError, List<Establishment>>> = makeNetworkRequestToFetchList {
         apiService.getEstablishmentList(search)
     }
 
@@ -24,7 +23,7 @@ class EstablishmentRepositoryImpl(
         apiService.getEstablishmentMenuById(id).map { it.toDomain() }
     }
 
-    override fun getEstablishmentDetailsById(id: Int): Flow<Either<String, EstablishmentDetails>> = makeNetworkRequest {
+    override fun getEstablishmentDetailsById(id: Int): Flow<Either<String, Establishment>> = makeNetworkRequest {
         apiService.getEstablishmentDetailsById(id).toDomain()
     }
 

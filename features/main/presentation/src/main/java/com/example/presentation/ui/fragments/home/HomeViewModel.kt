@@ -1,7 +1,7 @@
 package com.example.presentation.ui.fragments.home
 
 import com.example.core_ui.base.BaseViewModel
-import com.example.domain.models.EstablishmentDetails
+import com.example.domain.models.Establishment
 import com.example.domain.models.Subscription
 import com.example.domain.use_cases.CheckSubscriptionStatusUserCase
 import com.example.domain.use_cases.GetEstablishmentListUseCase
@@ -12,7 +12,7 @@ class HomeViewModel(
     private val checkSubscriptionStatusUserCase: CheckSubscriptionStatusUserCase
 ) : BaseViewModel() {
 
-    private val _establishmentListState = mutableNewUiStateFlow<List<EstablishmentDetails>>()
+    private val _establishmentListState = mutableNewUiStateFlow<List<Establishment>>()
     val establishmentListState = _establishmentListState.asStateFlow()
 
     private val _checkSubscriptionStatusState = mutableUiStateFlow<Subscription>()

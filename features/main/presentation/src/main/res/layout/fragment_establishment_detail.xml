@@ -59,9 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_est_image"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"
                 android:textColor="@color/disable_text_color" />
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_toEndOf="@id/iv_est_image"/>
+                android:layout_toEndOf="@id/iv_est_image" />
 
             <TextView
                 android:id="@+id/tv_desc"
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_address"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:id="@+id/tv_title_happy_hours_time"
@@ -87,10 +87,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_desc"
-                android:textSize="18sp"
-                android:textColor="@color/color_primary"
+                android:layout_marginTop="15dp"
                 android:paddingHorizontal="7dp"
-                android:layout_marginTop="15dp" />
+                android:textColor="@color/color_primary"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_title_contacts"
@@ -109,22 +109,33 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_title_happy_hours_time"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                tools:text="0500500500" />
+
+            <TextView
+                android:id="@+id/tv_user_email"
+                style="@style/empty_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_phone_number"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                tools:text="email@mail.ru" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_below="@id/tv_user_email"
                 android:layout_marginTop="20dp"
-                android:layout_below="@id/tv_phone_number">
+                android:orientation="vertical">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background_color"
                     app:tabIndicatorColor="@color/color_primary"
                     app:tabRippleColor="@null"
-                    android:background="@color/background_color"
                     app:tabSelectedTextColor="@color/color_primary"
                     app:tabTextColor="@color/empty_text" />
 
