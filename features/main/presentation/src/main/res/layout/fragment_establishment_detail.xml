@@ -51,7 +51,6 @@
                 android:id="@+id/iv_est_image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:src="@drawable/ic_logo"
                 app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
             <TextView
@@ -62,17 +61,7 @@
                 android:layout_below="@id/iv_est_image"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@id/tv_location"
-                android:textColor="@color/disable_text_color" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                style="@style/empty_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iv_est_image"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
                 android:textColor="@color/disable_text_color" />
 
             <TextView
@@ -82,8 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_toEndOf="@id/iv_est_image"
-                android:text="Navat" />
+                android:layout_toEndOf="@id/iv_est_image"/>
 
             <TextView
                 android:id="@+id/tv_desc"

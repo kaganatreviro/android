@@ -4,6 +4,7 @@
     <string name="title_search">Search</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
+    <string name="title_subscription">Subscription</string>
     <string name="title_edit_profile">Edit profile</string>
     <string name="logout">Logout</string>
     <string name="orders">Orders</string>
@@ -16,12 +17,13 @@
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status">Subscription is active</string>
+    <string name="subs_status_active">Subscription is active 🟢</string>
+    <string name="subs_status_inactive">You do not have an active subscription. 🔴</string>
     <string name="none_account">
         New Member?
         <font color="#FB7E00">Sign up Here</font></string>
     <string name="create_client">Create an Account</string>
-    <string name="happy_time">Happy hours time from:</string>
+    <string name="happy_time">Happy hours from:</string>
     <string name="resent_code_timer">Resend more after </string>
     <string name="resent_code">Resend code</string>
     <string name="add_feedback">Write a review</string>
@@ -43,6 +45,7 @@
     <string name="date">Date of birth</string>
     <string name="full_name">Name</string>
     <string name="data_has_not_been_changed">Data has not been changed</string>
+
     <string name="username_digits_error_message">The username must not consist of only digits.</string>
     <string name="username_empty_error_message">The username must not be empty.</string>
     <string name="avatar_size_error_message">The avatar must not be larger than 3 MB.</string>
@@ -51,7 +54,10 @@
     <string name="status_available">Available</string>
     <string name="status_unavailable">Unavailable</string>
     <string name="status_all">All</string>
-
+    <string name="subscription_plan_title">Enjoy free beverages. You can get one beverages per hour and one beverage at a place within a day.</string>
+    <string name="no_subscription_title">You do not have a subscription</string>
+    <string name="no_subscription_title_select">Select your subscription plan.</string>
+    <string name="no_subscription_in_scanner">You must have a subscription to scan codes. See subscription plans.</string>
     <!-- Arrays -->
     <string-array name="spinner_items">
         <item>all</item>

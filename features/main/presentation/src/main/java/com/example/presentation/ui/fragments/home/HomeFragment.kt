@@ -1,9 +1,9 @@
 package com.example.presentation.ui.fragments.home
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.Constants
 import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
@@ -29,12 +33,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
+        checkSubscriptionStatus()
     }
 
     override fun initialize() {
         binding.swipeRef.setOnRefreshListener {
             getEstablishmentList()
         }
+    }
+
+    private fun checkSubscriptionStatus(){
+        viewModel.checkSubscriptionStatus()
     }
 
     private fun getEstablishmentList() {
@@ -63,6 +72,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                     }
                     else -> {}
                 }
+            }
+        )
+
+        viewModel.checkSubscriptionStatusState.spectateUiState(
+            success = {
+                subscriptionStatus = it.isActive
+                subscriptionsPlanName = it.plan.name
+                subscriptionEndDate = it.endDate
+                subscriptionsPlanId = it.plan.id.toString()
+                binding.tvSubsStatusValue.isEnabled = true
+                binding.tvSubsStatusValue.isVisible = true
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_active)
+            },
+            error = {
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
+                binding.tvSubsStatusValue.isEnabled = false
+                binding.tvSubsStatusValue.isVisible = true
+
             }
         )
     }
