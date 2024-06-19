@@ -11,4 +11,5 @@ interface SubscriptionRepository {
     fun checkSubscriptionStatus(): Flow<Either<String, Subscription>>
     fun getSubscriptionPlan(): Flow<Either<String, List<Plan>>>
     fun buySubscription(planId: Int): Flow<Either<String, BuySubscriptionResponse>>
+    fun getFreeTrialPlan(planId: Int): Flow<Either<String, String>>
 }

@@ -22,6 +22,7 @@ class SubscriptionsDetailsFragment :
     override fun getViewBinding() = FragmentSubscriptionsDetailsBinding.inflate(layoutInflater)
     private lateinit var adapter: SubscriptionAdapter
     private var planId: Int = 0
+    private var planPrice: Double = 0.0
     private lateinit var paypalUrl: BuySubscriptionResponse
 
     override fun initialize() = with(binding) {
@@ -49,7 +50,8 @@ class SubscriptionsDetailsFragment :
     }
 
     private fun buySubscription() {
-        viewModel.buySubscriptionPlanById(planId)
+        if (planPrice > 0) viewModel.buySubscriptionPlanById(planId)
+        else viewModel.getFreeTrialPlan(planId)
     }
 
     private fun getSubscriptionPlan() {
@@ -81,10 +83,21 @@ class SubscriptionsDetailsFragment :
                 showSimpleDialog("", it)
             }
         )
+
+        viewModel.getFreeTrialPlanState.spectateUiState(
+            success = {
+                showSimpleDialog("Success", "Free trial period connected")
+                findNavController().popBackStack()
+            },
+            error = {
+                showSimpleDialog("", it)
+            }
+        )
     }
 
     override fun onItemClick(item: Plan, index: Int) {
         planId = item.id
+        planPrice = item.price.toDouble()
         adapter.selectItem(index)
         binding.btnSubscribe.isEnabled = true
     }

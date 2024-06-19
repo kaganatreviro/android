@@ -3,6 +3,7 @@ package com.example.data.repositories
 import com.example.core.either.Either
 import com.example.data.local.prefs.SubscriptionPrefs
 import com.example.data.remote.api_services.SubscriptionApiService
+import com.example.data.remote.dto.BuySubscriptionRequestDto
 import com.example.data.remote.dto.BuySubscriptionResponseDto
 import com.example.data.remote.dto.toDto
 import com.example.domain.models.BuySubscription
@@ -30,5 +31,10 @@ class SubscriptionRepositoryImpl(
     override fun buySubscription(planId: Int): Flow<Either<String, BuySubscriptionResponse>> =
         makeNetworkRequest {
             apiService.buySubscription(planId).toDomain()
+        }
+
+    override fun getFreeTrialPlan(planId: Int): Flow<Either<String, String>> =
+        makeNetworkRequest {
+            apiService.getFreeTrialPlan(planId)
         }
 }
