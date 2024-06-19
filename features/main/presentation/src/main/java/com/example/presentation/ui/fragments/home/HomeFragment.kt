@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
+        if (!subscriptionStatus)
         checkSubscriptionStatus()
     }
 
@@ -80,13 +81,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
-                subscriptionsPlanId = it.plan.id.toString()
+                subscriptionsPlanId = it.plan.id
                 binding.tvSubsStatusValue.isEnabled = true
                 binding.tvSubsStatusValue.isVisible = true
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
+                subscriptionStatus = false
+                subscriptionsPlanName = ""
+                subscriptionEndDate = ""
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_inactive)
                 binding.tvSubsStatusValue.isEnabled = false
