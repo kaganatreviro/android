@@ -17,13 +17,13 @@
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status_active">Subscription is active</string>
-    <string name="subs_status_inactive">You do not have an active subscription.</string>
+    <string name="subs_status_active">Subscription is active 🟢</string>
+    <string name="subs_status_inactive">You do not have an active subscription. 🔴</string>
     <string name="none_account">
         New Member?
         <font color="#FB7E00">Sign up Here</font></string>
     <string name="create_client">Create an Account</string>
-    <string name="happy_time">Happy hours time from:</string>
+    <string name="happy_time">Happy hours from:</string>
     <string name="resent_code_timer">Resend more after </string>
     <string name="resent_code">Resend code</string>
     <string name="add_feedback">Write a review</string>

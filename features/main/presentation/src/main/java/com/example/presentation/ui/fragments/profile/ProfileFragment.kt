@@ -37,6 +37,7 @@ class ProfileFragment :
         } else {
             binding.containerSubscription.isVisible = false
             binding.containerSubscriptionEmpty.isVisible = true
+            checkSubscriptionStatus()
         }
     }
 
@@ -49,6 +50,10 @@ class ProfileFragment :
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         val subscriptionEndDateTime = dateTime.format(formatter)
         tvSubsDeadline.text = "Valid through $subscriptionEndDateTime"
+    }
+
+    private fun checkSubscriptionStatus(){
+        viewModel.checkSubscriptionStatus()
     }
 
     override fun setupListeners() {
@@ -103,6 +108,17 @@ class ProfileFragment :
             },
             error = {
                 showShortToast(it)
+            }
+        )
+
+        viewModel.checkSubscriptionStatusState.spectateUiState(
+            success = {
+                subscriptionStatus = it.isActive
+                subscriptionsPlanName = it.plan.name
+                subscriptionEndDate = it.endDate
+                SubscriptionData.subscriptionsPlanId = it.plan.id.toString()
+            },
+            error = {
             }
         )
     }

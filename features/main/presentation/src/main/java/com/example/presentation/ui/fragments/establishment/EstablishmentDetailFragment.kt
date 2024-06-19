@@ -55,7 +55,6 @@ class EstablishmentDetailFragment :
                 tvName.text = it.name
                 tvAddress.text = it.address
                 tvDesc.text = it.description
-                tvLocation.text = it.location.type
                 tvPhoneNumber.text = it.phoneNumber
                 tvTitleHappyHoursTime.text =
                     getString(com.example.core_ui.R.string.happy_time) + " " + happyHoursStart.format(
@@ -73,7 +72,7 @@ class EstablishmentDetailFragment :
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.menu_tab_title)
-                1 -> tab.text = getString(R.string.feedback_tab_title) + " " + feedbackCount
+                1 -> tab.text = getString(R.string.feedback_tab_title) + " (" + feedbackCount + ")"
             }
         }.attach()
     }
