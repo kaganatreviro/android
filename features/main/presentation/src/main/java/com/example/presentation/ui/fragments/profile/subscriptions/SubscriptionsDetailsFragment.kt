@@ -14,13 +14,14 @@ import com.example.domain.models.BuySubscriptionResponse
 import com.example.domain.models.Plan
 import com.example.presentation.databinding.FragmentSubscriptionsDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SubscriptionsDetailsFragment :
     BaseFragment<FragmentSubscriptionsDetailsBinding, SubscriptionsViewModel>(),
     SubscriptionAdapter.ItemClickListener {
 
     override fun getViewBinding() = FragmentSubscriptionsDetailsBinding.inflate(layoutInflater)
-    override val viewModel by activityViewModel<SubscriptionsViewModel>()
+    override val viewModel by viewModel<SubscriptionsViewModel>()
     private lateinit var adapter: SubscriptionAdapter
     private var planId: Int = 0
     private var planPrice: Double = 0.0
@@ -83,6 +84,7 @@ class SubscriptionsDetailsFragment :
                         paypalUrl
                     )
                 )
+                viewModel.resetBuySubscriptionPlanState()
             },
             error = {
                 showSimpleDialog("", it)

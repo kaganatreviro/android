@@ -37,4 +37,8 @@ class SubscriptionsViewModel(
     fun getFreeTrialPlan(id: BuySubscription){
         getFreeTrialPlanUserCase(id).gatherRequest(_getFreeTrialPlanState)
     }
+
+    fun resetBuySubscriptionPlanState() {
+        _buySubscriptionPlanByIdState.reset()
+    }
 }
