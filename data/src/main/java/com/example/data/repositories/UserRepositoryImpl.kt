@@ -43,4 +43,8 @@ class UserRepositoryImpl(
         it.printStackTrace()
         emit(Either.Left(value = it.message ?: "Unknown error"))
     }
+
+    override fun getUserEmail(): String? {
+        return tokenPrefs.userEmail
+    }
 }

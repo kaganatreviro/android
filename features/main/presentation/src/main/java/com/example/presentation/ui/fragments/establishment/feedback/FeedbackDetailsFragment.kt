@@ -3,6 +3,7 @@ package com.example.presentation.ui.fragments.establishment.feedback
 import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -39,6 +40,8 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupView() {
+        binding.etInputAnswer.isVisible = getUserEmail() == args.feedback.user
+        binding.btnSend.isVisible = getUserEmail() == args.feedback.user
         val formatter: DateTimeFormatter =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX")
         val displayFormatter: DateTimeFormatter =
@@ -47,6 +50,10 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
         binding.tvPostTime.text = dateTime.format(displayFormatter)
         binding.tvUserName.text = args.feedback.displayUser
         binding.tvFeedback.text = args.feedback.text
+    }
+
+    private fun getUserEmail(): String? {
+        return viewModel.getUserEmail()
     }
 
     override fun setupListeners() {
@@ -62,7 +69,7 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
             success = {
                 if (it.isEmpty()) {
                     binding.tvAnswers.isVisible = false
-                }else {
+                } else {
                     binding.tvAnswers.isVisible = true
                     adapter.items = it.toMutableList()
                     adapter.notifyDataSetChanged()
