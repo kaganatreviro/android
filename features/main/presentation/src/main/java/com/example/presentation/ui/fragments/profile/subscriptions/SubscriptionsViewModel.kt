@@ -31,7 +31,7 @@ class SubscriptionsViewModel(
     }
 
     fun buySubscriptionPlanById(id: Int){
-        buySubscriptionPlanByIdUserCase(id).gatherRequest(_buySubscriptionPlanByIdState)
+        buySubscriptionPlanByIdUserCase(id).gatherRequest(_buySubscriptionPlanByIdState, true)
     }
 
     fun getFreeTrialPlan(id: BuySubscription){

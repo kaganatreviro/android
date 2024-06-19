@@ -84,7 +84,6 @@ class SubscriptionsDetailsFragment :
                         paypalUrl
                     )
                 )
-                viewModel.resetBuySubscriptionPlanState()
             },
             error = {
                 showSimpleDialog("", it)
