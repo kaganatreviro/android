@@ -3,7 +3,6 @@ package com.example.presentation.ui.fragments.home
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -39,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
 
     override fun initialize() {
         binding.swipeRef.setOnRefreshListener {
+            binding.swipeRef.isRefreshing = false
             getEstablishmentList()
         }
     }
@@ -55,12 +55,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateNewUiState(
             success = {
-                binding.swipeRef.isRefreshing = false
                 adapter.items = it.toMutableList()
                 adapter.notifyDataSetChanged()
             },
             error = {
-                binding.swipeRef.isRefreshing = false
                 when(it) {
                     is NetworkError.AuthApi -> {
                         if (it.errorResponse.code == 401) {
@@ -82,8 +80,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
                 subscriptionsPlanId = it.plan.id
-                binding.tvSubsStatusValue.isEnabled = true
-                binding.tvSubsStatusValue.isVisible = true
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
@@ -93,9 +89,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 subscriptionEndDate = ""
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_inactive)
-                binding.tvSubsStatusValue.isEnabled = false
-                binding.tvSubsStatusValue.isVisible = true
-
             }
         )
     }

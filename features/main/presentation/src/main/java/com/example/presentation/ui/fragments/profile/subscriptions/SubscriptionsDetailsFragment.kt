@@ -19,8 +19,8 @@ class SubscriptionsDetailsFragment :
     BaseFragment<FragmentSubscriptionsDetailsBinding, SubscriptionsViewModel>(),
     SubscriptionAdapter.ItemClickListener {
 
-    override val viewModel by activityViewModel<SubscriptionsViewModel>()
     override fun getViewBinding() = FragmentSubscriptionsDetailsBinding.inflate(layoutInflater)
+    override val viewModel by activityViewModel<SubscriptionsViewModel>()
     private lateinit var adapter: SubscriptionAdapter
     private var planId: Int = 0
     private var planPrice: Double = 0.0
