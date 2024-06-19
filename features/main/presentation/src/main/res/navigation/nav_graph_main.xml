@@ -20,6 +20,7 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.presentation.ui.fragments.profile.ProfileFragment"
@@ -41,6 +42,7 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/profileFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/QRScannerFragment"
         android:name="com.example.presentation.ui.fragments.qr_scranner.QRScannerFragment"
@@ -63,6 +65,7 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/QRScannerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.presentation.ui.fragments.home.HomeFragment"
@@ -77,6 +80,7 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/establishmentDetailFragment"
         android:name="com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragment"
@@ -105,25 +109,19 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/establishmentDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.presentation.ui.fragments.profile.edit_profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
-    <fragment
-        android:id="@+id/beverageDetailsFragment"
-        android:name="com.example.presentation.ui.fragments.beveage.BeverageDetailsFragment"
-        android:label="fragment_beverage_details"
-        tools:layout="@layout/fragment_beverage_details" >
-        <argument
-            android:name="beverage_id"
-            app:argType="integer" />
-    </fragment>
+
     <fragment
         android:id="@+id/orderHistoryFragment"
         android:name="com.example.presentation.ui.fragments.order.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" />
+
     <fragment
         android:id="@+id/feedbackDetailsFragment"
         android:name="com.example.presentation.ui.fragments.establishment.feedback.FeedbackDetailsFragment"
@@ -133,6 +131,7 @@
             android:name="feedback"
             app:argType="com.example.domain.models.Feedback" />
     </fragment>
+
     <fragment
         android:id="@+id/subscriptionsDetailsFragment"
         android:name="com.example.presentation.ui.fragments.profile.subscriptions.SubscriptionsDetailsFragment"
@@ -147,6 +146,7 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/subscriptionsDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.presentation.ui.fragments.profile.subscriptions.WebViewFragment"
@@ -155,4 +155,15 @@
             android:name="Url"
             app:argType="com.example.domain.models.BuySubscriptionResponse" />
     </fragment>
+
+    <dialog
+        android:id="@+id/beverageDetailsFragment"
+        android:name="com.example.presentation.ui.fragments.beveage.BeverageDetailsBottomSheet"
+        android:label="fragment_beverage_details"
+        tools:layout="@layout/bottom_sheet_beverage_details" >
+        <argument
+            android:name="beverage_id"
+            app:argType="integer" />
+    </dialog>
+
 </navigation>
