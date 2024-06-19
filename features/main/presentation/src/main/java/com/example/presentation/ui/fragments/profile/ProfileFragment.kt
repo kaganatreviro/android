@@ -1,6 +1,5 @@
 package com.example.presentation.ui.fragments.profile
 
-import android.util.Log
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -14,6 +13,7 @@ import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
@@ -93,7 +93,6 @@ class ProfileFragment :
             .show()
     }
 
-
     override fun launchObservers() {
         viewModel.userState.spectateNewUiState (
             success = { user ->
@@ -116,11 +115,12 @@ class ProfileFragment :
         )
 
         viewModel.checkSubscriptionStatusState.spectateUiState(
+            showLoader = false,
             success = {
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
-                SubscriptionData.subscriptionsPlanId = it.plan.id
+                subscriptionsPlanId = it.plan.id
             },
             error = {
                 subscriptionStatus = false
