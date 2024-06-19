@@ -1,5 +1,6 @@
 package com.example.presentation.ui.fragments.profile
 
+import android.util.Log
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -9,6 +10,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.core.Constants
+import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
@@ -91,13 +93,15 @@ class ProfileFragment :
             .show()
     }
 
+
     override fun launchObservers() {
-        viewModel.userState.spectateUiState(
+        viewModel.userState.spectateNewUiState (
             success = { user ->
                 setUserData(user)
             },
             error = {
-                showShortToast(it)
+                if (it is NetworkError.Api)
+                    showShortToast(it.error)
             }
         )
 

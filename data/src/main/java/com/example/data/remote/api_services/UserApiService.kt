@@ -4,6 +4,7 @@ import com.example.data.remote.dto.LogoutRequestDto
 import com.example.data.remote.dto.UserDto
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -14,7 +15,7 @@ import retrofit2.http.Part
 interface UserApiService {
 
     @GET(GET_USER_ENDPOINT)
-    suspend fun getUser(): UserDto
+    suspend fun getUser(): Response<UserDto>
 
     @Multipart
     @PUT(UPDATE_USER_DATA_ENDPOINT)
@@ -22,7 +23,7 @@ interface UserApiService {
         @Part("name") name: RequestBody?,
         @Part("date_of_birth") date: RequestBody?,
         @Part("avatar\"; filename = \"pp.png") imageFile: RequestBody?,
-    ): UserDto
+    ): Response<UserDto>
 
     @POST(LOGOUT_ENDPOINT)
     suspend fun logout(

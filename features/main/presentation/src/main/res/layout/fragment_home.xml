@@ -34,16 +34,6 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <Button
-        android:id="@+id/tv_subs_status_value"
-        android:layout_width="15dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="10dp"
-        android:visibility="gone"
-        android:backgroundTint="@drawable/color_selector_for_subscription"
-        app:layout_constraintStart_toEndOf="@+id/tv_subs_status_title"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_ref"
         android:layout_width="match_parent"
