@@ -81,17 +81,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
                 subscriptionsPlanId = it.plan.id.toString()
-                binding.tvSubsStatusValue.isEnabled = true
-                binding.tvSubsStatusValue.isVisible = true
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
                 binding.tvSubsStatusTitle.text =
                     resources.getString(com.example.core_ui.R.string.subs_status_inactive)
-                binding.tvSubsStatusValue.isEnabled = false
-                binding.tvSubsStatusValue.isVisible = true
-
             }
         )
     }
