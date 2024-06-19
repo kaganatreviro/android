@@ -9,17 +9,19 @@ import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.BuySubscription
 import com.example.domain.models.BuySubscriptionResponse
 import com.example.domain.models.Plan
 import com.example.presentation.databinding.FragmentSubscriptionsDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SubscriptionsDetailsFragment :
     BaseFragment<FragmentSubscriptionsDetailsBinding, SubscriptionsViewModel>(),
     SubscriptionAdapter.ItemClickListener {
 
-    override val viewModel by activityViewModel<SubscriptionsViewModel>()
     override fun getViewBinding() = FragmentSubscriptionsDetailsBinding.inflate(layoutInflater)
+    override val viewModel by viewModel<SubscriptionsViewModel>()
     private lateinit var adapter: SubscriptionAdapter
     private var planId: Int = 0
     private var planPrice: Double = 0.0
@@ -31,7 +33,7 @@ class SubscriptionsDetailsFragment :
         adapter = SubscriptionAdapter(
             this@SubscriptionsDetailsFragment,
             subscriptionStatus,
-            subscriptionsPlanId.toInt()
+            subscriptionsPlanId
         )
         rvPlans.adapter = adapter
         binding.btnSubscribe.isEnabled = false
@@ -50,8 +52,12 @@ class SubscriptionsDetailsFragment :
     }
 
     private fun buySubscription() {
-        if (planPrice > 0) viewModel.buySubscriptionPlanById(planId)
-        else viewModel.getFreeTrialPlan(planId)
+        if (planPrice > 0) {
+            viewModel.buySubscriptionPlanById(planId)
+        } else {
+            val param = BuySubscription(planId)
+            viewModel.getFreeTrialPlan(param)
+        }
     }
 
     private fun getSubscriptionPlan() {
@@ -100,5 +106,9 @@ class SubscriptionsDetailsFragment :
         planPrice = item.price.toDouble()
         adapter.selectItem(index)
         binding.btnSubscribe.isEnabled = true
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

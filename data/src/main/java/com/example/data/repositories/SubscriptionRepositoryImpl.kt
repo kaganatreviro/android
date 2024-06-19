@@ -5,9 +5,11 @@ import com.example.data.local.prefs.SubscriptionPrefs
 import com.example.data.remote.api_services.SubscriptionApiService
 import com.example.data.remote.dto.BuySubscriptionRequestDto
 import com.example.data.remote.dto.BuySubscriptionResponseDto
+import com.example.data.remote.dto.FreeTrialPlanResponseDto
 import com.example.data.remote.dto.toDto
 import com.example.domain.models.BuySubscription
 import com.example.domain.models.BuySubscriptionResponse
+import com.example.domain.models.FreeTrialPlanResponse
 import com.example.domain.models.OrderRequest
 import com.example.domain.models.OrderResponse
 import com.example.domain.models.Plan
@@ -33,8 +35,8 @@ class SubscriptionRepositoryImpl(
             apiService.buySubscription(planId).toDomain()
         }
 
-    override fun getFreeTrialPlan(planId: Int): Flow<Either<String, String>> =
+    override fun getFreeTrialPlan(planId: BuySubscription): Flow<Either<String, FreeTrialPlanResponse>> =
         makeNetworkRequest {
-            apiService.getFreeTrialPlan(planId)
+            apiService.getFreeTrialPlan(planId.toDto()).toDomain()
         }
 }

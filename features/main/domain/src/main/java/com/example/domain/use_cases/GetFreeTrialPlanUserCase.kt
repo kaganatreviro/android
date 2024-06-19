@@ -8,5 +8,5 @@ import com.example.domain.repositories.SubscriptionRepository
 class GetFreeTrialPlanUserCase(
     private val repository: SubscriptionRepository
 ) {
-    operator fun invoke(planId: Int) = repository.getFreeTrialPlan(planId)
+    operator fun invoke(planId: BuySubscription) = repository.getFreeTrialPlan(planId)
 }

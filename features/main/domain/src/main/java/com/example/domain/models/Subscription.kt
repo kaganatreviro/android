@@ -25,6 +25,12 @@ data class BuySubscription(
     val planId: Int
 )
 
+data class FreeTrialPlanResponse(
+    val status: String,
+    val subscriptionId: Int,
+    val endDate: String
+)
+
 data class BuySubscriptionResponse(
     val approvalUrl: String
 ):Serializable

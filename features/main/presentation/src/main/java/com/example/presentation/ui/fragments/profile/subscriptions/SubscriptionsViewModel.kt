@@ -1,7 +1,9 @@
 package com.example.presentation.ui.fragments.profile.subscriptions
 
 import com.example.core_ui.base.BaseViewModel
+import com.example.domain.models.BuySubscription
 import com.example.domain.models.BuySubscriptionResponse
+import com.example.domain.models.FreeTrialPlanResponse
 import com.example.domain.models.Plan
 import com.example.domain.use_cases.BuySubscriptionPlanByIdUserCase
 import com.example.domain.use_cases.GetFreeTrialPlanUserCase
@@ -14,7 +16,7 @@ class SubscriptionsViewModel(
     private val getFreeTrialPlanUserCase: GetFreeTrialPlanUserCase
 ): BaseViewModel() {
 
-    private val _getFreeTrialPlanState = mutableUiStateFlow<String>()
+    private val _getFreeTrialPlanState = mutableUiStateFlow<FreeTrialPlanResponse>()
     val getFreeTrialPlanState = _getFreeTrialPlanState.asStateFlow()
 
     private val _getSubscriptionPlanState = mutableUiStateFlow<List<Plan>>()
@@ -29,10 +31,14 @@ class SubscriptionsViewModel(
     }
 
     fun buySubscriptionPlanById(id: Int){
-        buySubscriptionPlanByIdUserCase(id).gatherRequest(_buySubscriptionPlanByIdState)
+        buySubscriptionPlanByIdUserCase(id).gatherRequest(_buySubscriptionPlanByIdState, true)
     }
 
-    fun getFreeTrialPlan(id: Int){
+    fun getFreeTrialPlan(id: BuySubscription){
         getFreeTrialPlanUserCase(id).gatherRequest(_getFreeTrialPlanState)
+    }
+
+    fun resetBuySubscriptionPlanState() {
+        _buySubscriptionPlanByIdState.reset()
     }
 }
