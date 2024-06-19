@@ -13,7 +13,6 @@ import com.example.domain.models.BuySubscription
 import com.example.domain.models.BuySubscriptionResponse
 import com.example.domain.models.Plan
 import com.example.presentation.databinding.FragmentSubscriptionsDetailsBinding
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SubscriptionsDetailsFragment :

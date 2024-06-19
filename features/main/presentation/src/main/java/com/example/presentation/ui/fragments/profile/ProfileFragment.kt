@@ -13,6 +13,7 @@ import com.example.core.either.NetworkError
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionEndDate
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanId
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.core_ui.extensions.showShortToast
@@ -32,6 +33,11 @@ class ProfileFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initialize() {
+        setupView()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setupView() {
         if (subscriptionStatus) {
             binding.containerSubscription.isVisible = true
             binding.containerSubscriptionEmpty.isVisible = false
@@ -58,7 +64,7 @@ class ProfileFragment :
         tvSubsDeadline.text = "Valid through $subscriptionEndDateTime"
     }
 
-    private fun checkSubscriptionStatus(){
+    private fun checkSubscriptionStatus() {
         viewModel.checkSubscriptionStatus()
     }
 
@@ -88,6 +94,7 @@ class ProfileFragment :
             .setMessage("Are you sure you want to Log Out?")
             .setTitle("Exit")
             .setPositiveButton("Yes") { dialog, which ->
+                clearData()
                 dialog.dismiss()
                 viewModel.logout()
             }
@@ -97,9 +104,16 @@ class ProfileFragment :
             .show()
     }
 
+    private fun clearData(){
+        subscriptionsPlanId = 0
+        subscriptionStatus = false
+        subscriptionEndDate = ""
+        subscriptionsPlanName = ""
+    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun launchObservers() {
-        viewModel.userState.spectateNewUiState (
+        viewModel.userState.spectateNewUiState(
             success = { user ->
                 setUserData(user)
             },
@@ -125,7 +139,8 @@ class ProfileFragment :
                 subscriptionStatus = it.isActive
                 subscriptionsPlanName = it.plan.name
                 subscriptionEndDate = it.endDate
-                SubscriptionData.subscriptionsPlanId = it.plan.id
+                subscriptionsPlanId = it.plan.id
+                setupView()
             },
             error = {
                 subscriptionStatus = false

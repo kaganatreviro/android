@@ -26,14 +26,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override val viewModel by viewModel<HomeViewModel>()
     private lateinit var adapter: EstablishmentAdapter
 
+    @SuppressLint("SuspiciousIndentation")
     override fun setupListeners() = with(binding) {
         rvRestList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = EstablishmentAdapter(this@HomeFragment)
         rvRestList.adapter = adapter
         getEstablishmentList()
-        if (!subscriptionStatus)
-        checkSubscriptionStatus()
+        setupView()
+    }
+
+    private fun setupView(){
+        if (subscriptionStatus) {
+            binding.tvSubsStatusTitle.text =
+                resources.getString(com.example.core_ui.R.string.subs_status_active)
+        }else{
+            checkSubscriptionStatus()
+        }
     }
 
     override fun initialize() {
@@ -84,11 +93,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
                 subscriptionStatus = false
                 subscriptionsPlanName = ""
                 subscriptionEndDate = ""
-                binding.tvSubsStatusTitle.text =
-                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
             }
         )
     }

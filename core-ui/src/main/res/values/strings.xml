@@ -17,7 +17,7 @@
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status_active">Subscription is active 🟢</string>
+    <string name="subs_status_active">Your subscription is active 🟢</string>
     <string name="subs_status_inactive">You do not have an active subscription. 🔴</string>
     <string name="none_account">
         New Member?
