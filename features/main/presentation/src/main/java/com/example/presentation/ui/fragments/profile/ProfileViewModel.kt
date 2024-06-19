@@ -19,7 +19,7 @@ class ProfileViewModel(
     private val checkSubscriptionStatusUserCase: CheckSubscriptionStatusUserCase
 ): BaseViewModel() {
 
-    private val _userState = mutableUiStateFlow<User>()
+    private val _userState = mutableNewUiStateFlow<User>()
     val userState = _userState.asStateFlow()
 
     private val _userLogoutState = mutableUiStateFlow<Unit>()
@@ -37,12 +37,12 @@ class ProfileViewModel(
     }
 
     private fun getUser() {
-        getUserUseCase().gatherRequest(_userState)
+        getUserUseCase().newGatherRequest(_userState)
     }
 
     fun updateData(name: String? = null, date: String? = null, avatar: File? = null) {
         updateUserDataUseCase(UpdateUserDataRequest(name, date, avatar))
-            .gatherRequest(_userState)
+            .newGatherRequest(_userState)
     }
 
     fun logout() {

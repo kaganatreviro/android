@@ -12,10 +12,12 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.R
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.FragmentNavigator
+import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
+import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.dm7.barcodescanner.zbar.Result
@@ -29,13 +31,6 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     private lateinit var zbScanner: ZBarScannerView
     private lateinit var pLauncher: ActivityResultLauncher<String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (!subscriptionStatus){
-            showSubscriptionDialog(resources.getString(com.example.core_ui.R.string.no_subscription_in_scanner))
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,13 +40,16 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
         return zbScanner.rootView
     }
 
-    private fun showSubscriptionDialog(message: String){
-        MaterialAlertDialogBuilder(requireContext(),
-            R.style.AlertDialog_AppCompat)
+    private fun showSubscriptionDialog(message: String) {
+        MaterialAlertDialogBuilder(
+            requireContext(),
+            R.style.AlertDialog_AppCompat
+        )
             .setMessage(message)
             .setTitle("No Subscription")
-            .setNegativeButton("Not Now"){ dialog, which ->
+            .setNegativeButton("Not Now") { dialog, which ->
                 dialog.dismiss()
+                findNavController().popBackStack()
             }
             .setPositiveButton("Chose a Plan") { dialog, which ->
                 findNavController().navigate(QRScannerFragmentDirections.actionQRScannerFragmentToSubscriptionsDetailsFragment())
@@ -61,8 +59,12 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun setupListeners() {
-        registPermissionListener()
-        checkCameraPermission()
+        if (!subscriptionStatus) {
+            showSubscriptionDialog(resources.getString(com.example.core_ui.R.string.no_subscription_in_scanner))
+        } else {
+            registPermissionListener()
+            checkCameraPermission()
+        }
     }
 
     override fun onResume() {
@@ -77,7 +79,17 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     }
 
     override fun handleResult(result: Result?) {
-        val param = result?.contents!!.toInt()
+
+        if (result?.contents?.isDigitsOnly() == true) {
+            val param = result.contents!!.toInt()
+            navigateToMenu(param)
+        } else {
+            showSimpleDialog("", "QR not recognized!")
+            zbScanner.resumeCameraPreview(this)
+        }
+    }
+
+    private fun navigateToMenu(param: Int) {
         findNavController().navigate(
             QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
                 param, true

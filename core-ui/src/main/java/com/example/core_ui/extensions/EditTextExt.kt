@@ -1,15 +1,10 @@
 package com.example.core_ui.extensions
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.fragment.app.Fragment
+import java.time.LocalDate
 import java.util.Calendar
 
 fun EditText.setupDateTextWatcher() {
@@ -41,7 +36,13 @@ fun EditText.setupDateTextWatcher() {
 
                     mon = if (mon < 1) 1 else if (mon > 12) 12 else mon
                     cal.set(Calendar.MONTH, mon - 1)
-                    year = if (year < 1900) 1900 else if (year > 2100) 2100 else year
+                    val maxYear = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        LocalDate.now().year
+                    } else {
+                        Calendar.getInstance().get(Calendar.YEAR)
+                    }
+                    val minYear = maxYear - 100
+                    year = if (year < minYear) minYear else if (year > maxYear) maxYear else year
                     cal.set(Calendar.YEAR, year)
 
                     day = if (day > cal.getActualMaximum(Calendar.DATE)) cal.getActualMaximum(
