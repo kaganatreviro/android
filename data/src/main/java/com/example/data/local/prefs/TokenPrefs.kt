@@ -24,6 +24,12 @@ class TokenPrefs(private val context: Context) {
             setTokenByKey(REFRESH_TOKEN_KEY, value)
         }
 
+    var userEmail: String?
+        get() = getTokenByKey(USER_EMAIL_KEY)
+        set(value) {
+            setTokenByKey(USER_EMAIL_KEY, value)
+        }
+
     private fun getTokenByKey(key: String): String? =
         sharedPreferences.getString(key, null)
 
@@ -43,5 +49,6 @@ class TokenPrefs(private val context: Context) {
     companion object {
         const val ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
         const val REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY"
+        const val USER_EMAIL_KEY = "REFRESH_TOKEN_KEY"
     }
 }

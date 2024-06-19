@@ -11,4 +11,5 @@ interface UserRepository {
     fun getUser(): Flow<Either<String, User>>
     fun updateUserData(userData: UpdateUserDataRequest): Flow<Either<String, User>>
     fun logout(): Flow<Either<String, Unit>>
+    fun getUserEmail(): String?
 }

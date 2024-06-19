@@ -24,6 +24,7 @@ class AuthRepositoryImpl(
             authApiService.userLogin(userData.toDto()).also {
                 tokenPrefs.access = it.access
                 tokenPrefs.refresh = it.refresh
+                tokenPrefs.userEmail = userData.email
             }
         }
 
@@ -32,6 +33,7 @@ class AuthRepositoryImpl(
             authApiService.userRegister(userData.toDto()).toDomain().also {
                 tokenPrefs.access = it.tokens.access
                 tokenPrefs.refresh = it.tokens.refresh
+                tokenPrefs.userEmail = userData.email
             }
         }
 
