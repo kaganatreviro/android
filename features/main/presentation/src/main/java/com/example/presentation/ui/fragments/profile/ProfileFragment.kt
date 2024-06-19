@@ -21,14 +21,15 @@ import com.example.domain.models.User
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentProfileBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class ProfileFragment :
     BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
+
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
-    override val viewModel by activityViewModel<ProfileViewModel>()
+    override val viewModel by viewModel<ProfileViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initialize() {
@@ -41,6 +42,10 @@ class ProfileFragment :
             binding.containerSubscriptionEmpty.isVisible = true
             checkSubscriptionStatus()
         }
+    }
+
+    override fun fetchData() {
+        viewModel.getUser()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -1,79 +1,64 @@
 package com.example.core_ui.base
 
+import android.app.Dialog
+import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.example.core.either.NetworkError
-import com.example.core_ui.extensions.setupUIToHideKeyboardOnTouch
 import com.example.core_ui.ui.NewUIState
 import com.example.core_ui.ui.UIState
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
-    Fragment() {
+abstract class BaseBottomSheetDialogFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
+    @LayoutRes private val layoutId: Int
+) : BottomSheetDialogFragment() {
 
-    lateinit var binding: VB
-    protected abstract val viewModel: VM
-    private lateinit var callback: OnBackPressedCallback
-    open var backPressedTime: Long = 0
-    open val doubleBackPressInterval = 2000
+    protected abstract val binding: Binding
+    protected abstract val viewModel: ViewModel
 
-    object SubscriptionData {
-        var subscriptionStatus: Boolean = false
-        lateinit var subscriptionEndDate: String
-        var subscriptionsPlanId: Int = 0
-        lateinit var subscriptionsPlanName: String
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.setOnShowListener { setupBottomSheetBackgroundTransparent(it) }
+        return dialog
     }
 
-    protected abstract fun getViewBinding(): VB
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = getViewBinding()
+    private fun setupBottomSheetBackgroundTransparent(dialogInterface: DialogInterface) {
+        val bottomSheetDialog = dialogInterface as BottomSheetDialog
+        val bottomSheet = bottomSheetDialog.findViewById<View>(
+            com.google.android.material.R.id.design_bottom_sheet
+        ) ?: return
+        bottomSheet.setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return binding.root
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(layoutId, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupUIToHideKeyboardOnTouch(view)
+    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initialize()
         setupListeners()
-        fetchData()
         launchObservers()
     }
 
     protected open fun initialize() {}
     protected open fun setupListeners() {}
-    protected open fun fetchData() {}
     protected open fun launchObservers() {}
-    protected open fun onBackPressed() {}
-
-    private fun setBackButtonDispatcher() {
-        callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                onBackPressed()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
 
     protected fun <T> StateFlow<UIState<T>>.spectateUiState(
-        showLoader: Boolean = true,
         lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
         success: ((data: T) -> Unit)? = null,
         loading: ((data: UIState.Loading<T>) -> Unit)? = null,
@@ -85,20 +70,14 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
                 when (it) {
                     is UIState.Idle -> idle?.invoke(it)
                     is UIState.Loading -> {
-                        if (showLoader)
-                            showLoading()
                         loading?.invoke(it)
                     }
 
                     is UIState.Error -> {
-                        if (showLoader)
-                            hideLoading()
                         error?.invoke(it.error)
                     }
 
                     is UIState.Success -> {
-                        if (showLoader)
-                            hideLoading()
                         success?.invoke(it.data)
                     }
                 }
@@ -107,7 +86,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
     }
 
     protected fun <T> StateFlow<NewUIState<T>>.spectateNewUiState(
-        showLoader: Boolean = true,
         lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
         success: ((data: T) -> Unit)? = null,
         loading: ((data: NewUIState.Loading<T>) -> Unit)? = null,
@@ -117,26 +95,16 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
         safeFlowGather(lifecycleState) {
             collect {
                 when (it) {
-                    is NewUIState.Idle -> {
-                        if (showLoader)
-                            hideLoading()
-                        idle?.invoke(it)
-                    }
+                    is NewUIState.Idle -> idle?.invoke(it)
                     is NewUIState.Loading -> {
-                        if (showLoader)
-                            showLoading()
                         loading?.invoke(it)
                     }
 
                     is NewUIState.Error -> {
-                        if (showLoader)
-                            hideLoading()
                         error?.invoke(it.error)
                     }
 
                     is NewUIState.Success -> {
-                        if (showLoader)
-                            hideLoading()
                         success?.invoke(it.data)
                     }
                 }
@@ -153,13 +121,5 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> :
                 gather()
             }
         }
-    }
-
-    private fun showLoading() {
-        requireActivity().supportFragmentManager.showLoading()
-    }
-
-    private fun hideLoading() {
-        requireActivity().supportFragmentManager.hideLoading()
     }
 }

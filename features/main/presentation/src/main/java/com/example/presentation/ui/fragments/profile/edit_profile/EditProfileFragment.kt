@@ -22,14 +22,15 @@ import com.example.domain.models.User
 import com.example.presentation.databinding.FragmentEditProfileBinding
 import com.example.presentation.ui.fragments.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.getScopeName
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileViewModel>() {
+class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfileViewModel>() {
 
-    override val viewModel by activityViewModel<ProfileViewModel>()
+    override val viewModel by viewModel<EditProfileViewModel>()
     override fun getViewBinding() = FragmentEditProfileBinding.inflate(layoutInflater)
 
     private var imageFile: File? = null
