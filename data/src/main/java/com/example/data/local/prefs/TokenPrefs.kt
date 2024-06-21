@@ -49,6 +49,6 @@ class TokenPrefs(private val context: Context) {
     companion object {
         const val ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
         const val REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY"
-        const val USER_EMAIL_KEY = "REFRESH_TOKEN_KEY"
+        const val USER_EMAIL_KEY = "USER_EMAIL_KEY"
     }
 }
