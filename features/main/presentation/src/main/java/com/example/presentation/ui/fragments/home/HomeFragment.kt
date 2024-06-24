@@ -45,6 +45,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupView()
+    }
+
     override fun initialize() {
         binding.swipeRef.setOnRefreshListener {
             binding.swipeRef.isRefreshing = false
