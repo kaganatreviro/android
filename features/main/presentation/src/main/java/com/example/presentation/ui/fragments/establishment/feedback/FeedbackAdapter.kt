@@ -78,7 +78,7 @@ class FeedbackAdapter(private val listItems: MutableList<Feedback>, private val 
                 binding.tvPostTime.text = dateTime.format(displayFormatter)
                 binding.tvFeedback.text = item.text
                 binding.tvReplied.isVisible = item.answers > 0
-                binding.tvReplied.text = "Answers: " + item.answers
+                binding.tvReplied.text = "Replies: " + item.answers
             }
         }
 

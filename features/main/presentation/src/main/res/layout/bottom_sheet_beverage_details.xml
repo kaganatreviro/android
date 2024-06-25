@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="category:"
+                    android:text="Category:"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="status:"
+                    android:text="Status:"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -126,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="establishment:"
+                    android:text="Establishment:"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
