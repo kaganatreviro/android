@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_for_edit_text"
-                    android:hint="Date of birth"
+                    android:hint="Date of Birth"
                     android:inputType="date"
                     android:paddingVertical="20dp"
                     android:paddingStart="20dp" />

@@ -92,7 +92,7 @@ class ProfileFragment :
             androidx.appcompat.R.style.AlertDialog_AppCompat
         )
             .setMessage("Are you sure you want to Log Out?")
-            .setTitle("Exit")
+            .setTitle("Log Out")
             .setPositiveButton("Yes") { dialog, which ->
                 clearData()
                 dialog.dismiss()

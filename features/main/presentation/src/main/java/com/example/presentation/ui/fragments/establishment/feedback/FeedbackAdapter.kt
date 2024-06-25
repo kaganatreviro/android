@@ -8,15 +8,16 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.Feedback
 import com.example.presentation.databinding.ItemFeedbackBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
+class FeedbackAdapter(private val listItems: MutableList<Feedback>, private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var items: MutableList<Feedback> = mutableListOf()
+    private val items = listItems
 
     interface ItemClickListener {
         fun onItemClick(feedback: Feedback, answers: Int)

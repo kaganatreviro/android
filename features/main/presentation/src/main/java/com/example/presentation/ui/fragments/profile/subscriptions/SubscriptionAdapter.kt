@@ -33,7 +33,7 @@ class SubscriptionAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
             0 -> EmptyHolder.create(parent)
-            1 -> Holder.create(parent, clickListener)
+            1 -> Holder.create(parent, clickListener, ::selectItem)
             else -> throw IllegalStateException("Unknown view")
         }
 
@@ -64,7 +64,7 @@ class SubscriptionAdapter(
         }
     }
 
-    class Holder private constructor(private val binding: ItemSubscriptionPlanBinding) :
+    class Holder private constructor(private val binding: ItemSubscriptionPlanBinding, private val selectItem: (Int) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         lateinit var item: Plan
@@ -96,15 +96,20 @@ class SubscriptionAdapter(
                 binding.tvPriceAndDuration.text = item.price + " KGS / " + item.duration
                 binding.tvPlanDesc.text = item.description
             }
+
+            itemView.setOnClickListener {
+                selectItem(position)
+            }
         }
 
         companion object {
-            fun create(parent: ViewGroup, clickListener: ItemClickListener): Holder {
+            fun create(parent: ViewGroup, clickListener: ItemClickListener, selectItem: (Int) -> Unit): Holder {
                 val binding = ItemSubscriptionPlanBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
-                return Holder(binding).apply {
+                return Holder(binding, selectItem).apply {
                     itemView.setOnClickListener {
                         clickListener.onItemClick(item, index)
+                        selectItem(index)
                     }
                 }
             }

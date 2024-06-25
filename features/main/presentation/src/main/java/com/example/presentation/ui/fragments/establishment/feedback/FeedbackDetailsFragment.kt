@@ -25,14 +25,12 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     override fun getViewBinding() = FragmentFeedbackDetailsBinding.inflate(layoutInflater)
     override val viewModel by viewModel<FeedbackViewModel>()
     private val args: FeedbackDetailsFragmentArgs by navArgs()
-    lateinit var adapter: FeedbackAdapter
+    private var adapter: FeedbackAdapter? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initialize(): Unit = with(binding) {
         rvFeedbackAnswer.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = FeedbackAdapter(this@FeedbackDetailsFragment)
-        rvFeedbackAnswer.adapter = adapter
 
         setupView()
         getFeedbackAnswer()
@@ -67,25 +65,24 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     override fun launchObservers() {
         viewModel.feedbackAnswersState.spectateUiState(
             success = {
-                if (it.isEmpty()) {
-                    binding.tvAnswers.isVisible = false
-                } else {
-                    binding.tvAnswers.isVisible = true
-                    adapter.items = it.toMutableList()
-                    adapter.notifyDataSetChanged()
-                }
+                adapter = FeedbackAdapter(it.toMutableList(), this@FeedbackDetailsFragment)
+                binding.rvFeedbackAnswer.adapter = adapter
+                adapter!!.notifyDataSetChanged()
             },
-            error = {
+            error =
+            {
                 showSimpleDialog(it, "")
             }
         )
 
         viewModel.postFeedbackInAnswersState.spectateUiState(
-            success = {
+            success =
+            {
                 getFeedbackAnswer()
                 binding.etInputAnswer.text?.clear()
             },
-            error = {
+            error =
+            {
                 showSimpleDialog(it, "")
             }
         )

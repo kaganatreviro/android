@@ -38,10 +38,10 @@ class ExpandableTextView @JvmOverloads constructor(
 
     @SuppressLint("SetTextI18n")
     private fun updateTextView() {
-        if (isExpanded) {
-            maxLines = Integer.MAX_VALUE
+        maxLines = if (isExpanded) {
+            Integer.MAX_VALUE
         } else {
-            maxLines = collapsedMaxLines
+            collapsedMaxLines
         }
     }
 }
