@@ -5,7 +5,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.presentation.ui.fragments.establishment.feedback.FeedbackFragment
 import com.example.presentation.ui.fragments.establishment.menu.MenuFragment
 
-class EstbDetPagerAdapter(private val args: EstablishmentDetailFragmentArgs, fragment: Fragment) : FragmentStateAdapter(fragment) {
+class EstbDetPagerAdapter(
+    private val args: EstablishmentDetailFragmentArgs, fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {

@@ -2,6 +2,7 @@ package com.example.presentation.ui.fragments.order
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
@@ -41,6 +42,7 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding, OrderHist
             success = {
                 orderAdapter.submitList(it)
                 orderAdapter.notifyDataSetChanged()
+                binding.tvEmptyTitle.isVisible = it.isEmpty()
             },
             error = {
                 showShortToast(it)

@@ -9,6 +9,7 @@ data class EstablishmentDetails(
     val description: String,
     val phoneNumber: String?,
     val logo: String,
+    val email: String?,
     val address: String?,
     val happyHoursStart: String,
     val happyHoursEnd: String,

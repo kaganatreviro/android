@@ -3,7 +3,6 @@ package com.example.presentation.ui.fragments.establishment
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core_ui.R
@@ -56,6 +55,7 @@ class EstablishmentDetailFragment :
                 tvAddress.text = it.address
                 tvDesc.text = it.description
                 tvPhoneNumber.text = it.phoneNumber
+                tvEmail.text = it.email
                 tvTitleHappyHoursTime.text =
                     getString(com.example.core_ui.R.string.happy_time) + " " + happyHoursStart.format(
                         formatterWithoutSeconds

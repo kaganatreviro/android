@@ -24,14 +24,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     EstablishmentAdapter.ItemClickListener {
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
     override val viewModel by viewModel<HomeViewModel>()
-    private lateinit var adapter: EstablishmentAdapter
+    private var adapter: EstablishmentAdapter? = null
+    private lateinit var listItems: MutableList<EstablishmentDetails>
 
     @SuppressLint("SuspiciousIndentation")
     override fun setupListeners() = with(binding) {
         rvRestList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = EstablishmentAdapter(this@HomeFragment)
-        rvRestList.adapter = adapter
         getEstablishmentList()
         setupView()
     }
@@ -69,8 +68,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateNewUiState(
             success = {
-                adapter.items = it.toMutableList()
-                adapter.notifyDataSetChanged()
+                listItems = it.toMutableList()
+                adapter = EstablishmentAdapter(listItems, this)
+                binding.rvRestList.adapter = adapter
+                adapter!!.notifyDataSetChanged()
             },
             error = {
                 when(it) {

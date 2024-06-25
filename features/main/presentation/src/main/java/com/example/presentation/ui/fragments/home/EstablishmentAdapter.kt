@@ -11,13 +11,12 @@ import com.example.core_ui.extensions.loadImageWithGlide
 import com.example.domain.models.EstablishmentDetails
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
-import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class EstablishmentAdapter(private val clickListener: ItemClickListener) :
+class EstablishmentAdapter(private val listItems: MutableList<EstablishmentDetails>, private val clickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var items: MutableList<EstablishmentDetails> = mutableListOf()
+    private val items = listItems
 
     interface ItemClickListener {
         fun onItemClick(item: EstablishmentDetails, index: Int)
