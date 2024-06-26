@@ -1,18 +1,17 @@
 # Happy Hours
 ## Table of Contents
 
- - [Introduction]()
- - [Background]()
- - [Purpose]()
-- [Features]()
-- [Installation]()
-- [Usage]()
-- [Configuration]()
-- [Screenshots]()
-- [Technologies Used]()
-- [Contributing]()
-- [License]()
-- [Contact]()
+- [Introduction](https://github.com/kaganatreviro/android/tree/main#introduction)
+- [Background](https://github.com/kaganatreviro/android/tree/main#background)
+- [Purpose](https://github.com/kaganatreviro/android/tree/main#purpose)
+- [Features](https://github.com/kaganatreviro/android/tree/main#features)
+- [Installation](https://github.com/kaganatreviro/android/tree/main#installation)
+- [Usage](https://github.com/kaganatreviro/android/tree/main#usage)
+- [Configuration](https://github.com/kaganatreviro/android/tree/main#configuration)
+- [Screenshots](https://github.com/kaganatreviro/android/tree/main?tab=readme-ov-file#screenshots)
+- [Technologies Used](https://github.com/kaganatreviro/android/tree/main?tab=readme-ov-file#technologies-used)
+- [Contributing](https://github.com/kaganatreviro/android/tree/main#contributing)
+
 
 ## Introduction
 In response to the prevalent issue faced by many restaurants and cafes during off-peak hours, the concept of a "happy hour" or discounted beverage offerings might become a popular strategy for attracting customers. This document outlines a specialized approach to this concept, focusing on providing users with access to free beverages during designated times.
