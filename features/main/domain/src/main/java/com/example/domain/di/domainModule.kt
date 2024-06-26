@@ -15,6 +15,7 @@ import com.example.domain.use_cases.GetEstablishmentFeedbackListUseCase
 import com.example.domain.use_cases.PostFeedbackUseCase
 import com.example.domain.use_cases.GetFeedbackAnswersUseCase
 import com.example.domain.use_cases.PostFeedbackInAnswersUseCase
+import com.example.domain.use_cases.GetUserEmailUseCase
 import com.example.domain.use_cases.CheckSubscriptionStatusUserCase
 import com.example.domain.use_cases.GetSubscriptionPlanUserCase
 import com.example.domain.use_cases.GetFreeTrialPlanUserCase
@@ -40,4 +41,5 @@ val domainModule = module {
     factoryOf(::GetSubscriptionPlanUserCase)
     factoryOf(::BuySubscriptionPlanByIdUserCase)
     factoryOf(::GetFreeTrialPlanUserCase)
+    factoryOf(::GetUserEmailUseCase)
 }

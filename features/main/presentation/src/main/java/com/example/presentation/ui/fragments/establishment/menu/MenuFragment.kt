@@ -22,7 +22,7 @@ class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<Frag
 
     private lateinit var categories: List<Menu>
     private lateinit var groupedEvents: Map<String, List<Menu>>
-    private lateinit var menuAdapter: EstablishmentMenuAdapter
+    private var menuAdapter: EstablishmentMenuAdapter? = null
 
     @SuppressLint("SetTextI18n")
     override fun initialize(): Unit = with(binding) {
@@ -30,10 +30,6 @@ class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<Frag
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         getEstablishmentMenuById()
-    }
-
-    override fun setupListeners() {
-//        binding.swipeRef.setOnRefreshListener { getEstablishmentMenuById() }
     }
 
     private fun getEstablishmentMenuById() {
@@ -45,18 +41,13 @@ class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<Frag
     override fun launchObservers() = with(binding) {
         viewModel.establishmentMenuState.spectateUiState(
             success = { menuList ->
-//                binding.swipeRef.isRefreshing = false
                 categories = menuList
                 groupedEvents = categories.groupBy { it.category }
-                menuAdapter = EstablishmentMenuAdapter(
-                    args.enabledButton,
-                    this@MenuFragment,
-                    groupedEvents
-                )
-                rvBeveragesMenu.adapter = menuAdapter
+                setupAdapter(groupedEvents)
             },
             error = {
-//                binding.swipeRef.isRefreshing = false
+                groupedEvents = emptyMap<String, List<Menu>>().toMap()
+                setupAdapter(groupedEvents)
                 showShortToast(it)
             },
             showLoader = false
@@ -67,10 +58,20 @@ class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<Frag
                 showSimpleDialog("Success", "")
             },
             error = {
-                Log.d("error", "error - $it")
                 showSimpleDialog(it, "")
             }
         )
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupAdapter(groupedList: Map<String, List<Menu>>){
+        menuAdapter = EstablishmentMenuAdapter(
+            args.enabledButton,
+            this@MenuFragment,
+            groupedList
+        )
+        binding.rvBeveragesMenu.adapter = menuAdapter
+        menuAdapter!!.notifyDataSetChanged()
     }
 
     override fun onItemClick(beverage: Beverage) {

@@ -32,7 +32,7 @@ class EstablishmentMenuAdapter(
 
     override fun getItemViewType(position: Int): Int {
         // Define view types for headers and items
-        if (categories.isEmpty()) return VIEW_TYPE_EMPTY
+        if (categories.isNullOrEmpty()) return VIEW_TYPE_EMPTY
         else {
             var currentPosition = 0
             categories.forEach { category ->
@@ -114,7 +114,7 @@ class EstablishmentMenuAdapter(
             index = position
 
             item.apply {
-                binding.tvEstablishmentName.text = item.establishment
+                binding.tvEstablishmentName.text = item.price.toString()
                 binding.tvName.text = item.name
             }
         }

@@ -211,20 +211,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/screen_margin"
-        android:backgroundTint="@color/red"
+        android:background="@android:color/transparent"
         android:paddingVertical="12dp"
         android:text="@string/logout"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:cornerRadius="8dp"
-        app:icon="@drawable/ic_logout"
-        app:iconGravity="end"
-        app:iconTint="@color/white"
+        android:textSize="18sp"
+        android:textColor="@color/color_primary"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

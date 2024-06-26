@@ -14,9 +14,9 @@ import com.example.presentation.databinding.ItemEstablishmentBinding
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class EstablishmentAdapter(private val clickListener: ItemClickListener) :
+class EstablishmentAdapter(private val listItems: MutableList<Establishment>, private val clickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var items: MutableList<Establishment> = mutableListOf()
+    private val items = listItems
 
     interface ItemClickListener {
         fun onItemClick(item: Establishment, index: Int)

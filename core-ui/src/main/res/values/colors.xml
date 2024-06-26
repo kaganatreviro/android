@@ -23,7 +23,7 @@
     <color name="correct_false_text">#EC0000</color>
 
     <color name="colorFullscreenProgress">#00000000</color>
-    <color name="navigationBarColor">#E9F0FF</color>
+    <color name="navigationBarColor">#ffffff</color>
     <color name="light_blue_400">#FF29B6F6</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>

@@ -21,7 +21,7 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
     BaseFragment<FragmentFeedbackBinding, FeedbackViewModel>(), FeedbackAdapter.ItemClickListener {
     override fun getViewBinding() = FragmentFeedbackBinding.inflate(layoutInflater)
     override val viewModel by viewModel<FeedbackViewModel>()
-    private lateinit var adapter: FeedbackAdapter
+    private var adapter: FeedbackAdapter? = null
     private lateinit var bottomSheetDialog: BottomSheetDialog
     private lateinit var addCommentDialogView: AddCommentBottomSheetBinding
 
@@ -29,8 +29,6 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
     override fun initialize(): Unit = with(binding) {
         rvFeedback.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = FeedbackAdapter(this@FeedbackFragment)
-        rvFeedback.adapter = adapter
 
         setupAddCommentBottomSheet()
         getFeedbackList()
@@ -72,8 +70,9 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
     override fun launchObservers() = with(binding) {
         viewModel.establishmentFeedbackListState.spectateUiState(
             success = {
-                adapter.items = it.toMutableList()
-                adapter.notifyDataSetChanged()
+                adapter = FeedbackAdapter(listItems = it.toMutableList(), this@FeedbackFragment)
+                rvFeedback.adapter = adapter
+                adapter!!.notifyDataSetChanged()
             },
             error = {
                 showShortToast(it)

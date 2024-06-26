@@ -3,7 +3,6 @@ package com.example.presentation.ui.fragments.establishment
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.core_ui.R
@@ -47,21 +46,21 @@ class EstablishmentDetailFragment :
         val formatterWithoutSeconds = DateTimeFormatter.ofPattern("HH:mm")
 
         viewModel.establishmentDetailsState.spectateUiState(
-            success = {
-                val happyHoursStart = LocalTime.parse(it.happyHoursStart, formatterWithSeconds)
-                val happyHoursEnd = LocalTime.parse(it.happyHoursEnd, formatterWithSeconds)
+            success = { establishment ->
+                val happyHoursStart = LocalTime.parse(establishment.happyHoursStart, formatterWithSeconds)
+                val happyHoursEnd = LocalTime.parse(establishment.happyHoursEnd, formatterWithSeconds)
 
-                ivEstImage.loadImageWithGlide(it.logo)
-                tvName.text = it.name
-                tvAddress.text = it.address
-                tvDesc.text = it.description
-                tvPhoneNumber.text = it.phoneNumber
-                tvUserEmail.text = it.email
+                ivEstImage.loadImageWithGlide(establishment.logo)
+                tvName.text = establishment.name
+                tvAddress.text = establishment.address
+                tvDesc.text = establishment.description
+                tvPhoneNumber.text = establishment.phoneNumber
+                tvUserEmail.text = establishment.email
                 tvTitleHappyHoursTime.text =
                     getString(com.example.core_ui.R.string.happy_time) + " " + happyHoursStart.format(
                         formatterWithoutSeconds
                     ) + " to " + happyHoursEnd.format(formatterWithoutSeconds)
-                setupTabBar(it.feedbackCount)
+                setupTabBar(establishment.feedbackCount)
             },
             error = {
                 showShortToast(it)

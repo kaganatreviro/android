@@ -34,7 +34,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -73,13 +73,17 @@
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/iv_est_image" />
 
-            <TextView
+            <com.example.core_ui.extensions.ExpandableTextView
                 android:id="@+id/tv_desc"
                 style="@style/empty_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_address"
-                android:layout_marginTop="20dp" />
+                app:collapsedMaxLines="3"
+                android:ellipsize="end"
+                app:expandText="Read More"
+                app:collapseText="Read Less"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/tv_title_happy_hours_time"
@@ -142,10 +146,10 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:saveEnabled="false" />
+                    android:saveEnabled="false"/>
             </LinearLayout>
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

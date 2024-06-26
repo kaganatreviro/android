@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_home">Restaurants</string>
+    <string name="title_home">Establishments</string>
     <string name="title_search">Search</string>
     <string name="title_qr_scanner">Scanner</string>
     <string name="title_profile">Profile</string>
     <string name="title_subscription">Subscription</string>
-    <string name="title_edit_profile">Edit profile</string>
-    <string name="logout">Logout</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="logout">Log Out</string>
     <string name="orders">Orders</string>
-    <string name="order_history">Order history</string>
+    <string name="order_history">Order History</string>
     <string name="notification">Notification</string>
     <string name="edit">Edit</string>
-    <string name="create_account">Create account</string>
+    <string name="create_account">Create Account</string>
     <string name="sign_in">Log In</string>
-    <string name="sign_in_title">Sign in to continue</string>
+    <string name="sign_in_title">Sign In to Continue</string>
     <string name="send">Send</string>
     <string name="done">Confirm</string>
     <string name="main_title">Happy Hours</string>
-    <string name="subs_status_active">Subscription is active 🟢</string>
+    <string name="subs_status_active">Your subscription is active. 🟢</string>
     <string name="subs_status_inactive">You do not have an active subscription. 🔴</string>
     <string name="none_account">
         New Member?
@@ -25,9 +25,9 @@
     <string name="create_client">Create an Account</string>
     <string name="happy_time">Happy hours from:</string>
     <string name="resent_code_timer">Resend more after </string>
-    <string name="resent_code">Resend code</string>
-    <string name="add_feedback">Write a review</string>
-    <string name="reset_password">Reset password</string>
+    <string name="resent_code">Resend Code</string>
+    <string name="add_feedback">Leave Feedback</string>
+    <string name="reset_password">Reset Password</string>
     <string name="enter_pin_title">Enter the code sent to </string>
     <string name="password_valid_size">Password must be at least 8 characters long</string>
     <string name="password_valid_long">Password cannot exceed 255 characters</string>
@@ -37,12 +37,12 @@
     <string name="menu_tab_title">Menu</string>
     <string name="feedback_tab_title">Feedback</string>
     <string name="search_view_hint">Search</string>
-    <string name="enter_new_password_title">Change password</string>
+    <string name="enter_new_password_title">Change Password</string>
     <string name="new_password_title">To complete the password reset, please enter a new password in the field below. Your new password must contain at least 8 characters and include uppercase and lowercase letters, numbers, and special characters to ensure the security of your account.</string>
     <string name="forgot_password_title">Please enter your email address. We will send code to reset your password.</string>
     <string name="update">Update</string>
     <string name="email">Email</string>
-    <string name="date">Date of birth</string>
+    <string name="date">Date of Birth</string>
     <string name="full_name">Name</string>
     <string name="data_has_not_been_changed">Data has not been changed</string>
     <string name="username_digits_error_message">The username must not consist of only digits.</string>

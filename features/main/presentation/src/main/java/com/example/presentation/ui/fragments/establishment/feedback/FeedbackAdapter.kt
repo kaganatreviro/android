@@ -13,10 +13,10 @@ import com.example.presentation.databinding.ItemFeedbackBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class FeedbackAdapter(private val itemClickListener: ItemClickListener) :
+class FeedbackAdapter(private val listItems: MutableList<Feedback>, private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var items: MutableList<Feedback> = mutableListOf()
+    private val items = listItems
 
     interface ItemClickListener {
         fun onItemClick(feedback: Feedback, answers: Int)

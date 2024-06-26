@@ -25,16 +25,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     EstablishmentAdapter.ItemClickListener {
     override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
     override val viewModel by viewModel<HomeViewModel>()
-    private lateinit var adapter: EstablishmentAdapter
+    private var adapter: EstablishmentAdapter? = null
+    private lateinit var listItems: MutableList<Establishment>
 
+    @SuppressLint("SuspiciousIndentation")
     override fun setupListeners() = with(binding) {
         rvRestList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = EstablishmentAdapter(this@HomeFragment)
-        rvRestList.adapter = adapter
         getEstablishmentList()
-        if (!subscriptionStatus)
-        checkSubscriptionStatus()
+        setupView()
+    }
+
+    private fun setupView(){
+        if (subscriptionStatus) {
+            binding.tvSubsStatusTitle.text =
+                resources.getString(com.example.core_ui.R.string.subs_status_active)
+        }else{
+            checkSubscriptionStatus()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupView()
     }
 
     override fun initialize() {
@@ -56,8 +69,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun launchObservers() {
         viewModel.establishmentListState.spectateNewUiState(
             success = {
-                adapter.items = it.toMutableList()
-                adapter.notifyDataSetChanged()
+                listItems = it.toMutableList()
+                adapter = EstablishmentAdapter(listItems, this)
+                binding.rvRestList.adapter = adapter
+                adapter!!.notifyDataSetChanged()
             },
             error = {
                 when(it) {
@@ -85,11 +100,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
                     resources.getString(com.example.core_ui.R.string.subs_status_active)
             },
             error = {
+                binding.tvSubsStatusTitle.text =
+                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
                 subscriptionStatus = false
                 subscriptionsPlanName = ""
                 subscriptionEndDate = ""
-                binding.tvSubsStatusTitle.text =
-                    resources.getString(com.example.core_ui.R.string.subs_status_inactive)
             }
         )
     }
