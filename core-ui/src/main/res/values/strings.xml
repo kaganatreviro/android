@@ -64,7 +64,9 @@
         <item>available</item>
         <item>unavailable</item>
     </string-array>
-
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="success_order">Your order was successful. Enjoy your meal.</string>
     <!-- Error strings -->
     <string name="validate_order_happyhours">Happy Hours is not active right now.</string>
     <string name="validate_order_per_hour">You can place one order per hour.</string>

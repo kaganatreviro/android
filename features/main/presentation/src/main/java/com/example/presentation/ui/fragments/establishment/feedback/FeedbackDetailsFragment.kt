@@ -107,4 +107,8 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     }
 
     override fun onItemClick(feedback: Feedback, answers: Int) {}
+
+    override fun onBackPressed() {
+        findNavController().popBackStack()
+    }
 }

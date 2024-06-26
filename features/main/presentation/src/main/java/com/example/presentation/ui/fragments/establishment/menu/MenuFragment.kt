@@ -51,7 +51,7 @@ class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<Frag
 
         viewModel.orderState.spectateUiState(
             success = {
-                showSimpleDialog("Success", "")
+                showSimpleDialog("Order Placed", resources.getString(com.example.core_ui.R.string.success_order))
             },
             error = {
                 showSimpleDialog(it, "")
