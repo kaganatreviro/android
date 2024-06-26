@@ -16,6 +16,7 @@ import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanI
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionsPlanName
 import com.example.core_ui.extensions.showShortToast
 import com.example.domain.models.Establishment
+import com.example.domain.models.EstablishmentDetailsArg
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -110,7 +111,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun onItemClick(item: Establishment, index: Int) {
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToEstablishmentDetailFragment(
-                item.id, false
+                EstablishmentDetailsArg(item.id, false)
             )
         )
     }

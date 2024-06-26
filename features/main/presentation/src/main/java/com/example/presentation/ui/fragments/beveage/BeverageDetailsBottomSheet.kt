@@ -18,18 +18,7 @@ class BeverageDetailsBottomSheet : BaseBottomSheetDialogFragment<BottomSheetBeve
     private val args by navArgs<BeverageDetailsBottomSheetArgs>()
 
     override fun initialize() {
-        viewModel.getBeverageById(args.beverageId)
-    }
-
-    override fun launchObservers() {
-        viewModel.beverageState.spectateUiState(
-            success = { beverage ->
-                setBeverageData(beverage)
-            },
-            error = {
-                showShortToast(it)
-            }
-        )
+        setBeverageData(args.beverage)
     }
 
     @SuppressLint("SetTextI18n")

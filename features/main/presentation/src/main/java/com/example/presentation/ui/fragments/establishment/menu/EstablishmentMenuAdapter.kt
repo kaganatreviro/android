@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.models.Beverage
 import com.example.domain.models.Menu
+import com.example.domain.models.toBeverage
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemBeverageBinding
 import com.example.presentation.databinding.ItemBeverageCategoryTitleBinding
@@ -18,7 +20,7 @@ class EstablishmentMenuAdapter(
     private val categories = groupedCategory.keys.toList()
 
     interface ItemClickListener {
-        fun onItemClick(beverageId: Int)
+        fun onItemClick(beverage: Beverage)
         fun onBuyBtnClick(beverageId: Int)
     }
 
@@ -123,7 +125,7 @@ class EstablishmentMenuAdapter(
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 return MenuItemViewHolder(binding).apply {
                     itemView.setOnClickListener {
-                        clickListener.onItemClick(item.id)
+                        clickListener.onItemClick(item.toBeverage())
                     }
                     binding.btnGetBeverage.setOnClickListener {
                         clickListener.onBuyBtnClick(item.id)

@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.Beverage
+import com.example.domain.models.EstablishmentDetailsArg
 import com.example.domain.models.Menu
 import com.example.domain.models.OrderRequest
 import com.example.presentation.databinding.FragmentMenuBinding
@@ -14,7 +16,7 @@ import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFr
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MenuFragment(private val args: EstablishmentDetailFragmentArgs): BaseFragment<FragmentMenuBinding, MenuViewModel>(), EstablishmentMenuAdapter.ItemClickListener  {
+class MenuFragment(private val args: EstablishmentDetailsArg): BaseFragment<FragmentMenuBinding, MenuViewModel>(), EstablishmentMenuAdapter.ItemClickListener  {
     override fun getViewBinding() = FragmentMenuBinding.inflate(layoutInflater)
     override val viewModel by viewModel<MenuViewModel>()
 
@@ -71,10 +73,10 @@ class MenuFragment(private val args: EstablishmentDetailFragmentArgs): BaseFragm
         )
     }
 
-    override fun onItemClick(beverageId: Int) {
+    override fun onItemClick(beverage: Beverage) {
         findNavController().navigate(
             EstablishmentDetailFragmentDirections.actionEstablishmentDetailFragmentToBeverageDetailsFragment(
-                beverageId
+                beverage
             )
         )
     }

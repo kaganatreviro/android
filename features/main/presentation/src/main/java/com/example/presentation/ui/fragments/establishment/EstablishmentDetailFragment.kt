@@ -22,7 +22,7 @@ class EstablishmentDetailFragment :
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val pagerAdapter: EstbDetPagerAdapter by lazy {
-        EstbDetPagerAdapter(args, this)
+        EstbDetPagerAdapter(args.establishmentDetailsArg, this)
     }
 
     @SuppressLint("SetTextI18n")
@@ -36,7 +36,7 @@ class EstablishmentDetailFragment :
     }
 
     private fun getEstablishmentDetailsById() {
-        val param = args.establishmentId
+        val param = args.establishmentDetailsArg.establishmentId
         viewModel.getEstablishmentDetailsById(param)
     }
 
