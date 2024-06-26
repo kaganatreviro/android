@@ -1,0 +1,31 @@
+[
+  {
+    "name": "nav_graph_auth",
+    "navigationXmlIds": [],
+    "deepLinks": [
+      {
+        "schemes": [
+          "happyhours"
+        ],
+        "host": "main",
+        "port": -1,
+        "path": "/authFlowFragment",
+        "sourceFilePosition": {
+          "mSourceFile": {
+            "mDescription": "nav_graph_auth.xml"
+          },
+          "mSourcePosition": {
+            "mStartLine": 7,
+            "mStartColumn": 4,
+            "mStartOffset": 305,
+            "mEndLine": 7,
+            "mEndColumn": 60,
+            "mEndOffset": 361
+          }
+        },
+        "isAutoVerify": false,
+        "action": "android.intent.action.VIEW"
+      }
+    ]
+  }
+]

@@ -71,7 +71,29 @@ apiKey=your_google_maps_api_key
 - QR Code Scanning: Scan QR codes at establishments to access beverage menus and place orders.
 
 ## Screenshots
-// TODO
+![Login Screen](screens/login_screen.jpeg)
+*Login Screen*
+
+![Establishment Screen](screens/establishments_screen.jpeg)
+*Establishment Screen*
+
+![Establishment Detail Screen](screens/establishments_detail_screen.jpeg)
+*Establishment Detail Screen*
+
+![Search Screen](screens/search_screen.jpeg)
+*Search Screen*
+
+![Search Map Screen](screens/search_map_screen.jpeg)
+*Search Map Screen*
+
+![Order History Screen](screens/order_history_screen.jpeg)
+*Order History Screen*
+
+![Profile Screen](screens/profile_screen.jpeg)
+*Profile Screen*
+
+![Subscription Screen](screens/subscription_screen.jpeg)
+*Subscription Screen*
 
 ## Technologies Used
 - Kotlin: Programming language used for Android development.

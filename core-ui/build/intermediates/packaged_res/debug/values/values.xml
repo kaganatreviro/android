@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string-array name="spinner_items">
+        <item>all</item>
+        <item>available</item>
+        <item>unavailable</item>
+    </string-array>
+    <color name="background_color">#f7f9f9</color>
+    <color name="black">#FF000000</color>
+    <color name="blue">#32BAF8</color>
+    <color name="colorFullscreenProgress">#00000000</color>
+    <color name="color_primary">#FB7E00</color>
+    <color name="correct_false_text">#EC0000</color>
+    <color name="correct_true_text">#1BA228</color>
+    <color name="dark_grey">#686E78</color>
+    <color name="disable_button">#E9EAEB</color>
+    <color name="disable_text_color">#94979B</color>
+    <color name="empty_text">#767676</color>
+    <color name="enable_button">#FB7E00</color>
+    <color name="enable_false_button">#E9EAEB</color>
+    <color name="enable_true_button">#FB7E00</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
+    <color name="green">#1BA228</color>
+    <color name="grey">#8E98A8</color>
+    <color name="grey_t_20">#33767676</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_grey">#DEDEDE</color>
+    <color name="navigationBarColor">#ffffff</color>
+    <color name="red">#F5484A</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="screen_margin">20dp</dimen>
+    <string name="add_feedback">Leave Feedback</string>
+    <string name="auth_error_403">Incorrect Cridentials</string>
+    <string name="auth_error_blocked">You account is blocked. Please contact the Administrator via kaganatreviro@gmail.com</string>
+    <string name="auth_error_not_exist">The entered email was not found.</string>
+    <string name="avatar_size_error_message">The avatar must not be larger than 3 MB.</string>
+    <string name="beverage_details_title">Beverage Info</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_client">Create an Account</string>
+    <string name="create_payment_error_if_you_have_subs">You already have an active subscription.</string>
+    <string name="data_has_not_been_changed">Data has not been changed</string>
+    <string name="date">Date of Birth</string>
+    <string name="done">Confirm</string>
+    <string name="edit">Edit</string>
+    <string name="edit_profile_error_1">This photo format is not supported.</string>
+    <string name="edit_profile_error_2">This name length is not supported.</string>
+    <string name="email">Email</string>
+    <string name="enter_new_password_title">Change Password</string>
+    <string name="enter_pin_title">Enter the code sent to </string>
+    <string name="error">Error</string>
+    <string name="feedback_tab_title">Feedback</string>
+    <string name="forgot_password_title">Please enter your email address. We will send code to reset your password.</string>
+    <string name="full_name">Name</string>
+    <string name="happy_time">Happy hours from:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_reset_code_expired">The code has expired. Please resend the code.</string>
+    <string name="invalid_reset_code_incorrect">The one-time code is incorrect.</string>
+    <string name="logout">Log Out</string>
+    <string name="main_title">Happy Hours</string>
+    <string name="menu_tab_title">Menu</string>
+    <string name="new_password_title">To complete the password reset, please enter a new password in the field below. Your new password must contain at least 8 characters and include uppercase and lowercase letters, numbers, and special characters to ensure the security of your account.</string>
+    <string name="no_subscription_in_scanner">You must have a subscription to scan codes. See subscription plans.</string>
+    <string name="no_subscription_title">You do not have a subscription</string>
+    <string name="no_subscription_title_select">Select your subscription plan.</string>
+    <string name="none_account">
+        New Member?
+        <font color="#FB7E00">Sign up Here</font></string>
+    <string name="not_menu_error">No beverages found for this establishment or establishment does not exist.</string>
+    <string name="notification">Notification</string>
+    <string name="order_history">Order History</string>
+    <string name="orders">Orders</string>
+    <string name="password_valid_long">Password cannot exceed 255 characters</string>
+    <string name="password_valid_not_empty">Password cannot be empty</string>
+    <string name="password_valid_size">Password must be at least 8 characters long</string>
+    <string name="payment_error_401">Session has expired. Try again.</string>
+    <string name="payment_error_500">Unknown error. Try again.</string>
+    <string name="regist_error_1">This email is already taken.</string>
+    <string name="regist_error_2">Passwords do not match, enter your passwords again.</string>
+    <string name="regist_error_3">This photo format is not supported.</string>
+    <string name="regist_error_4">This name length is not supported.</string>
+    <string name="resent_code">Resend Code</string>
+    <string name="resent_code_timer">Resend more after </string>
+    <string name="reset_password">Reset Password</string>
+    <string name="search_view_hint">Search</string>
+    <string name="send">Send</string>
+    <string name="sign_in">Log In</string>
+    <string name="sign_in_title">Sign In to Continue</string>
+    <string name="status_all">All</string>
+    <string name="status_available">Available</string>
+    <string name="status_unavailable">Unavailable</string>
+    <string name="subs_status_active">Your subscription is active. 🟢</string>
+    <string name="subs_status_inactive">You do not have an active subscription. 🔴</string>
+    <string name="subscription_plan_title">Enjoy free beverages. You can get one beverages per hour and one beverage at a place within a day.</string>
+    <string name="success">Success</string>
+    <string name="success_order">Your order was successful. Enjoy your meal.</string>
+    <string name="tab_title_1">Beverages</string>
+    <string name="tab_title_2">Establishments</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="title_home">Establishments</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_qr_scanner">Scanner</string>
+    <string name="title_search">Search</string>
+    <string name="title_subscription">Subscription</string>
+    <string name="update">Update</string>
+    <string name="username_digits_error_message">The username must not consist of only digits.</string>
+    <string name="username_empty_error_message">The username must not be empty.</string>
+    <string name="validate_order_happyhours">Happy Hours is not active right now.</string>
+    <string name="validate_order_per_day">You can only place one order per establishment per day.</string>
+    <string name="validate_order_per_hour">You can place one order per hour.</string>
+    <style name="AlertDialog.FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/colorFullscreenProgress</item>
+        <item name="android:navigationBarColor" ns1:targetApi="lollipop">
+            @color/navigationBarColor
+        </item>
+    </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle"> @style/BottomSheetStyle</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background"> @android:color/transparent</item>
+    </style>
+    <style name="disable_button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/disable_button</item>
+        <item name="android:textColor">@color/disable_text_color</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    <style name="empty_text_view" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="empty_text_view_bold" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="enable_button" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/color_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    <style name="text_view_title" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="text_view_title_bold" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <declare-styleable name="ExpandableTextView">
+        <attr format="integer" name="collapsedMaxLines"/>
+        <attr format="string" name="expandText"/>
+        <attr format="string" name="collapseText"/>
+    </declare-styleable>
+</resources>

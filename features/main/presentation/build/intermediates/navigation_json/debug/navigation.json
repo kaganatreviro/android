@@ -1,0 +1,31 @@
+[
+  {
+    "name": "nav_graph_main",
+    "navigationXmlIds": [],
+    "deepLinks": [
+      {
+        "schemes": [
+          "happyhours"
+        ],
+        "host": "main",
+        "port": -1,
+        "path": "/mainFlowFragment",
+        "sourceFilePosition": {
+          "mSourceFile": {
+            "mDescription": "nav_graph_main.xml"
+          },
+          "mSourcePosition": {
+            "mStartLine": 7,
+            "mStartColumn": 4,
+            "mStartOffset": 304,
+            "mEndLine": 7,
+            "mEndColumn": 60,
+            "mEndOffset": 360
+          }
+        },
+        "isAutoVerify": false,
+        "action": "android.intent.action.VIEW"
+      }
+    ]
+  }
+]
