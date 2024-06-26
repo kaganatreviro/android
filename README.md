@@ -93,7 +93,6 @@ apiKey=your_google_maps_api_key
 All dependencies are managed and stored in the libs.versions.toml file.
 
 ## Contributing
-### Contributing
 #### Guidelines
 - Follow the established coding standards.
 - Write clear commit messages.
