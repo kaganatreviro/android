@@ -65,7 +65,7 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     override fun launchObservers() {
         viewModel.feedbackAnswersState.spectateUiState(
             success = {
-                adapter = FeedbackAdapter(it.toMutableList(), this@FeedbackDetailsFragment)
+                adapter = FeedbackAdapter(it.reversed().toMutableList(), this@FeedbackDetailsFragment)
                 binding.rvFeedbackAnswer.adapter = adapter
                 adapter!!.notifyDataSetChanged()
             },
@@ -94,7 +94,7 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
 
     private fun postNewFeedbackInAnswers() {
         if (checkEmptyField()) {
-            binding.etInputAnswer.error = "The field must not be empty!"
+            showSimpleDialog("Error","The field must not be empty!")
         } else {
             val params =
                 PostFeedbackInAnswers(args.feedback.id, binding.etInputAnswer.text.toString())
@@ -107,4 +107,8 @@ class FeedbackDetailsFragment : BaseFragment<FragmentFeedbackDetailsBinding, Fee
     }
 
     override fun onItemClick(feedback: Feedback, answers: Int) {}
+
+    override fun onBackPressed() {
+        findNavController().popBackStack()
+    }
 }

@@ -79,6 +79,7 @@
         android:layout_margin="@dimen/screen_margin"
         android:backgroundTint="@color/color_primary"
         android:paddingVertical="12dp"
+        android:textSize="18sp"
         android:text="@string/title_edit_profile"
         android:textAllCaps="false"
         android:textColor="@color/white"

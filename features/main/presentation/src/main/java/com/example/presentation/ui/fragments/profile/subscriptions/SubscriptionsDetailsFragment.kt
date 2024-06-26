@@ -71,7 +71,7 @@ class SubscriptionsDetailsFragment :
                 adapter.notifyDataSetChanged()
             },
             error = {
-                showShortToast(it)
+                showSimpleDialog("Unable to Download", "Failed to get subscription plans.")
             }
         )
 
@@ -85,7 +85,7 @@ class SubscriptionsDetailsFragment :
                 )
             },
             error = {
-                showSimpleDialog("", it)
+                showSimpleDialog("Error", it)
             }
         )
 
@@ -95,7 +95,7 @@ class SubscriptionsDetailsFragment :
                 findNavController().popBackStack()
             },
             error = {
-                showSimpleDialog("", it)
+                showSimpleDialog("Error", it)
             }
         )
     }
