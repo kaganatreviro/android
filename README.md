@@ -49,6 +49,15 @@ cd happy-hours
 4. Sync the project with Gradle.
 5. Run the project on an emulator or a real device.
 
+## Configuration
+### Configuration Files
+The project uses a 'local.properties' file to store configurations. Example content:
+```bash
+apiKey=your_google_maps_api_key
+```
+### Environment Variables
+- apiKey: Your API key for Google Maps.
+
 ## Usage
 ### Running the Project
 #### To run the project in Android Studio:
