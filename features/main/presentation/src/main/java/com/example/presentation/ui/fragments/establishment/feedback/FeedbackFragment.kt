@@ -1,23 +1,21 @@
 package com.example.presentation.ui.fragments.establishment.feedback
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.hideKeyboard
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.EstablishmentDetailsArg
 import com.example.domain.models.Feedback
 import com.example.domain.models.PostFeedback
 import com.example.presentation.databinding.AddCommentBottomSheetBinding
 import com.example.presentation.databinding.FragmentFeedbackBinding
-import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragmentArgs
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
+class FeedbackFragment(private val args: EstablishmentDetailsArg) :
     BaseFragment<FragmentFeedbackBinding, FeedbackViewModel>(), FeedbackAdapter.ItemClickListener {
     override fun getViewBinding() = FragmentFeedbackBinding.inflate(layoutInflater)
     override val viewModel by viewModel<FeedbackViewModel>()
@@ -89,6 +87,7 @@ class FeedbackFragment(private val args: EstablishmentDetailFragmentArgs) :
 
         viewModel.postFeedbackState.spectateUiState(
             success = {
+                showShortToast("Success")
                 getFeedbackList()
                 addCommentDialogView.etFeedback.text?.clear()
             },

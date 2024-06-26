@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.core_ui.base.BaseViewModel
 import com.example.domain.models.Beverage
-import com.example.domain.models.EstablishmentDetails
+import com.example.domain.models.Establishment
 import com.example.domain.use_cases.GetBeveragesUserCase
 import com.example.domain.use_cases.GetEstablishmentListUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +21,7 @@ class SearchViewModel(
     private val getEstablishmentListUseCase: GetEstablishmentListUseCase
 ) : BaseViewModel() {
 
-    private val _establishmentsState = mutableNewUiStateFlow<List<EstablishmentDetails>>()
+    private val _establishmentsState = mutableNewUiStateFlow<List<Establishment>>()
     val establishmentsState = _establishmentsState.asStateFlow()
 
     private val searchBy = MutableStateFlow<String?>("")

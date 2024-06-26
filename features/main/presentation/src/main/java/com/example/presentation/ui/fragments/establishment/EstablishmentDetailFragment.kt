@@ -21,7 +21,7 @@ class EstablishmentDetailFragment :
     override val viewModel by viewModel<EstablishmentDetailViewModel>()
     private val args: EstablishmentDetailFragmentArgs by navArgs()
     private val pagerAdapter: EstbDetPagerAdapter by lazy {
-        EstbDetPagerAdapter(args, this)
+        EstbDetPagerAdapter(args.establishmentDetailsArg, this)
     }
 
     @SuppressLint("SetTextI18n")
@@ -35,7 +35,7 @@ class EstablishmentDetailFragment :
     }
 
     private fun getEstablishmentDetailsById() {
-        val param = args.establishmentId
+        val param = args.establishmentDetailsArg.establishmentId
         viewModel.getEstablishmentDetailsById(param)
     }
 
@@ -46,21 +46,21 @@ class EstablishmentDetailFragment :
         val formatterWithoutSeconds = DateTimeFormatter.ofPattern("HH:mm")
 
         viewModel.establishmentDetailsState.spectateUiState(
-            success = {
-                val happyHoursStart = LocalTime.parse(it.happyHoursStart, formatterWithSeconds)
-                val happyHoursEnd = LocalTime.parse(it.happyHoursEnd, formatterWithSeconds)
+            success = { establishment ->
+                val happyHoursStart = LocalTime.parse(establishment.happyHoursStart, formatterWithSeconds)
+                val happyHoursEnd = LocalTime.parse(establishment.happyHoursEnd, formatterWithSeconds)
 
-                ivEstImage.loadImageWithGlide(it.logo)
-                tvName.text = it.name
-                tvAddress.text = it.address
-                tvDesc.text = it.description
-                tvPhoneNumber.text = it.phoneNumber
-                tvEmail.text = it.email
+                ivEstImage.loadImageWithGlide(establishment.logo)
+                tvName.text = establishment.name
+                tvAddress.text = establishment.address
+                tvDesc.text = establishment.description
+                tvPhoneNumber.text = establishment.phoneNumber
+                tvUserEmail.text = establishment.email
                 tvTitleHappyHoursTime.text =
                     getString(com.example.core_ui.R.string.happy_time) + " " + happyHoursStart.format(
                         formatterWithoutSeconds
                     ) + " to " + happyHoursEnd.format(formatterWithoutSeconds)
-                setupTabBar(it.feedbackCount)
+                setupTabBar(establishment.feedbackCount)
             },
             error = {
                 showShortToast(it)

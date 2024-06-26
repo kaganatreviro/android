@@ -10,7 +10,7 @@ import com.example.domain.models.Beverage
 import com.example.presentation.databinding.ItemBeverageBinding
 
 class BeveragePagingAdapter(
-    private val onItemClick: (id: Int) -> Unit
+    private val onItemClick: (beverage: Beverage) -> Unit
 ) :
     PagingDataAdapter<Beverage, BeveragePagingAdapter.ProductsViewHolder>(diffCallBack) {
 
@@ -30,7 +30,7 @@ class BeveragePagingAdapter(
         }
         init {
             binding.root.setOnClickListener {
-                getItem(absoluteAdapterPosition)?.let { onItemClick(it.id) }
+                getItem(absoluteAdapterPosition)?.let { beverage -> onItemClick(beverage) }
             }
         }
     }

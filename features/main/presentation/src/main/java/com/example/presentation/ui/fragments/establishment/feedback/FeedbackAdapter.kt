@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.models.EstablishmentDetails
 import com.example.domain.models.Feedback
 import com.example.presentation.databinding.ItemFeedbackBinding
 import java.time.LocalDateTime
@@ -78,7 +77,9 @@ class FeedbackAdapter(private val listItems: MutableList<Feedback>, private val 
                 binding.tvPostTime.text = dateTime.format(displayFormatter)
                 binding.tvFeedback.text = item.text
                 binding.tvReplied.isVisible = item.answers > 0
-                binding.tvReplied.text = "Replies: " + item.answers
+                if(item.answers > 1) binding.tvReplied.text = item.answers.toString() + " replies"
+                else binding.tvReplied.text = item.answers.toString() + " reply"
+
             }
         }
 
