@@ -64,4 +64,24 @@
         <item>available</item>
         <item>unavailable</item>
     </string-array>
+
+    <!-- Error strings -->
+    <string name="validate_order_happyhours">Happy Hours is not active right now.</string>
+    <string name="validate_order_per_hour">You can place one order per hour.</string>
+    <string name="validate_order_per_day">You can only place one order per establishment per day.</string>
+    <string name="create_payment_error_if_you_have_subs">You already have an active subscription.</string>
+    <string name="payment_error_500">Unknown error. Try again.</string>
+    <string name="payment_error_401">Session has expired. Try again.</string>
+    <string name="invalid_reset_code_incorrect">The one-time code is incorrect.</string>
+    <string name="invalid_reset_code_expired">The code has expired. Please resend the code.</string>
+    <string name="auth_error_blocked">You account is blocked. Please contact the Administrator via kaganatreviro@gmail.com</string>
+    <string name="auth_error_not_exist">The entered email was not found.</string>
+    <string name="auth_error_403">Incorrect Cridentials</string>
+    <string name="regist_error_1">This email is already taken.</string>
+    <string name="regist_error_2">Passwords do not match, enter your passwords again.</string>
+    <string name="regist_error_3">This photo format is not supported.</string>
+    <string name="regist_error_4">This name length is not supported.</string>
+    <string name="edit_profile_error_1">This photo format is not supported.</string>
+    <string name="edit_profile_error_2">This name length is not supported.</string>
+    <string name="not_menu_error">No beverages found for this establishment or establishment does not exist.</string>
 </resources>

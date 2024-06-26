@@ -1,12 +1,9 @@
 package com.example.presentation.ui.fragments.establishment.menu
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
 import com.example.domain.models.Menu
 import com.example.domain.models.OrderRequest
@@ -47,7 +44,7 @@ class MenuFragment(private val args: EstablishmentDetailFragmentArgs): BaseFragm
             error = {
                 groupedEvents = emptyMap<String, List<Menu>>().toMap()
                 setupAdapter(groupedEvents)
-                showShortToast(it)
+                showSimpleDialog("Error", resources.getString(com.example.core_ui.R.string.not_menu_error))
             },
             showLoader = false
         )
