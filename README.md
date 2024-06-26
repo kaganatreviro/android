@@ -81,6 +81,9 @@ cd happy-hours
 - Material Design Components: For implementing modern UI components. 
 - And much more (etc.)
 
+### Dependency Management
+All dependencies are managed and stored in the libs.versions.toml file.
+
 ## Contributing
 ### Contributing
 #### Guidelines
@@ -91,17 +94,15 @@ cd happy-hours
 1. Fork the repository.
 2. Create a new branch:
 ```bash
-apiKey=your_google_maps_api_key
+git checkout -b feature-branch 
 ```
 3. Make your changes and commit them:
 ```bash
-git checkout -b feature-branch 
+git commit -m "Added new feature"
 ```
 4. Push your changes to GitHub:
 ```bash
-git commit -m "Added new feature"
-```
-5. Create a pull request.
-```bash
 git push origin feature-branch
 ```
+5. Create a pull request.
+
