@@ -1,6 +1,6 @@
 package com.example.data.remote.api_services
 
-import com.example.data.remote.dto.EstablishmentDetailsDto
+import com.example.data.remote.dto.EstablishmentDto
 import com.example.data.remote.dto.FeedbackListDto
 import com.example.data.remote.dto.MenuDto
 import com.example.data.remote.dto.PostFeedbackDto
@@ -16,10 +16,10 @@ interface EstablishmentApiService {
     @GET(GET_ESTABLISHMENTS_LIST)
     suspend fun getEstablishmentList(
         @Query("search") search: String?
-    ): Response<List<EstablishmentDetailsDto>>
+    ): Response<List<EstablishmentDto>>
 
     @GET(GET_ESTABLISHMENT_BY_ID)
-    suspend fun getEstablishmentDetailsById(@Path("id") id: Int): EstablishmentDetailsDto
+    suspend fun getEstablishmentDetailsById(@Path("id") id: Int): EstablishmentDto
 
     @GET(GET_ESTABLISHMENT_MENU_BY_ID)
     suspend fun getEstablishmentMenuById(@Path("id") id: Int): List<MenuDto>

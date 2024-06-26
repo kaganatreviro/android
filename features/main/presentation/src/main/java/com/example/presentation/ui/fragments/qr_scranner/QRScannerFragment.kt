@@ -18,6 +18,7 @@ import com.example.core_ui.base.BaseFragment
 import com.example.core_ui.base.BaseFragment.SubscriptionData.subscriptionStatus
 import com.example.core_ui.extensions.showShortToast
 import com.example.core_ui.extensions.showSimpleDialog
+import com.example.domain.models.EstablishmentDetailsArg
 import com.example.presentation.databinding.QrscannerFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.dm7.barcodescanner.zbar.Result
@@ -92,7 +93,7 @@ class QRScannerFragment : BaseFragment<QrscannerFragmentBinding,
     private fun navigateToMenu(param: Int) {
         findNavController().navigate(
             QRScannerFragmentDirections.actionQRScannerFragmentToEstablishmentDetailFragment(
-                param, true
+                EstablishmentDetailsArg(param, true)
             )
         )
     }

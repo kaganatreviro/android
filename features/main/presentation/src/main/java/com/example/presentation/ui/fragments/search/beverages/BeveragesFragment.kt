@@ -6,6 +6,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
+import com.example.domain.models.Beverage
 import com.example.presentation.databinding.FragmentBeveragesBinding
 import com.example.presentation.ui.adapters.BeveragePagingAdapter
 import com.example.presentation.ui.fragments.search.SearchFragmentDirections
@@ -38,9 +39,9 @@ class BeveragesFragment : BaseFragment<FragmentBeveragesBinding, SearchViewModel
         }
     }
 
-    private fun onBeverageItemClick(id: Int) {
+    private fun onBeverageItemClick(beverage: Beverage) {
         findNavController().navigate(
-            SearchFragmentDirections.actionSearchFragmentToBeverageDetailsFragment(id)
+            SearchFragmentDirections.actionSearchFragmentToBeverageDetailsFragment(beverage)
         )
     }
 }

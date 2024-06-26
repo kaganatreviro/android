@@ -1,5 +1,7 @@
 package com.example.domain.models
 
+import java.io.Serializable
+
 data class Beverage(
     val id: Int,
     val name: String,
@@ -8,4 +10,4 @@ data class Beverage(
     val availabilityStatus: Boolean,
     val establishment: String,
     val category: String,
-)
+): Serializable

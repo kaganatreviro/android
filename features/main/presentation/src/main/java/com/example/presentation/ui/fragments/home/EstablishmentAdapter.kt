@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core_ui.extensions.loadImageWithGlide
-import com.example.domain.models.EstablishmentDetails
+import com.example.domain.models.Establishment
 import com.example.presentation.R
 import com.example.presentation.databinding.ItemEstablishmentBinding
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class EstablishmentAdapter(private val listItems: MutableList<EstablishmentDetails>, private val clickListener: ItemClickListener) :
+class EstablishmentAdapter(private val listItems: MutableList<Establishment>, private val clickListener: ItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = listItems
 
     interface ItemClickListener {
-        fun onItemClick(item: EstablishmentDetails, index: Int)
+        fun onItemClick(item: Establishment, index: Int)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -57,12 +57,12 @@ class EstablishmentAdapter(private val listItems: MutableList<EstablishmentDetai
     class Holder private constructor(private val binding: ItemEstablishmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        lateinit var item: EstablishmentDetails
+        lateinit var item: Establishment
         var index: Int = 0
 
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n", "CheckResult")
-        fun bind(_item: EstablishmentDetails, position: Int) {
+        fun bind(_item: Establishment, position: Int) {
             item = _item
             index = position
             val formatterWithSeconds = DateTimeFormatter.ofPattern("HH:mm:ss")
