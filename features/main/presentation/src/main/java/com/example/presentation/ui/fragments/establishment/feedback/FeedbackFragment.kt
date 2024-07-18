@@ -1,18 +1,16 @@
 package com.example.presentation.ui.fragments.establishment.feedback
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core_ui.base.BaseFragment
-import com.example.core_ui.extensions.hideKeyboard
 import com.example.core_ui.extensions.showShortToast
+import com.example.core_ui.extensions.showSimpleDialog
 import com.example.domain.models.EstablishmentDetailsArg
 import com.example.domain.models.Feedback
 import com.example.domain.models.PostFeedback
 import com.example.presentation.databinding.AddCommentBottomSheetBinding
 import com.example.presentation.databinding.FragmentFeedbackBinding
-import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragmentArgs
 import com.example.presentation.ui.fragments.establishment.EstablishmentDetailFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,14 +45,22 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
         bottomSheetDialog.setContentView(addCommentDialogView.root)
 
         addCommentDialogView.btnAccept.setOnClickListener {
-            val params =
-                PostFeedback(args.establishmentId, addCommentDialogView.etFeedback.text.toString())
-            viewModel.postFeedback(params)
-            bottomSheetDialog.dismiss()
+            if (addCommentDialogView.etFeedback.text.isNullOrEmpty()){
+                showSimpleDialog("Error","The field must not be empty!")
+            }else {
+                val params =
+                    PostFeedback(
+                        args.establishmentId,
+                        addCommentDialogView.etFeedback.text.toString()
+                    )
+                viewModel.postFeedback(params)
+                bottomSheetDialog.dismiss()
+            }
         }
 
         addCommentDialogView.tvCancel.setOnClickListener {
             bottomSheetDialog.dismiss()
+            addCommentDialogView.etFeedback.text?.clear()
         }
     }
 
@@ -70,12 +76,12 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
     override fun launchObservers() = with(binding) {
         viewModel.establishmentFeedbackListState.spectateUiState(
             success = {
-                adapter = FeedbackAdapter(listItems = it.toMutableList(), this@FeedbackFragment)
+                adapter = FeedbackAdapter(listItems = it.reversed().toMutableList(), this@FeedbackFragment)
                 rvFeedback.adapter = adapter
                 adapter!!.notifyDataSetChanged()
             },
             error = {
-                showShortToast(it)
+                showSimpleDialog("Error", it)
             }
         )
 
@@ -83,9 +89,10 @@ class FeedbackFragment(private val args: EstablishmentDetailsArg) :
             success = {
                 showShortToast("Success")
                 getFeedbackList()
+                addCommentDialogView.etFeedback.text?.clear()
             },
             error = {
-                showShortToast(it)
+                showSimpleDialog("Error", it)
             }
         )
     }

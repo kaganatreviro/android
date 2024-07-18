@@ -36,10 +36,10 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding, SubscriptionsViewMo
                 super.onPageFinished(view, url)
                 if (url != null) {
                     if (url.contains("/api/v1/subscription/execute-payment/")){
-                        showSimpleDialog("Success", "Оплата прошла успешно!")
+                        showSimpleDialog("Success", "Payment was successful.")
                         findNavController().navigate(WebViewFragmentDirections.actionWebViewFragmentToProfileFragment())
                     }else if (url.contains("/api/v1/subscription/cancel-payment/")){
-                        showSimpleDialog("Error", "Произошла ошибка!")
+                        showSimpleDialog("Error", "Failed to make payment.")
                         findNavController().popBackStack()
                     }
                 }
