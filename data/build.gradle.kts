@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -37,7 +38,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":core"))
     implementation(project(":features:auth:domain"))
     implementation(project(":features:main:domain"))
@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.bundles.retrofit)
     implementation(libs.paging.runtime)
+
+    implementation(libs.kotlin.serialization)
 
     //Test
     testImplementation(libs.test.junit)

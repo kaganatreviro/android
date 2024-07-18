@@ -1,6 +1,7 @@
 package com.example.domain.repositories
 
 import com.example.core.either.Either
+import com.example.core.either.NetworkError
 import com.example.domain.models.ChangePasswordRequest
 import com.example.domain.models.ForgotPasswordRequest
 import com.example.domain.models.ResetPasswordRequest
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
 
-    fun userLogin(userData: UserLoginRequest): Flow<Either<String, Unit>>
+    fun userLogin(userData: UserLoginRequest): Flow<Either<NetworkError, Unit>>
     fun userRegister(userData: UserRegisterRequest): Flow<Either<String, UserRegisterResponse>>
     fun userForgotPassword(userData: ForgotPasswordRequest): Flow<Either<String, String>>
     fun userResetPassword(userData: ResetPasswordRequest): Flow<Either<String, String>>

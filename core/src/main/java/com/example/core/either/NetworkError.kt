@@ -6,5 +6,5 @@ sealed class NetworkError {
 
     class AuthApi(val errorResponse: AuthenticationError) : NetworkError()
 
-    object Timeout : NetworkError()
+    data object Timeout : NetworkError()
 }

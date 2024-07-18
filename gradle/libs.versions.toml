@@ -23,6 +23,7 @@ glide = "4.16.0"
 paging = "3.3.0"
 splashscreen = "1.0.0"
 googleMap = "5.0.0"
+serialization = "1.6.3"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -41,9 +42,10 @@ ui-swipe-ref = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayo
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "jetpack-navigation" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "jetpack-navigation" }
 
-#Coroutines
+#Kotlinx
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 #Koin
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
@@ -85,6 +87,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-an
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 navigation-safeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "jetpack-navigation" }
 secretsGradle = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets-gradle" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-android" }
 
 [bundles]
 ui = ["ui-material", "ui-constraintlayout", "ui-viewBindingDelegate", "glide", "ui-swipe-ref", "ui-splashscreen"]
