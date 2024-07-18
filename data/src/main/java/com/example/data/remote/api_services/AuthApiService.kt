@@ -17,7 +17,7 @@ import retrofit2.http.POST
 interface AuthApiService {
 
     @POST(CLIENT_LOGIN_ENDPOINT)
-    suspend fun userLogin(@Body userData: UserLoginRequestDto): UserLoginResponseDto
+    suspend fun userLogin(@Body userData: UserLoginRequestDto): Response<UserLoginResponseDto>
 
     @POST(CLIENT_REGISTER_ENDPOINT)
     suspend fun userRegister(@Body userData: UserRegisterRequestDto): UserRegisterResponseDto

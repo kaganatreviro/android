@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.navigation.safeArgs) apply false
     alias(libs.plugins.secretsGradle) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
 }
